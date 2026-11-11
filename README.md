@@ -33,8 +33,10 @@ python scripts/check.py
 
 ## Acompanhamento e cópia dos dados
 
-- O cidadão pode registrar, confirmar e acompanhar uma ocorrência. O reconhecimento do navegador funciona por um identificador local.
-- A equipe pode corrigir a categoria, copiar o pedido para encaminhar no canal oficial e registrar o número recebido. Cada mudança de andamento aparece no histórico.
+- O cidadão pode registrar, confirmar e acompanhar uma ocorrência. O reconhecimento do navegador funciona por um identificador local. Rua, número e bairro ajudam a encontrar ocorrências abertas no mesmo endereço.
+- Quando a equipe marca um caso como resolvido, o morador pode confirmar o reparo ou relatar que o problema continua. Nesse caso, a ocorrência volta para a fila com a observação ou foto, o protocolo anterior e o histórico.
+- A fila da equipe mostra os casos para revisar, os encaminhados e os resolvidos. A equipe pode salvar a categoria separadamente, copiar o pedido para o canal oficial e registrar o protocolo recebido.
+- A Área técnica compara as sugestões do modelo com as categorias revisadas no ambiente atual. A equipe pode consultar correções recentes. Esses dados servem para avaliação do piloto.
 - O ZELA guarda o relato e a foto no SQLite. Para copiar os dados, execute `zela-ml backup instance/copia.sqlite3`. Acrescente `--exemplo` para copiar o banco fictício.
 - Para recuperar os dados, pare o servidor, preserve uma cópia do banco atual e use uma cópia válida no lugar de `instance/zela.sqlite3` ou `instance/zela-exemplo.sqlite3`, conforme o ambiente. Reinicie e confira uma ocorrência e seu histórico. Arquivos do banco e cópias ficam fora do Git.
 

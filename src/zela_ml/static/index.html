@@ -55,6 +55,7 @@
               <button type="button" data-filter="" aria-pressed="true">Todas</button>
               <button type="button" data-filter="registrada" aria-pressed="false">Registradas</button>
               <button type="button" data-filter="encaminhada" aria-pressed="false">Encaminhadas</button>
+              <button type="button" data-filter="reaberta" aria-pressed="false">Em nova revisão</button>
               <button type="button" data-filter="resolvida" aria-pressed="false">Resolvidas</button>
             </div>
             <span class="list-count" id="contagem" aria-live="polite"></span>
@@ -69,8 +70,12 @@
             <p class="lead">Diga onde está o problema e o que você encontrou.</p>
           </div>
           <form id="relato-form" class="panel report-form">
-            <label for="local">Onde está o problema?</label>
-            <input id="local" name="local" minlength="5" maxlength="160" placeholder="Rua e número ou ponto de referência" required>
+            <label for="local">Rua ou local</label>
+            <input id="local" name="rua" minlength="3" maxlength="100" placeholder="Ex. Rua das Acácias" required>
+            <div class="address-fields">
+              <div><label for="numero">Número <span>opcional</span></label><input id="numero" maxlength="16" placeholder="Ex. 120"></div>
+              <div><label for="bairro">Bairro <span>opcional</span></label><input id="bairro" maxlength="40"></div>
+            </div>
             <label for="descricao">O que aconteceu?</label>
             <textarea id="descricao" name="descricao" minlength="12" maxlength="1000" placeholder="Ex. O poste perto do ponto de ônibus não acende à noite." required></textarea>
             <label for="categoria">Tipo de problema <span>opcional</span></label>
@@ -91,7 +96,7 @@
 
         <section data-screen="detalhe" aria-labelledby="detalhe-titulo" hidden>
           <div class="intro">
-            <a class="back-link" href="#ocorrencias">← Ocorrências</a>
+            <a id="detalhe-voltar" class="back-link" href="#ocorrencias">← Ocorrências</a>
             <p class="detail-code" id="detalhe-codigo"></p>
             <h1 id="detalhe-titulo">Ocorrência</h1>
             <p class="lead" id="detalhe-local"></p>
@@ -115,23 +120,42 @@
               <ol id="historico" class="timeline"></ol>
             </section>
           </div>
+          <section id="retorno" class="panel staff-form" aria-labelledby="retorno-titulo" hidden>
+            <h2 id="retorno-titulo">O problema foi resolvido?</h2>
+            <div class="staff-actions return-actions">
+              <button id="reparo-confirmado" class="secondary" type="button">Sim, foi resolvido</button>
+              <button id="ainda-acontece" class="secondary" type="button" aria-expanded="false" aria-controls="retorno-form">Ainda acontece</button>
+            </div>
+            <form id="retorno-form" class="report-form" hidden>
+              <label for="retorno-nota">O que continua acontecendo?</label>
+              <textarea id="retorno-nota" maxlength="300" rows="2"></textarea>
+              <label for="retorno-foto">Foto do local <span>opcional</span></label>
+              <input id="retorno-foto" type="file" accept="image/jpeg,image/png,image/webp">
+              <p class="field-help">Inclua uma observação ou uma foto de até 2 MB.</p>
+              <div class="form-actions"><button class="submit" type="submit">Enviar para revisão</button></div>
+            </form>
+            <div id="retorno-erro" class="error" role="alert" hidden></div>
+          </section>
           <form id="andamento-form" class="panel report-form staff-form" aria-labelledby="atualizar-titulo" hidden>
-            <h2 id="atualizar-titulo">Atualizar andamento</h2>
+            <h2 id="atualizar-titulo">Revisar ocorrência</h2>
             <p id="sugestao" class="field-help" hidden></p>
             <label for="equipe-categoria">Tipo de problema</label>
             <select id="equipe-categoria" required></select>
-            <label for="novo-estado">Novo andamento</label>
-            <select id="novo-estado" required></select>
-            <div id="protocolo-campo">
-              <label for="protocolo">Protocolo recebido</label>
-              <input id="protocolo" maxlength="80" placeholder="Número do pedido no canal oficial">
-              <p class="field-help">Use o protocolo que você recebeu ao encaminhar a solicitação.</p>
-              <button type="button" class="secondary" id="copiar">Copiar pedido</button>
-            </div>
-            <label for="nota">O que foi feito?</label>
-            <textarea id="nota" maxlength="300" rows="2" placeholder="Essa informação aparece no histórico."></textarea>
+            <button id="revisar-categoria" type="button" class="secondary review-button">Salvar categoria</button>
+            <fieldset id="mudanca-andamento" class="stage-fields">
+              <legend>Andamento</legend>
+              <label for="novo-estado">Novo andamento</label>
+              <select id="novo-estado" required></select>
+              <div id="protocolo-campo">
+                <label for="protocolo">Protocolo recebido</label>
+                <input id="protocolo" maxlength="80" placeholder="Número do pedido no canal oficial">
+                <button type="button" class="secondary review-button" id="copiar">Copiar pedido</button>
+              </div>
+              <label for="nota">O que foi feito?</label>
+              <textarea id="nota" maxlength="300" rows="2" placeholder="Essa informação aparece no histórico."></textarea>
+              <div class="form-actions"><button class="submit" type="submit">Salvar andamento</button></div>
+            </fieldset>
             <div id="andamento-erro" class="error" role="alert" hidden></div>
-            <div class="form-actions"><button class="submit" type="submit">Salvar andamento</button></div>
           </form>
         </section>
 
@@ -151,7 +175,12 @@
               <a class="secondary action" href="/equipe/tecnica">Área técnica</a>
               <button id="sair" class="secondary" type="button">Sair</button>
             </div>
-            <h2 class="section-title">Pedidos em andamento</h2>
+            <h2 class="section-title">Fila de ocorrências</h2>
+            <div class="filters queue-filters" id="equipe-filtros" aria-label="Filtrar fila da equipe">
+              <button type="button" data-queue="revisao" aria-pressed="true">Para revisar</button>
+              <button type="button" data-queue="encaminhada" aria-pressed="false">Encaminhadas</button>
+              <button type="button" data-queue="resolvida" aria-pressed="false">Resolvidas</button>
+            </div>
             <div id="equipe-lista" class="occurrences"></div>
           </div>
         </section>

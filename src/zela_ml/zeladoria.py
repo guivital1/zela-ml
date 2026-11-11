@@ -1,12 +1,21 @@
+from __future__ import annotations
+
 import sqlite3
 from contextlib import closing, contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 
 from zela_ml.dataset import normalize
+from zela_ml.endereco import Endereco, chave
 from zela_ml.settings import CATEGORIES
 
-STATES = {"registrada": "Registrada", "encaminhada": "Encaminhada", "resolvida": "Resolvida"}
+STATES = {
+    "registrada": "Registrada",
+    "encaminhada": "Encaminhada",
+    "resolvida": "Resolvida",
+    "reaberta": "Em nova revisão",
+    "reparo_confirmado": "Reparo confirmado por morador",
+}
 REPORT_CATEGORIES = {**CATEGORIES, "outros": "Outros serviços"}
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS ocorrencias (
@@ -40,8 +49,29 @@ CREATE TABLE IF NOT EXISTS historico (
     criado_em TEXT NOT NULL
 );
 """
+MIGRATION = (
+    "ALTER TABLE ocorrencias ADD COLUMN rua_chave TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE ocorrencias ADD COLUMN numero_chave TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE ocorrencias ADD COLUMN bairro_chave TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE ocorrencias ADD COLUMN reaberta INTEGER NOT NULL DEFAULT 0",
+    "ALTER TABLE ocorrencias ADD COLUMN versao INTEGER NOT NULL DEFAULT 0",
+    "ALTER TABLE ocorrencias ADD COLUMN modelo TEXT",
+    "ALTER TABLE historico ADD COLUMN fechamento INTEGER REFERENCES historico(id)",
+    "ALTER TABLE historico ADD COLUMN visitante TEXT",
+    "ALTER TABLE historico ADD COLUMN foto BLOB",
+    "ALTER TABLE historico ADD COLUMN protocolo TEXT",
+    "CREATE INDEX ocorrencias_endereco ON ocorrencias(rua_chave, numero_chave, bairro_chave)",
+    "CREATE UNIQUE INDEX retorno_por_fechamento ON historico(fechamento, visitante)",
+    """CREATE TABLE revisoes_categoria (
+        id INTEGER PRIMARY KEY,
+        ocorrencia INTEGER NOT NULL REFERENCES ocorrencias(id),
+        categoria TEXT NOT NULL,
+        criado_em TEXT NOT NULL
+    )""",
+    "CREATE INDEX revisoes_por_ocorrencia ON revisoes_categoria(ocorrencia, id)",
+)
 SUMMARY = """
-SELECT o.id, o.descricao, o.local, o.categoria, o.estado, o.protocolo,
+SELECT o.id, o.descricao, o.local, o.categoria, o.estado, o.reaberta, o.versao, o.protocolo,
        o.criado_em, o.atualizado_em, o.foto IS NOT NULL AS tem_foto,
        (SELECT COUNT(*) FROM confirmacoes WHERE ocorrencia = o.id) AS confirmacoes,
        EXISTS(SELECT 1 FROM confirmacoes WHERE ocorrencia = o.id AND visitante = ?) AS confirmou
@@ -64,6 +94,8 @@ def now() -> str:
 
 def present(row: sqlite3.Row) -> dict:
     item = dict(row)
+    if item.pop("reaberta"):
+        item["estado"] = "reaberta"
     item["codigo"] = f"ZL-{item['id']:04d}"
     item["tipo"] = REPORT_CATEGORIES.get(item["categoria"], "A identificar")
     item["situacao"] = STATES[item["estado"]]
@@ -84,13 +116,32 @@ class Occurrences:
     def initialize(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as conn:
+            conn.execute("BEGIN IMMEDIATE")
             version = conn.execute("PRAGMA user_version").fetchone()[0]
-            if version > 1:
+            if version > 2:
                 raise RuntimeError("O banco foi criado por uma versão mais recente do ZELA.")
             if version == 0:
-                conn.executescript(
-                    "BEGIN IMMEDIATE;\n" + SCHEMA + "\nPRAGMA user_version=1; COMMIT;"
+                for statement in SCHEMA.split(";"):
+                    if statement.strip():
+                        conn.execute(statement)
+            if version < 2:
+                for statement in MIGRATION:
+                    conn.execute(statement)
+                for row in conn.execute("SELECT id, local FROM ocorrencias"):
+                    self.save_address(conn, row["id"], Endereco.legado(row["local"]))
+                conn.execute(
+                    """UPDATE historico SET protocolo = (
+                        SELECT protocolo FROM ocorrencias WHERE id = historico.ocorrencia
+                    ) WHERE estado = 'encaminhada'"""
                 )
+                conn.execute("PRAGMA user_version = 2")
+
+    @staticmethod
+    def save_address(conn: sqlite3.Connection, occurrence: int, address: Endereco) -> None:
+        conn.execute(
+            "UPDATE ocorrencias SET rua_chave = ?, numero_chave = ?, bairro_chave = ? WHERE id = ?",
+            (address.rua_chave, address.numero_chave, chave(address.bairro), occurrence),
+        )
 
     def list(self, person: str, mine: bool = False) -> list[dict]:
         condition = (
@@ -109,19 +160,37 @@ class Occurrences:
 
     def detail(self, occurrence: int, person: str, team: bool = False) -> dict | None:
         with self.connect() as conn:
+            conn.execute("BEGIN")
             row = conn.execute(SUMMARY + "WHERE o.id = ?", (person, occurrence)).fetchone()
             if row is None:
                 return None
             item = present(row)
             events = conn.execute(
-                "SELECT estado, nota, criado_em FROM historico WHERE ocorrencia = ? ORDER BY id",
+                "SELECT id, estado, nota, criado_em, protocolo, foto IS NOT NULL AS tem_foto "
+                "FROM historico WHERE ocorrencia = ? ORDER BY id",
                 (occurrence,),
             )
             item["historico"] = [{**event, "situacao": STATES[event["estado"]]} for event in events]
+            if item["estado"] == "resolvida":
+                closed = next(
+                    event for event in reversed(item["historico"]) if event["estado"] == "resolvida"
+                )
+                item["fechamento"] = closed["id"]
+                item["retorno_enviado"] = bool(
+                    conn.execute(
+                        "SELECT 1 FROM historico WHERE fechamento = ? AND visitante = ?",
+                        (closed["id"], person),
+                    ).fetchone()
+                )
             if team:
                 item["sugestao"] = conn.execute(
                     "SELECT sugestao FROM ocorrencias WHERE id = ?", (occurrence,)
                 ).fetchone()[0]
+                item["categoria_revisada"] = bool(
+                    conn.execute(
+                        "SELECT 1 FROM revisoes_categoria WHERE ocorrencia = ?", (occurrence,)
+                    ).fetchone()
+                )
             return item
 
     def photo(self, occurrence: int) -> bytes | None:
@@ -136,14 +205,15 @@ class Occurrences:
         person: str,
         key: str,
         description: str,
-        place: str,
+        address: Endereco,
         category: str | None,
         suggestion: str | None,
         photo: bytes | None,
         separate: bool,
+        model: str | None = None,
     ) -> int:
         timestamp = now()
-        place_key = normalize(place)
+        place_key = normalize(address.local)
         with self.connect() as conn:
             conn.execute("BEGIN IMMEDIATE")
             prior = conn.execute(
@@ -153,30 +223,44 @@ class Occurrences:
                 return prior["id"]
             if not separate:
                 matches = conn.execute(
-                    SUMMARY + "WHERE o.local_chave = ? AND o.estado <> 'resolvida' "
-                    "ORDER BY o.id DESC LIMIT 5",
-                    (person, place_key),
+                    SUMMARY
+                    + """WHERE o.estado <> 'resolvida' AND (
+                        o.local_chave = ? OR (
+                            o.rua_chave <> '' AND o.rua_chave = ? AND o.numero_chave = ?
+                            AND (o.bairro_chave = ? OR o.bairro_chave = '' OR ? = '')
+                        )
+                    ) ORDER BY o.id DESC LIMIT 5""",
+                    (
+                        person,
+                        place_key,
+                        address.rua_chave,
+                        address.numero_chave,
+                        chave(address.bairro),
+                        chave(address.bairro),
+                    ),
                 ).fetchall()
                 if matches:
                     raise DuplicateLocation([present(row) for row in matches])
             occurrence = conn.execute(
                 """INSERT INTO ocorrencias (
                     visitante, pedido, descricao, local, local_chave, categoria, sugestao,
-                    foto, criado_em, atualizado_em
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    foto, criado_em, atualizado_em, modelo
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     person,
                     key,
                     description,
-                    place,
+                    address.local,
                     place_key,
                     category,
                     suggestion,
                     photo,
                     timestamp,
                     timestamp,
+                    model,
                 ),
             ).lastrowid
+            self.save_address(conn, occurrence, address)
             conn.execute("INSERT INTO confirmacoes VALUES (?, ?)", (occurrence, person))
             conn.execute(
                 "INSERT INTO historico (ocorrencia, estado, criado_em) VALUES (?, 'registrada', ?)",
@@ -204,6 +288,54 @@ class Occurrences:
         category: str,
         protocol: str | None,
         note: str | None,
+        version: int | None = None,
+    ) -> None:
+        timestamp = now()
+        with self.connect() as conn:
+            conn.execute("BEGIN IMMEDIATE")
+            row = conn.execute(
+                "SELECT estado, reaberta, versao, protocolo FROM ocorrencias WHERE id = ?",
+                (occurrence,),
+            ).fetchone()
+            if row is None:
+                raise LookupError
+            current = "reaberta" if row["reaberta"] else row["estado"]
+            if current != expected or (version is not None and row["versao"] != version):
+                raise InvalidUpdate("O andamento mudou. Abra a ocorrência novamente.")
+            allowed = {
+                "registrada": {"encaminhada", "resolvida"},
+                "encaminhada": {"resolvida"},
+                "reaberta": {"encaminhada", "resolvida"},
+            }
+            if state not in allowed.get(expected, set()):
+                raise InvalidUpdate("Essa mudança de andamento não está disponível.")
+            if current == "reaberta" and state == "encaminhada" and not protocol:
+                protocol = row["protocolo"]
+            if state == "encaminhada" and not protocol:
+                raise InvalidUpdate("Informe o protocolo recebido no canal oficial.")
+            if state == "resolvida" and not note:
+                raise InvalidUpdate("Descreva o que foi feito para resolver o problema.")
+            protocol = protocol if state == "encaminhada" else row["protocolo"]
+            conn.execute(
+                "UPDATE ocorrencias SET estado = ?, categoria = ?, protocolo = ?, "
+                "atualizado_em = ?, reaberta = 0, versao = versao + 1 WHERE id = ?",
+                (state, category, protocol, timestamp, occurrence),
+            )
+            conn.execute(
+                "INSERT INTO historico (ocorrencia, estado, nota, criado_em, protocolo) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (occurrence, state, note, timestamp, protocol if state == "encaminhada" else None),
+            )
+            self.record_category(conn, occurrence, category, timestamp)
+
+    def feedback(
+        self,
+        occurrence: int,
+        person: str,
+        closure: int,
+        repaired: bool,
+        note: str | None,
+        photo: bytes | None,
     ) -> None:
         timestamp = now()
         with self.connect() as conn:
@@ -213,25 +345,106 @@ class Occurrences:
             ).fetchone()
             if row is None:
                 raise LookupError
-            if row["estado"] != expected:
-                raise InvalidUpdate("O andamento mudou. Abra a ocorrência novamente.")
-            allowed = {"registrada": {"encaminhada", "resolvida"}, "encaminhada": {"resolvida"}}
-            if state not in allowed.get(expected, set()):
-                raise InvalidUpdate("Essa mudança de andamento não está disponível.")
-            if state == "encaminhada" and not protocol:
-                raise InvalidUpdate("Informe o protocolo recebido no canal oficial.")
-            if state == "resolvida" and not note:
-                raise InvalidUpdate("Descreva o que foi feito para resolver o problema.")
-            protocol = protocol if state == "encaminhada" else row["protocolo"]
+            prior = conn.execute(
+                "SELECT estado FROM historico WHERE ocorrencia = ? AND fechamento = ? "
+                "AND visitante = ?",
+                (occurrence, closure, person),
+            ).fetchone()
+            event = "reparo_confirmado" if repaired else "reaberta"
+            if prior and prior["estado"] == event:
+                return
+            latest = conn.execute(
+                "SELECT MAX(id) FROM historico WHERE ocorrencia = ? AND estado = 'resolvida'",
+                (occurrence,),
+            ).fetchone()[0]
+            if prior or row["estado"] != "resolvida" or latest != closure:
+                raise InvalidUpdate("O andamento mudou ou seu retorno já foi registrado.")
             conn.execute(
-                "UPDATE ocorrencias SET estado = ?, categoria = ?, protocolo = ?, "
-                "atualizado_em = ? WHERE id = ?",
-                (state, category, protocol, timestamp, occurrence),
+                """INSERT INTO historico (
+                    ocorrencia, estado, nota, criado_em, fechamento, visitante, foto
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)""",
+                (occurrence, event, note, timestamp, closure, person, photo),
             )
-            conn.execute(
-                "INSERT INTO historico (ocorrencia, estado, nota, criado_em) VALUES (?, ?, ?, ?)",
-                (occurrence, state, note, timestamp),
+            conn.execute("INSERT OR IGNORE INTO confirmacoes VALUES (?, ?)", (occurrence, person))
+            if not repaired:
+                state = "encaminhada" if row["protocolo"] else "registrada"
+                conn.execute(
+                    "UPDATE ocorrencias SET estado = ?, reaberta = 1, atualizado_em = ?, "
+                    "versao = versao + 1 WHERE id = ?",
+                    (state, timestamp, occurrence),
+                )
+
+    def feedback_photo(self, occurrence: int, event: int) -> bytes | None:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT foto FROM historico WHERE ocorrencia = ? AND id = ?", (occurrence, event)
+            ).fetchone()
+            return row["foto"] if row else None
+
+    @staticmethod
+    def record_category(conn, occurrence: int, category: str, timestamp: str) -> bool:
+        last = conn.execute(
+            "SELECT categoria FROM revisoes_categoria WHERE ocorrencia = ? "
+            "ORDER BY id DESC LIMIT 1",
+            (occurrence,),
+        ).fetchone()
+        if last and last["categoria"] == category:
+            return False
+        conn.execute(
+            "INSERT INTO revisoes_categoria (ocorrencia, categoria, criado_em) VALUES (?, ?, ?)",
+            (occurrence, category, timestamp),
+        )
+        return True
+
+    def review_category(self, occurrence: int, category: str, version: int) -> None:
+        timestamp = now()
+        with self.connect() as conn:
+            conn.execute("BEGIN IMMEDIATE")
+            row = conn.execute(
+                "SELECT versao FROM ocorrencias WHERE id = ?", (occurrence,)
+            ).fetchone()
+            if row is None:
+                raise LookupError
+            if row["versao"] != version:
+                raise InvalidUpdate("A ocorrência mudou. Abra a ocorrência novamente.")
+            if self.record_category(conn, occurrence, category, timestamp):
+                conn.execute(
+                    "UPDATE ocorrencias SET categoria = ?, versao = versao + 1 WHERE id = ?",
+                    (category, occurrence),
+                )
+
+    def evaluation(self) -> list[dict]:
+        with self.connect() as conn:
+            rows = conn.execute(
+                """SELECT o.modelo, COUNT(*) AS revisadas,
+                          SUM(o.sugestao IS NOT NULL) AS com_sugestao,
+                          SUM(CASE WHEN o.sugestao = r.categoria THEN 1 ELSE 0 END) AS confirmadas
+                   FROM revisoes_categoria r JOIN ocorrencias o ON o.id = r.ocorrencia
+                   WHERE r.id = (
+                       SELECT MAX(id) FROM revisoes_categoria WHERE ocorrencia = r.ocorrencia
+                   )
+                   GROUP BY o.modelo ORDER BY o.modelo"""
             )
+            return [dict(row) for row in rows]
+
+    def corrections(self) -> list[dict]:
+        with self.connect() as conn:
+            rows = conn.execute(
+                """SELECT o.id, o.sugestao, r.categoria
+                   FROM revisoes_categoria r JOIN ocorrencias o ON o.id = r.ocorrencia
+                   WHERE o.sugestao <> r.categoria AND r.id = (
+                       SELECT MAX(id) FROM revisoes_categoria WHERE ocorrencia = r.ocorrencia
+                   ) ORDER BY r.id DESC LIMIT 20"""
+            )
+            return [
+                {
+                    "id": row["id"],
+                    "codigo": f"ZL-{row['id']:04d}",
+                    "sugestao": REPORT_CATEGORIES[row["sugestao"]],
+                    "categoria": REPORT_CATEGORIES[row["categoria"]],
+                }
+                for row in rows
+            ]
 
     def seed_demo(self) -> None:
         examples = (
@@ -284,6 +497,7 @@ class Occurrences:
                         timestamp,
                     ),
                 ).lastrowid
+                self.save_address(conn, occurrence, Endereco.legado(place))
                 conn.execute("INSERT INTO confirmacoes VALUES (?, 'exemplo')", (occurrence,))
                 conn.execute(
                     "INSERT INTO historico (ocorrencia, estado, criado_em) "
@@ -292,9 +506,9 @@ class Occurrences:
                 )
                 if state != "registrada":
                     conn.execute(
-                        "INSERT INTO historico (ocorrencia, estado, nota, criado_em) "
-                        "VALUES (?, ?, ?, ?)",
-                        (occurrence, state, note, timestamp),
+                        "INSERT INTO historico (ocorrencia, estado, nota, criado_em, protocolo) "
+                        "VALUES (?, ?, ?, ?, ?)",
+                        (occurrence, state, note, timestamp, protocol),
                     )
 
     def backup(self, destination: Path) -> None:

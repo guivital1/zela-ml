@@ -6,9 +6,10 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from PIL import Image, ImageOps
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from zela_ml.access import visitor
+from zela_ml.endereco import Endereco
 from zela_ml.zeladoria import REPORT_CATEGORIES, DuplicateLocation, InvalidUpdate
 
 router = APIRouter(prefix="/api")
@@ -31,10 +32,30 @@ class Input(BaseModel):
 class Report(Input):
     pedido: UUID
     descricao: str = Field(min_length=12, max_length=1000)
-    local: str = Field(min_length=5, max_length=160)
+    local: str | None = Field(default=None, min_length=5, max_length=160)
+    rua: str | None = Field(default=None, min_length=3, max_length=100)
+    numero: str = Field(default="", max_length=16)
+    bairro: str = Field(default="", max_length=40)
     categoria: str | None = None
     foto: str | None = Field(default=None, max_length=2_800_000)
     outro_problema: bool = False
+
+    @model_validator(mode="after")
+    def has_address(self):
+        if self.rua is None and self.local is None:
+            raise ValueError("Informe a rua ou o local da ocorrência.")
+        return self
+
+    def address(self) -> Endereco:
+        if self.rua is None:
+            assert self.local is not None
+            return Endereco.legado(self.local)
+        local = self.rua
+        if self.numero:
+            local += f", {self.numero}"
+        if self.bairro:
+            local += f" · {self.bairro}"
+        return Endereco(local, self.rua, self.numero, self.bairro)
 
     @field_validator("categoria")
     @classmethod
@@ -50,18 +71,30 @@ class Report(Input):
         return value
 
 
-class Update(Input):
-    estado_anterior: Literal["registrada", "encaminhada", "resolvida"]
-    estado: Literal["encaminhada", "resolvida"]
+class CategoryReview(Input):
     categoria: str
-    protocolo: str | None = Field(default=None, max_length=80)
-    nota: str | None = Field(default=None, max_length=300)
+    versao: int = Field(ge=0)
 
     @field_validator("categoria")
     @classmethod
     def category(cls, value: str) -> str:
         valid_category(value)
         return value
+
+
+class Update(CategoryReview):
+    estado_anterior: Literal["registrada", "encaminhada", "resolvida", "reaberta"]
+    estado: Literal["encaminhada", "resolvida"]
+    versao: int | None = Field(default=None, ge=0)
+    protocolo: str | None = Field(default=None, max_length=80)
+    nota: str | None = Field(default=None, max_length=300)
+
+
+class Feedback(Input):
+    fechamento: int = Field(gt=0)
+    resolvido: bool
+    nota: str | None = Field(default=None, max_length=300)
+    foto: str | None = Field(default=None, max_length=2_800_000)
 
 
 class Login(BaseModel):
@@ -116,11 +149,12 @@ def create_occurrence(payload: Report, request: Request, response: Response):
             person,
             str(payload.pedido),
             payload.descricao,
-            payload.local,
+            payload.address(),
             payload.categoria,
             suggestion,
             photo,
             payload.outro_problema,
+            classifier.version if classifier else None,
         )
     except DuplicateLocation as error:
         raise HTTPException(409, {"ocorrencias": error.matches}) from error
@@ -135,6 +169,31 @@ def occurrence_detail(occurrence: int, request: Request, response: Response):
 @router.get("/ocorrencias/{occurrence}/foto")
 def occurrence_photo(occurrence: int, request: Request):
     photo = request.app.state.occurrences.photo(occurrence)
+    if photo is None:
+        raise HTTPException(404, "Foto indisponível.")
+    return Response(photo, media_type="image/jpeg", headers={"X-Content-Type-Options": "nosniff"})
+
+
+@router.post("/ocorrencias/{occurrence}/retorno")
+def send_feedback(occurrence: int, payload: Feedback, request: Request, response: Response):
+    person = visitor(request, response)
+    photo = prepare_photo(payload.foto)
+    if not payload.resolvido and not (payload.nota or photo):
+        raise HTTPException(422, "Conte o que ainda acontece ou inclua uma foto.")
+    try:
+        request.app.state.occurrences.feedback(
+            occurrence, person, payload.fechamento, payload.resolvido, payload.nota, photo
+        )
+    except LookupError as error:
+        raise HTTPException(404, "Ocorrência não encontrada.") from error
+    except InvalidUpdate as error:
+        raise HTTPException(409, str(error)) from error
+    return find_detail(request, occurrence, person)
+
+
+@router.get("/ocorrencias/{occurrence}/retornos/{event}/foto")
+def feedback_photo(occurrence: int, event: int, request: Request):
+    photo = request.app.state.occurrences.feedback_photo(occurrence, event)
     if photo is None:
         raise HTTPException(404, "Foto indisponível.")
     return Response(photo, media_type="image/jpeg", headers={"X-Content-Type-Options": "nosniff"})
@@ -169,6 +228,27 @@ def team_logout(request: Request, response: Response):
     return {"autorizado": False}
 
 
+@router.get("/equipe/avaliacao", dependencies=[Depends(require_team)])
+def team_evaluation(request: Request):
+    occurrences = request.app.state.occurrences
+    return {
+        "exemplo": request.app.state.demo,
+        "modelos": occurrences.evaluation(),
+        "correcoes": occurrences.corrections(),
+    }
+
+
+@router.patch("/equipe/ocorrencias/{occurrence}/categoria", dependencies=[Depends(require_team)])
+def review_category(occurrence: int, payload: CategoryReview, request: Request, response: Response):
+    try:
+        request.app.state.occurrences.review_category(occurrence, payload.categoria, payload.versao)
+    except LookupError as error:
+        raise HTTPException(404, "Ocorrência não encontrada.") from error
+    except InvalidUpdate as error:
+        raise HTTPException(409, str(error)) from error
+    return find_detail(request, occurrence, visitor(request, response))
+
+
 @router.patch("/equipe/ocorrencias/{occurrence}", dependencies=[Depends(require_team)])
 def update_occurrence(occurrence: int, payload: Update, request: Request, response: Response):
     try:
@@ -179,6 +259,7 @@ def update_occurrence(occurrence: int, payload: Update, request: Request, respon
             payload.categoria,
             payload.protocolo,
             payload.nota,
+            payload.versao,
         )
     except LookupError as error:
         raise HTTPException(404, "Ocorrência não encontrada.") from error

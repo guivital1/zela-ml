@@ -13,6 +13,8 @@ let revision = 0;
 let reportKey;
 let savingReport = false;
 let nextMessage = '';
+let queueFilter = 'revisao';
+let queueItems = [];
 
 class RequestError extends Error {
   constructor(status, detail) {
@@ -72,7 +74,7 @@ function badge(node, item) {
   node.textContent = item.situacao;
 }
 
-function card(item) {
+function card(item, queue = false) {
   const node = element('ocorrencia-card').content.firstElementChild.cloneNode(true);
   node.href = `#ocorrencia/${item.id}`;
   const field = name => node.querySelector(`[data-item="${name}"]`);
@@ -80,19 +82,35 @@ function card(item) {
   field('local').textContent = item.local;
   field('descricao').textContent = item.descricao;
   field('codigo').textContent = item.codigo;
-  field('confirmacoes').textContent = plural(item.confirmacoes, 'confirmação', 'confirmações');
+  const days = Math.max(0, Math.floor((Date.now() - Date.parse(item.criado_em)) / 86400000));
+  field('confirmacoes').textContent = queue && item.estado !== 'resolvida'
+    ? (days ? `Aberta há ${plural(days, 'dia', 'dias')}` : 'Aberta hoje')
+    : plural(item.confirmacoes, 'confirmação', 'confirmações');
   badge(field('estado'), item);
   return node;
 }
 
-function showCards(target, records, empty) {
-  target.replaceChildren(...records.map(card));
+function showCards(target, records, empty, queue = false) {
+  target.replaceChildren(...records.map(item => card(item, queue)));
   if (!records.length) {
     const note = document.createElement('p');
     note.className = 'placeholder';
     note.textContent = empty;
     target.append(note);
   }
+}
+
+function drawQueue() {
+  const visible = queueItems.filter(item => (
+    queueFilter === 'revisao'
+      ? item.estado === 'registrada' || item.estado === 'reaberta'
+      : item.estado === queueFilter
+  ));
+  if (queueFilter === 'revisao') {
+    visible.sort((a, b) => Number(b.estado === 'reaberta') - Number(a.estado === 'reaberta') ||
+      a.criado_em.localeCompare(b.criado_em) || a.id - b.id);
+  }
+  showCards(element('equipe-lista'), visible, 'Nenhuma ocorrência nesta etapa.', true);
 }
 
 function drawList() {
@@ -117,6 +135,8 @@ async function loadList(mine) {
 
 function showDetail(item) {
   detail = item;
+  element('detalhe-voltar').href = team ? '#equipe' : '#ocorrencias';
+  element('detalhe-voltar').textContent = team ? '← Fila da equipe' : '← Ocorrências';
   element('detalhe-titulo').textContent = item.tipo === 'A identificar' ? 'Ocorrência' : item.tipo;
   element('detalhe-codigo').textContent = item.codigo;
   element('detalhe-local').textContent = item.local;
@@ -148,19 +168,46 @@ function showDetail(item) {
       note.textContent = event.nota;
       entry.append(note);
     }
+    if (event.protocolo && event.protocolo !== item.protocolo) {
+      const protocol = document.createElement('p');
+      protocol.textContent = `Protocolo ${event.protocolo}`;
+      entry.append(protocol);
+    }
+    if (event.tem_foto) {
+      const picture = document.createElement('img');
+      picture.className = 'report-photo';
+      picture.alt = 'Foto enviada no retorno sobre o reparo';
+      picture.loading = 'lazy';
+      picture.src = `/api/ocorrencias/${item.id}/retornos/${event.id}/foto`;
+      entry.append(picture);
+    }
     timeline.append(entry);
   }
 
+  element('retorno').hidden = team || !item.fechamento || item.retorno_enviado;
+  element('retorno-form').hidden = true;
+  element('retorno-form').reset();
+  element('ainda-acontece').setAttribute('aria-expanded', 'false');
+  message('retorno-erro');
+
   const update = element('andamento-form');
-  update.hidden = !team || item.estado === 'resolvida';
+  update.hidden = !team;
   if (!update.hidden) {
     update.reset();
+    const stage = element('mudanca-andamento');
+    stage.hidden = item.estado === 'resolvida';
+    stage.disabled = stage.hidden;
     showCategories(element('equipe-categoria'), item.categoria || item.sugestao || '');
     const states = [new Option('Resolvida', 'resolvida')];
-    if (item.estado === 'registrada') states.unshift(new Option('Encaminhada', 'encaminhada'));
+    if (item.estado === 'registrada' || item.estado === 'reaberta') {
+      states.unshift(new Option('Encaminhada', 'encaminhada'));
+    }
     element('novo-estado').replaceChildren(...states);
-    message('sugestao', !item.categoria && item.sugestao
-      ? `Tipo sugerido para revisão: ${categories[item.sugestao]}.` : '');
+    element('protocolo').value = item.estado === 'reaberta' ? item.protocolo || '' : '';
+    message('sugestao', item.sugestao
+      ? `Sugestão do modelo: ${categories[item.sugestao]}.` : '');
+    element('revisar-categoria').textContent = item.categoria_revisada
+      ? 'Salvar categoria' : 'Confirmar categoria';
     adjustUpdate();
   }
 }
@@ -202,8 +249,8 @@ async function route() {
         const records = await loadList(false);
         if (current !== revision) return;
         element('equipe-painel').hidden = false;
-        showCards(element('equipe-lista'), records.filter(item => item.estado !== 'resolvida'),
-          'Todos os pedidos foram revisados.');
+        queueItems = records;
+        drawQueue();
       }
       return;
     }
@@ -218,7 +265,7 @@ async function route() {
       message('detalhe-erro');
       message('andamento-erro');
       showDetail(records[0]);
-      screen('detalhe', 'ocorrencias');
+      screen('detalhe', team ? 'equipe' : 'ocorrencias');
       return;
     }
 
@@ -255,6 +302,16 @@ element('filtros').addEventListener('click', event => {
   drawList();
 });
 
+element('equipe-filtros').addEventListener('click', event => {
+  const button = event.target.closest('[data-queue]');
+  if (!button) return;
+  queueFilter = button.dataset.queue;
+  for (const item of element('equipe-filtros').querySelectorAll('button')) {
+    item.setAttribute('aria-pressed', String(item === button));
+  }
+  drawQueue();
+});
+
 element('busca').addEventListener('input', () => {
   if (!document.querySelector('[data-screen="lista"]').hidden) drawList();
 });
@@ -264,8 +321,8 @@ element('busca-form').addEventListener('submit', event => {
   else drawList();
 });
 
-function readPhoto() {
-  const file = element('foto').files[0];
+function readPhoto(id = 'foto') {
+  const file = element(id).files[0];
   if (!file) return Promise.resolve(null);
   if (file.size > 2 * 1024 * 1024) return Promise.reject(new Error('Escolha uma foto de até 2 MB.'));
   return new Promise((resolve, reject) => {
@@ -295,7 +352,9 @@ async function saveReport(separate = false) {
     reportKey ??= crypto.randomUUID();
     const payload = {
       pedido: reportKey,
-      local: element('local').value,
+      rua: element('local').value,
+      numero: element('numero').value,
+      bairro: element('bairro').value,
       descricao: element('descricao').value,
       categoria: element('categoria').value || null,
       outro_problema: separate,
@@ -344,6 +403,62 @@ element('confirmar').addEventListener('click', async event => {
 });
 
 element('novo-estado').addEventListener('change', adjustUpdate);
+
+element('ainda-acontece').addEventListener('click', () => {
+  const form = element('retorno-form');
+  form.hidden = !form.hidden;
+  element('ainda-acontece').setAttribute('aria-expanded', String(!form.hidden));
+  if (!form.hidden) element('retorno-nota').focus();
+});
+
+async function sendFeedback(repaired) {
+  const item = detail;
+  const buttons = element('retorno').querySelectorAll('button');
+  for (const button of buttons) button.disabled = true;
+  message('retorno-erro');
+  try {
+    const updated = await request(`/api/ocorrencias/${item.id}/retorno`, 'POST', {
+      fechamento: item.fechamento,
+      resolvido: repaired,
+      nota: repaired ? null : element('retorno-nota').value.trim(),
+      foto: repaired ? null : await readPhoto('retorno-foto'),
+    });
+    if (detail.id === item.id) showDetail(updated);
+    message('mensagem', repaired ? 'Reparo confirmado.' : 'A ocorrência voltou para a equipe.');
+  } catch (error) {
+    message('retorno-erro', error.message);
+  } finally {
+    for (const button of buttons) button.disabled = false;
+  }
+}
+
+element('reparo-confirmado').addEventListener('click', () => sendFeedback(true));
+element('retorno-form').addEventListener('submit', event => {
+  event.preventDefault();
+  sendFeedback(false);
+});
+
+element('revisar-categoria').addEventListener('click', async event => {
+  const button = event.currentTarget;
+  const category = element('equipe-categoria');
+  if (!category.reportValidity()) return;
+  button.disabled = true;
+  message('andamento-erro');
+  try {
+    const updated = await request(`/api/equipe/ocorrencias/${detail.id}/categoria`, 'PATCH', {
+      categoria: category.value,
+      versao: detail.versao,
+    });
+    if (detail.id === updated.id) showDetail(updated);
+    message('mensagem', 'Categoria revisada e salva.');
+  } catch (error) {
+    if (error.status === 401) navigate('#equipe');
+    else message('andamento-erro', error.message);
+  } finally {
+    button.disabled = false;
+  }
+});
+
 element('copiar').addEventListener('click', async () => {
   const category = categories[element('equipe-categoria').value] || detail.tipo;
   const text = `Solicitação de zeladoria: ${category}\nLocal: ${detail.local}\n${detail.descricao}`;
@@ -363,6 +478,7 @@ element('andamento-form').addEventListener('submit', async event => {
   try {
     const updated = await request(`/api/equipe/ocorrencias/${detail.id}`, 'PATCH', {
       estado_anterior: detail.estado,
+      versao: detail.versao,
       estado: element('novo-estado').value,
       categoria: element('equipe-categoria').value,
       protocolo: element('protocolo').value || null,

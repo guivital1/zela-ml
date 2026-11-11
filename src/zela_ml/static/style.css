@@ -162,6 +162,14 @@ label span { margin-left: 4px; color: var(--muted); font-size: .75rem; font-weig
 .matrix img { display: block; width: min(100%, 680px); height: auto; margin: 8px auto 0; }
 footer { padding-block: 15px; margin-top: 24px; color: var(--muted); border-top: 1px solid var(--line); font-size: .75rem; }
 [hidden] { display: none !important; }
+.address-fields { display: grid; grid-template-columns: minmax(95px, 1fr) 2fr; gap: 12px; }
+.address-fields label, .stage-fields label { display: block; margin: 12px 0 6px; font-size: .875rem; font-weight: 650; }
+.stage-fields { min-width: 0; border: 0; border-top: 1px solid var(--line); padding: 0; margin: 20px 0 0; }
+.stage-fields legend { font-weight: 650; padding-right: 8px; }
+.review-button, .return-actions { margin-top: 12px; }
+.queue-filters { margin-bottom: 12px; }
+.status.reaberta { color: #785414; background: #fff0cf; }
+.timeline .report-photo { margin-top: 8px; max-height: 220px; }
 
 @media (max-width: 920px) {
   .shell { grid-template-columns: 184px minmax(0, 1fr); }
