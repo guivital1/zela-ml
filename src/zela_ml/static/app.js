@@ -2,6 +2,7 @@ const form = document.querySelector('#report-form');
 const input = document.querySelector('#report');
 const submit = document.querySelector('#submit');
 const result = document.querySelector('#result');
+const placeholder = document.querySelector('#result-placeholder');
 const errorBox = document.querySelector('#error');
 let controller;
 
@@ -12,8 +13,10 @@ const percentage = value => new Intl.NumberFormat('pt-BR', {
 function resetResult() {
   controller?.abort();
   submit.disabled = false;
-  submit.textContent = 'Analisar relato ↗';
+  submit.textContent = 'Analisar relato';
   result.hidden = true;
+  placeholder.hidden = false;
+  placeholder.textContent = 'Analise um relato para ver as categorias sugeridas.';
   errorBox.hidden = true;
   document.querySelector('#counter').textContent = `${input.value.length} / 2.000`;
 }
@@ -32,7 +35,8 @@ function showResult(data) {
   const status = document.querySelector('#review-status');
   status.textContent = data.requires_review ? 'Revisão necessária' : 'Sugestão disponível';
   status.classList.toggle('review', data.requires_review);
-  document.querySelector('#category').textContent = data.label;
+  document.querySelector('#category').textContent = data.requires_review
+    ? 'Confirme a categoria' : data.label;
   document.querySelector('#result-note').textContent = data.requires_review
     ? data.review_reasons.join(' ')
     : 'Confira a descrição e confirme a categoria durante a triagem.';
@@ -65,6 +69,7 @@ function showResult(data) {
   }
   if (!data.evidence_terms.length) evidence.textContent = 'Poucos termos informativos neste relato.';
   result.hidden = false;
+  placeholder.hidden = true;
 }
 
 form.addEventListener('submit', async event => {
@@ -74,6 +79,7 @@ form.addEventListener('submit', async event => {
   controller = current;
   submit.disabled = true;
   submit.textContent = 'Analisando…';
+  placeholder.textContent = 'Analisando relato…';
   try {
     const response = await fetch('/classify', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -86,16 +92,17 @@ form.addEventListener('submit', async event => {
     }
     if (!current.signal.aborted) showResult(data);
   } catch (error) {
-    if (error.name !== 'AbortError') {
+    if (error.name !== 'AbortError' && !current.signal.aborted) {
       errorBox.textContent = error.message === 'Failed to fetch'
         ? 'A conexão com o modelo falhou. Verifique o servidor e tente novamente.'
         : error.message;
       errorBox.hidden = false;
+      placeholder.textContent = 'A análise está disponível após corrigir o relato.';
     }
   } finally {
     if (controller === current) {
       submit.disabled = false;
-      submit.textContent = 'Analisar relato ↗';
+      submit.textContent = 'Analisar relato';
     }
   }
 });
@@ -114,3 +121,71 @@ async function loadMetrics() {
 }
 
 loadMetrics();
+
+const views = document.querySelectorAll('[data-screen]');
+const links = document.querySelectorAll('[data-nav]');
+
+function showScreen() {
+  const screen = location.hash === '#avaliacao' ? 'avaliacao' : 'triagem';
+  for (const view of views) view.hidden = view.dataset.screen !== screen;
+  for (const link of links) {
+    if (link.dataset.nav === screen) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+window.addEventListener('hashchange', () => {
+  showScreen();
+  window.scrollTo(0, 0);
+});
+showScreen();
+
+const dialog = document.querySelector('#search-dialog');
+const query = document.querySelector('#search-query');
+const searchResults = document.querySelector('#search-results');
+const scenarios = Array.from(document.querySelectorAll('#examples [data-text]'));
+const actions = [
+  { title: 'Triagem', screen: 'triagem' },
+  { title: 'Avaliação', screen: 'avaliacao' },
+  ...scenarios.map(button => ({ title: button.textContent, screen: 'triagem', text: button.dataset.text }))
+];
+const simplify = text => text.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/\p{M}/gu, '');
+
+function renderSearch() {
+  const search = simplify(query.value.trim());
+  const matches = actions.filter(action => simplify(action.title).includes(search));
+  searchResults.replaceChildren();
+  for (const action of matches) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = action.title;
+    button.addEventListener('click', () => {
+      dialog.close();
+      location.hash = action.screen;
+      showScreen();
+      if (action.text) {
+        input.value = action.text;
+        resetResult();
+        input.focus();
+      }
+    });
+    searchResults.append(button);
+  }
+  if (!matches.length) searchResults.textContent = 'Nenhum resultado para essa busca.';
+}
+
+function openSearch() {
+  query.value = '';
+  renderSearch();
+  dialog.showModal();
+  query.focus();
+}
+
+query.addEventListener('input', renderSearch);
+document.querySelector('#quick-search').addEventListener('click', openSearch);
+document.addEventListener('keydown', event => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && !dialog.open) {
+    event.preventDefault();
+    openSearch();
+  }
+});

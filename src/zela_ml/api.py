@@ -6,8 +6,8 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
-from rua_em_pauta.inference import Classifier
-from rua_em_pauta.settings import ARTIFACTS
+from zela_ml.inference import Classifier
+from zela_ml.settings import ARTIFACTS, REPORTS
 
 STATIC = Path(__file__).parent / "static"
 
@@ -23,14 +23,16 @@ def create_app(artifact_dir: Path = ARTIFACTS) -> FastAPI:
         app.state.classifier = Classifier(artifact_dir)
         yield
 
-    app = FastAPI(
-        title="Rua em Pauta · Classificação de relatos", version="0.1.0", lifespan=lifespan
-    )
+    app = FastAPI(title="ZELA · Classificação de relatos", version="0.1.0", lifespan=lifespan)
     app.mount("/assets", StaticFiles(directory=STATIC), name="assets")
 
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(STATIC / "index.html")
+
+    @app.get("/evaluation/confusion-matrix.png", include_in_schema=False)
+    def confusion_matrix():
+        return FileResponse(REPORTS / "confusion_matrix.png")
 
     @app.get("/health")
     def health(request: Request):

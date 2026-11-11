@@ -7,7 +7,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 
-from rua_em_pauta.settings import ARTIFACTS
+from zela_ml.settings import ARTIFACTS
 
 
 class Classifier:

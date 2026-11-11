@@ -5,7 +5,7 @@ import unicodedata
 
 import pandas as pd
 
-from rua_em_pauta.settings import CATEGORIES, DATA, SEED
+from zela_ml.settings import CATEGORIES, DATA, SEED
 
 PREFIXES = ("", "Bom dia. ", "Gostaria de registrar o seguinte problema. ", "No bairro, ")
 SUFFIXES = (

@@ -3,7 +3,7 @@ import json
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Rua em Pauta · triagem de relatos urbanos")
+    parser = argparse.ArgumentParser(description="ZELA · triagem de relatos urbanos")
     subcommands = parser.add_subparsers(dest="command", required=True)
     subcommands.add_parser("dataset", help="recriar a base sintética")
     subcommands.add_parser("train", help="treinar e avaliar os modelos")
@@ -13,17 +13,17 @@ def main() -> None:
     serve.add_argument("--port", type=int, default=8000)
     args = parser.parse_args()
     if args.command == "dataset":
-        from rua_em_pauta.dataset import build_dataset
+        from zela_ml.dataset import build_dataset
 
         frame = build_dataset()
         print(f"{len(frame)} relatos simulados · {frame['scenario'].nunique()} cenários")
     elif args.command == "train":
-        from rua_em_pauta.training import train
+        from zela_ml.training import train
 
         metrics = train()
         print(json.dumps(metrics, ensure_ascii=False, indent=2))
     elif args.command == "predict":
-        from rua_em_pauta.inference import Classifier
+        from zela_ml.inference import Classifier
 
         try:
             result = Classifier().predict(args.text)
@@ -33,7 +33,7 @@ def main() -> None:
     elif args.command == "serve":
         import uvicorn
 
-        uvicorn.run("rua_em_pauta.api:app", host="127.0.0.1", port=args.port)
+        uvicorn.run("zela_ml.api:app", host="127.0.0.1", port=args.port)
 
 
 if __name__ == "__main__":

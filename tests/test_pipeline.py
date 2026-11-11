@@ -4,10 +4,10 @@ import pandas as pd
 import pytest
 from fastapi.testclient import TestClient
 
-from rua_em_pauta.api import create_app
-from rua_em_pauta.dataset import load_dataset, validate_dataset
-from rua_em_pauta.inference import Classifier
-from rua_em_pauta.settings import ARTIFACTS, CATEGORIES, REPORTS
+from zela_ml.api import create_app
+from zela_ml.dataset import load_dataset, validate_dataset
+from zela_ml.inference import Classifier
+from zela_ml.settings import ARTIFACTS, CATEGORIES, REPORTS
 
 
 @pytest.fixture(scope="module")
@@ -75,8 +75,10 @@ def test_out_of_scope_is_flagged_for_review(classifier):
 def test_api_serves_model_and_demo(client):
     assert client.get("/health").json()["status"] == "ok"
     assert client.get("/").status_code == 200
-    assert "LABORATÓRIO DE TRIAGEM" in client.get("/").text
+    assert "ZELA · Triagem de relatos" in client.get("/").text
     assert client.get("/assets/app.js").status_code == 200
+    assert client.get("/assets/logo.jpg").status_code == 200
+    assert client.get("/evaluation/confusion-matrix.png").headers["content-type"] == "image/png"
     assert len(client.get("/model").json()["categories"]) == 6
     assert (
         client.post("/classify", json={"text": "A boca de lobo está entupida."}).json()["category"]

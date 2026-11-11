@@ -3,13 +3,10 @@ import json
 from pathlib import Path
 
 import joblib
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import sklearn
+from matplotlib.figure import Figure
 from sklearn.dummy import DummyClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -22,9 +19,9 @@ from sklearn.metrics import (
 )
 from sklearn.pipeline import FeatureUnion, Pipeline
 
-from rua_em_pauta import __version__
-from rua_em_pauta.dataset import dataset_hash, load_dataset
-from rua_em_pauta.settings import ARTIFACTS, CATEGORIES, DATA, REPORTS, SEED
+from zela_ml import __version__
+from zela_ml.dataset import dataset_hash, load_dataset
+from zela_ml.settings import ARTIFACTS, CATEGORIES, DATA, REPORTS, SEED
 
 
 def candidates() -> dict[str, Pipeline]:
@@ -233,7 +230,8 @@ def train() -> dict:
         zero_division=0,
     )
     write_json(REPORTS / "classification_report.json", report)
-    fig, ax = plt.subplots(figsize=(10, 7))
+    fig = Figure(figsize=(10, 7))
+    ax = fig.subplots()
     ConfusionMatrixDisplay.from_predictions(
         test["category"],
         predicted,
@@ -251,7 +249,6 @@ def train() -> dict:
     )
     fig.tight_layout()
     fig.savefig(REPORTS / "confusion_matrix.png", dpi=160)
-    plt.close(fig)
 
     metrics = {
         "version": __version__,
