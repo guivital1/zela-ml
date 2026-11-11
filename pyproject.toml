@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rua-em-pauta-ml"
+version = "0.1.0"
+description = "Classificação e triagem de relatos de zeladoria urbana"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "scikit-learn>=1.6,<2",
+  "pandas>=2.2,<4",
+  "matplotlib>=3.9,<4",
+  "joblib>=1.4,<2",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1", "ruff>=0.9,<1", "nbformat>=5,<6", "nbclient>=0.10,<1", "ipykernel>=6,<8"]
+
+[project.scripts]
+rua-em-pauta = "rua_em_pauta.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+rua_em_pauta = ["static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
