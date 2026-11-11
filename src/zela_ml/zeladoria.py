@@ -15,6 +15,7 @@ STATES = {
     "resolvida": "Resolvida",
     "reaberta": "Em nova revisão",
     "reparo_confirmado": "Reparo confirmado por morador",
+    "resposta_prefeitura": "Resposta da prefeitura",
 }
 REPORT_CATEGORIES = {**CATEGORIES, "outros": "Outros serviços"}
 SCHEMA = """
@@ -70,6 +71,12 @@ MIGRATION = (
     )""",
     "CREATE INDEX revisoes_por_ocorrencia ON revisoes_categoria(ocorrencia, id)",
 )
+MUNICIPAL_MIGRATION = (
+    "ALTER TABLE historico ADD COLUMN recebido_em TEXT",
+    "ALTER TABLE historico ADD COLUMN proximo_passo TEXT",
+    "ALTER TABLE historico ADD COLUMN pedido_resposta TEXT",
+    "CREATE UNIQUE INDEX pedido_resposta_por_ocorrencia ON historico(ocorrencia, pedido_resposta)",
+)
 SUMMARY = """
 SELECT o.id, o.descricao, o.local, o.categoria, o.estado, o.reaberta, o.versao, o.protocolo,
        o.criado_em, o.atualizado_em, o.foto IS NOT NULL AS tem_foto,
@@ -118,7 +125,7 @@ class Occurrences:
         with self.connect() as conn:
             conn.execute("BEGIN IMMEDIATE")
             version = conn.execute("PRAGMA user_version").fetchone()[0]
-            if version > 2:
+            if version > 3:
                 raise RuntimeError("O banco foi criado por uma versão mais recente do ZELA.")
             if version == 0:
                 for statement in SCHEMA.split(";"):
@@ -135,6 +142,10 @@ class Occurrences:
                     ) WHERE estado = 'encaminhada'"""
                 )
                 conn.execute("PRAGMA user_version = 2")
+            if version < 3:
+                for statement in MUNICIPAL_MIGRATION:
+                    conn.execute(statement)
+                conn.execute("PRAGMA user_version = 3")
 
     @staticmethod
     def save_address(conn: sqlite3.Connection, occurrence: int, address: Endereco) -> None:
@@ -166,11 +177,23 @@ class Occurrences:
                 return None
             item = present(row)
             events = conn.execute(
-                "SELECT id, estado, nota, criado_em, protocolo, foto IS NOT NULL AS tem_foto "
+                "SELECT id, estado, nota, criado_em, protocolo, recebido_em, proximo_passo, "
+                "foto IS NOT NULL AS tem_foto "
                 "FROM historico WHERE ocorrencia = ? ORDER BY id",
                 (occurrence,),
             )
             item["historico"] = [{**event, "situacao": STATES[event["estado"]]} for event in events]
+            replies = (
+                event
+                for event in item["historico"]
+                if event["estado"] == "resposta_prefeitura"
+                and event["protocolo"] == item["protocolo"]
+            )
+            item["resposta_prefeitura"] = max(
+                replies,
+                key=lambda event: (event["recebido_em"], event["id"]),
+                default=None,
+            )
             if item["estado"] == "resolvida":
                 closed = next(
                     event for event in reversed(item["historico"]) if event["estado"] == "resolvida"
@@ -373,6 +396,38 @@ class Occurrences:
                     "versao = versao + 1 WHERE id = ?",
                     (state, timestamp, occurrence),
                 )
+
+    def municipal_reply(
+        self, occurrence: int, key: str, version: int, received: str, reply: str, next_step: str
+    ) -> None:
+        timestamp = now()
+        with self.connect() as conn:
+            conn.execute("BEGIN IMMEDIATE")
+            row = conn.execute(
+                "SELECT protocolo, versao FROM ocorrencias WHERE id = ?", (occurrence,)
+            ).fetchone()
+            if row is None:
+                raise LookupError
+            if conn.execute(
+                "SELECT 1 FROM historico WHERE ocorrencia = ? AND pedido_resposta = ?",
+                (occurrence, key),
+            ).fetchone():
+                return
+            if row["versao"] != version:
+                raise InvalidUpdate("A ocorrência mudou. Abra o relato novamente.")
+            if not row["protocolo"]:
+                raise InvalidUpdate("Registre o protocolo antes de incluir a resposta.")
+            conn.execute(
+                """INSERT INTO historico (
+                    ocorrencia, estado, nota, criado_em, protocolo, recebido_em,
+                    proximo_passo, pedido_resposta
+                ) VALUES (?, 'resposta_prefeitura', ?, ?, ?, ?, ?, ?)""",
+                (occurrence, reply, timestamp, row["protocolo"], received, next_step, key),
+            )
+            conn.execute(
+                "UPDATE ocorrencias SET atualizado_em = ?, versao = versao + 1 WHERE id = ?",
+                (timestamp, occurrence),
+            )
 
     def feedback_photo(self, occurrence: int, event: int) -> bytes | None:
         with self.connect() as conn:

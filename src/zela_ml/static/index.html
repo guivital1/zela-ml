@@ -110,13 +110,30 @@
               <p id="detalhe-descricao" class="description"></p>
               <img id="detalhe-foto" class="report-photo" alt="Foto do problema no local" hidden>
               <p id="detalhe-confirmacoes" class="field-help"></p>
-              <button id="confirmar" type="button" class="secondary" hidden>Também vi esse problema</button>
+              <div class="detail-actions">
+                <button id="confirmar" type="button" class="secondary" hidden>Também vi esse problema</button>
+                <button id="compartilhar" type="button" class="secondary">Compartilhar ocorrência</button>
+              </div>
+              <p id="compartilhar-status" class="field-help" role="status" hidden></p>
+              <div id="compartilhar-manual" class="report-form share-fallback" hidden>
+                <label for="link-ocorrencia">Link da ocorrência</label>
+                <input id="link-ocorrencia" type="url" readonly>
+              </div>
               <p id="detalhe-acompanhando" class="field-help" hidden>Você acompanha esta ocorrência.</p>
               <div id="detalhe-erro" class="error" role="alert" hidden></div>
             </section>
             <section class="panel" aria-labelledby="andamento-titulo">
               <h2 id="andamento-titulo">Andamento</h2>
               <p id="detalhe-protocolo" class="protocol" hidden></p>
+              <div id="ultimo-retorno" class="municipal-reply" hidden>
+                <h3>Último retorno da prefeitura</h3>
+                <p id="prefeitura-data" class="field-help"></p>
+                <p id="prefeitura-resposta"></p>
+                <div id="prefeitura-proximo" hidden>
+                  <strong id="prefeitura-passo-titulo">Próximo passo</strong>
+                  <p id="prefeitura-passo"></p>
+                </div>
+              </div>
               <ol id="historico" class="timeline"></ol>
             </section>
           </div>
@@ -157,6 +174,20 @@
             </fieldset>
             <div id="andamento-erro" class="error" role="alert" hidden></div>
           </form>
+          <details id="resposta-equipe" class="panel staff-form" hidden>
+            <summary>Registrar resposta da prefeitura</summary>
+            <form id="resposta-form" class="report-form">
+              <label for="resposta-data">Recebida em</label>
+              <input id="resposta-data" type="date" required>
+              <label for="resposta-nota">Resposta recebida</label>
+              <textarea id="resposta-nota" minlength="3" maxlength="500" rows="2" required></textarea>
+              <label for="resposta-passo">Próximo passo e responsável</label>
+              <textarea id="resposta-passo" minlength="3" maxlength="240" rows="2" placeholder="Ex. A prefeitura fará a vistoria." required></textarea>
+              <p class="field-help">A resposta e o próximo passo aparecem na página pública.</p>
+              <div id="resposta-erro" class="error" role="alert" hidden></div>
+              <div class="form-actions"><button class="submit" type="submit">Salvar resposta</button></div>
+            </form>
+          </details>
         </section>
 
         <section data-screen="equipe" aria-labelledby="equipe-titulo" hidden>

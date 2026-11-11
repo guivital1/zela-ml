@@ -1,5 +1,6 @@
 import base64
 import binascii
+from datetime import date
 from io import BytesIO
 from typing import Literal
 from uuid import UUID
@@ -99,6 +100,21 @@ class Feedback(Input):
 
 class Login(BaseModel):
     senha: str = Field(min_length=1, max_length=256)
+
+
+class MunicipalReply(Input):
+    pedido: UUID
+    versao: int = Field(ge=0)
+    recebido_em: date
+    resposta: str = Field(min_length=3, max_length=500)
+    proximo_passo: str = Field(min_length=3, max_length=240)
+
+    @field_validator("recebido_em")
+    @classmethod
+    def received_date(cls, value: date) -> date:
+        if value > date.today():
+            raise ValueError("Informe a data em que a resposta foi recebida.")
+        return value
 
 
 def prepare_photo(encoded: str | None) -> bytes | None:
@@ -236,6 +252,26 @@ def team_evaluation(request: Request):
         "modelos": occurrences.evaluation(),
         "correcoes": occurrences.corrections(),
     }
+
+
+@router.post("/equipe/ocorrencias/{occurrence}/resposta", dependencies=[Depends(require_team)])
+def record_municipal_reply(
+    occurrence: int, payload: MunicipalReply, request: Request, response: Response
+):
+    try:
+        request.app.state.occurrences.municipal_reply(
+            occurrence,
+            str(payload.pedido),
+            payload.versao,
+            payload.recebido_em.isoformat(),
+            payload.resposta,
+            payload.proximo_passo,
+        )
+    except LookupError as error:
+        raise HTTPException(404, "Ocorrência não encontrada.") from error
+    except InvalidUpdate as error:
+        raise HTTPException(409, str(error)) from error
+    return find_detail(request, occurrence, visitor(request, response))
 
 
 @router.patch("/equipe/ocorrencias/{occurrence}/categoria", dependencies=[Depends(require_team)])

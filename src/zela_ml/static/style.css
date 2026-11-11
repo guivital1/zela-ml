@@ -139,7 +139,15 @@ label span { margin-left: 4px; color: var(--muted); font-size: .75rem; font-weig
 .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .detail-code { margin: 0 0 4px; }
 .description { margin: 13px 0; }
-.detail-body > .secondary { margin-top: 13px; }
+.detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+.share-fallback { margin-top: 10px; }
+.municipal-reply { padding: 12px; margin-top: 12px; border: 1px solid var(--line); border-radius: 9px; }
+.municipal-reply h3, .municipal-reply p { margin: 0; overflow-wrap: anywhere; }
+.municipal-reply h3 { font-size: .875rem; }
+.municipal-reply p + p, .municipal-reply h3 + p, .municipal-reply strong + p { margin-top: 4px; }
+.municipal-reply > div { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); }
+#resposta-equipe summary { font-weight: 650; cursor: pointer; }
+#resposta-equipe form { margin-top: 13px; }
 .report-photo { display: block; width: 100%; max-height: 350px; object-fit: contain; border-radius: 9px; background: var(--group); }
 .protocol { padding: 8px 10px; background: var(--blue-soft); border-radius: 8px; font-size: .875rem; overflow-wrap: anywhere; }
 .timeline { display: grid; gap: 14px; margin: 15px 0 0; padding: 0; list-style: none; }

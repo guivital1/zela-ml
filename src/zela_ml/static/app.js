@@ -2,6 +2,7 @@ const element = id => document.getElementById(id);
 const views = document.querySelectorAll('[data-screen]');
 const links = document.querySelectorAll('[data-nav]');
 const formatDate = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'medium', timeStyle: 'short' });
+const formatReceivedDate = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'medium' });
 const simplify = text => text.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/\p{M}/gu, '');
 
 let categories = {};
@@ -13,6 +14,7 @@ let revision = 0;
 let reportKey;
 let savingReport = false;
 let nextMessage = '';
+let replyKey;
 let queueFilter = 'revisao';
 let queueItems = [];
 
@@ -152,6 +154,24 @@ function showDetail(item) {
   element('confirmar').hidden = Boolean(item.confirmou) || item.estado === 'resolvida';
   element('detalhe-acompanhando').hidden = !item.confirmou;
   message('detalhe-protocolo', item.protocolo ? `Protocolo ${item.protocolo}` : '');
+  message('compartilhar-status');
+  element('compartilhar-manual').hidden = true;
+
+  const latest = item.resposta_prefeitura;
+  element('ultimo-retorno').hidden = !item.protocolo;
+  element('prefeitura-proximo').hidden = !latest;
+  element('prefeitura-passo-titulo').textContent = item.estado === 'encaminhada'
+    ? 'Próximo passo' : 'Próximo passo informado na resposta';
+  message('prefeitura-data', latest
+    ? `Recebida em ${formatReceivedDate.format(new Date(latest.recebido_em + 'T00:00:00'))}` : '');
+  element('prefeitura-resposta').textContent = latest?.nota || 'Ainda não há resposta registrada.';
+  element('prefeitura-passo').textContent = latest?.proximo_passo || '';
+  const staffReply = element('resposta-equipe');
+  staffReply.hidden = !team || !item.protocolo;
+  staffReply.open = false;
+  replyKey = undefined;
+  element('resposta-form').reset();
+  message('resposta-erro');
 
   const timeline = element('historico');
   timeline.replaceChildren();
@@ -163,10 +183,20 @@ function showDetail(item) {
     date.dateTime = event.criado_em;
     date.textContent = formatDate.format(new Date(event.criado_em));
     entry.append(title, date);
-    if (event.nota) {
+    if (event.nota && event.id !== latest?.id) {
       const note = document.createElement('p');
       note.textContent = event.nota;
       entry.append(note);
+    }
+    if (event.recebido_em) {
+      const received = document.createElement('p');
+      received.textContent = `Recebida em ${formatReceivedDate.format(new Date(event.recebido_em + 'T00:00:00'))}`;
+      entry.append(received);
+    }
+    if (event.proximo_passo && event.id !== latest?.id) {
+      const step = document.createElement('p');
+      step.textContent = `Próximo passo: ${event.proximo_passo}`;
+      entry.append(step);
     }
     if (event.protocolo && event.protocolo !== item.protocolo) {
       const protocol = document.createElement('p');
@@ -397,6 +427,52 @@ element('confirmar').addEventListener('click', async event => {
     message('mensagem', 'Confirmação registrada. A ocorrência aparece em Acompanhando.');
   } catch (error) {
     message('detalhe-erro', error.message);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+element('compartilhar').addEventListener('click', async () => {
+  const link = new URL(`/#ocorrencia/${detail.id}`, window.location.origin).href;
+  try {
+    await navigator.clipboard.writeText(link);
+    message('compartilhar-status', 'Link copiado.');
+    element('compartilhar-manual').hidden = true;
+  } catch {
+    const input = element('link-ocorrencia');
+    input.value = link;
+    element('compartilhar-manual').hidden = false;
+    message('compartilhar-status', 'Selecione e copie o link abaixo.');
+    input.focus();
+    input.select();
+  }
+});
+
+const replyForm = element('resposta-form');
+replyForm.addEventListener('input', () => { replyKey = undefined; });
+replyForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const item = detail;
+  const button = replyForm.querySelector('button[type="submit"]');
+  button.disabled = true;
+  message('resposta-erro');
+  try {
+    replyKey ??= crypto.randomUUID();
+    const updated = await request(`/api/equipe/ocorrencias/${item.id}/resposta`, 'POST', {
+      pedido: replyKey,
+      versao: item.versao,
+      recebido_em: element('resposta-data').value,
+      resposta: element('resposta-nota').value,
+      proximo_passo: element('resposta-passo').value,
+    });
+    if (detail.id === updated.id) {
+      showDetail(updated);
+      element('ultimo-retorno').scrollIntoView({ block: 'nearest' });
+    }
+    message('mensagem', 'Resposta registrada no histórico.');
+  } catch (error) {
+    if (error.status === 401) navigate('#equipe');
+    else message('resposta-erro', error.message);
   } finally {
     button.disabled = false;
   }

@@ -226,6 +226,96 @@ def test_category_review_records_corrections_without_changing_status(app):
         assert result["correcoes"][0]["id"] == item["id"]
 
 
+def test_municipal_replies_are_public_ordered_and_bound_to_the_protocol(app):
+    web, password = app
+    with TestClient(web) as resident, TestClient(web) as staff:
+        occurrence = create(resident)["id"]
+        public = f"/api/ocorrencias/{occurrence}"
+        team = f"/api/equipe/ocorrencias/{occurrence}"
+        reply = {
+            "pedido": str(uuid4()),
+            "versao": 0,
+            "recebido_em": "2025-05-03",
+            "resposta": "Vistoria agendada.",
+            "proximo_passo": "A prefeitura fará a vistoria.",
+        }
+        assert resident.post(team + "/resposta", json=reply).status_code == 401
+        assert staff.post("/api/equipe/entrar", json={"senha": password}).status_code == 200
+        assert staff.post(team + "/resposta", json=reply).status_code == 409
+        forwarded = staff.patch(
+            team,
+            json={
+                "estado_anterior": "registrada",
+                "estado": "encaminhada",
+                "categoria": "iluminacao",
+                "protocolo": "EXEMPLO-1",
+            },
+        ).json()
+        reply["versao"] = forwarded["versao"]
+        saved = staff.post(team + "/resposta", json=reply).json()
+        assert saved["resposta_prefeitura"]["protocolo"] == "EXEMPLO-1"
+        repeated = staff.post(team + "/resposta", json=reply).json()
+        assert repeated["versao"] == saved["versao"]
+        assert repeated["historico"] == saved["historico"]
+        assert (
+            staff.post(
+                team + "/resposta",
+                json={
+                    **reply,
+                    "pedido": str(uuid4()),
+                },
+            ).status_code
+            == 409
+        )
+        older = staff.post(
+            team + "/resposta",
+            json={
+                **reply,
+                "pedido": str(uuid4()),
+                "versao": saved["versao"],
+                "recebido_em": "2025-05-02",
+                "resposta": "Pedido recebido.",
+            },
+        )
+        assert older.status_code == 200
+        detail = resident.get(public).json()
+        assert detail["resposta_prefeitura"]["nota"] == "Vistoria agendada."
+        assert detail["resposta_prefeitura"]["proximo_passo"] == reply["proximo_passo"]
+        assert detail["estado"] == "encaminhada"
+
+        closed = staff.patch(
+            team,
+            json={
+                "estado_anterior": "encaminhada",
+                "estado": "resolvida",
+                "categoria": "iluminacao",
+                "nota": "Reparo registrado.",
+            },
+        ).json()
+        assert (
+            resident.post(
+                public + "/retorno",
+                json={
+                    "fechamento": closed["fechamento"],
+                    "resolvido": False,
+                    "nota": "A luz continua apagada.",
+                },
+            ).status_code
+            == 200
+        )
+        reopened = staff.patch(
+            team,
+            json={
+                "estado_anterior": "reaberta",
+                "estado": "encaminhada",
+                "categoria": "iluminacao",
+                "protocolo": "EXEMPLO-2",
+            },
+        ).json()
+        assert reopened["resposta_prefeitura"] is None
+        assert any(event["nota"] == reply["resposta"] for event in reopened["historico"])
+
+
 def test_confirmations_are_idempotent_and_appear_in_tracking(app):
     web, _ = app
     with TestClient(web) as creator:
