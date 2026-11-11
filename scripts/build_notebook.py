@@ -188,6 +188,8 @@ notebook.cells = [
         três sugestões, pontuações, motivos de revisão e os termos que contribuíram
         positivamente para a primeira categoria. Esses termos representam
         contribuições do modelo linear, com leitura parcial quando há caracteres.
+        Na aplicação, a categoria sugerida aparece durante a revisão da equipe.
+        O morador acompanha o estado, o protocolo e o histórico da ocorrência.
     """),
     code("""
         from zela_ml.inference import Classifier
@@ -209,16 +211,25 @@ notebook.cells = [
             }]))
     """),
     code("""
+        from secrets import token_urlsafe
+        from tempfile import TemporaryDirectory
         from httpx import ASGITransport, AsyncClient
         from zela_ml.api import create_app
 
-        app = create_app()
-        async with app.router.lifespan_context(app):
-            async with AsyncClient(transport=ASGITransport(app=app), base_url='http://teste') as c:
-                response = await c.post('/classify', json={'text': examples[0]})
-                assert response.status_code == 200
-                display(response.json())
-        print('Para testar na interface, execute: zela-ml serve')
+        password = token_urlsafe(16)
+        with TemporaryDirectory() as temp:
+            app = create_app(database_path=Path(temp) / 'teste.sqlite3', team_password=password)
+            async with app.router.lifespan_context(app):
+                transport = ASGITransport(app=app)
+                async with AsyncClient(transport=transport, base_url='http://teste') as client:
+                    denied = await client.post('/classify', json={'text': examples[0]})
+                    assert denied.status_code == 401
+                    login = await client.post('/api/equipe/entrar', json={'senha': password})
+                    assert login.status_code == 200
+                    response = await client.post('/classify', json={'text': examples[0]})
+                    assert response.status_code == 200
+                    display(response.json())
+        print('Para testar na interface, execute: zela-ml serve --exemplo --equipe')
     """),
     markdown("""
         ## 8. Próximas decisões de campo
@@ -229,7 +240,8 @@ notebook.cells = [
         triagem com e sem a sugestão, mantendo o mesmo conjunto de casos.
 
         A organização registra o protocolo recebido no canal oficial. A interface
-        local demonstra somente a etapa de classificação da ouvidoria.
+        pública permite registrar o problema e acompanhar seu andamento. Os
+        resultados do experimento ficam na Área técnica da equipe.
 
         **ODS propostos** — 11, pela participação na melhoria dos espaços públicos,
         e 16, pelo acompanhamento dos pedidos e da resposta institucional.

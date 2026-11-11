@@ -2,7 +2,7 @@
 
 <img src="src/zela_ml/static/logo.jpg" width="76" height="76" alt="Logo do ZELA">
 
-O ZELA organiza pedidos de zeladoria de uma rua ou bairro. Este componente lê a descrição de um relato, sugere a categoria do problema e mostra quais termos contribuíram para a sugestão. Moradores e trabalhadores registram o problema, e o operador confere a categoria para encaminhar a ocorrência pelo canal municipal.
+O ZELA ajuda moradores e trabalhadores a registrar problemas de uma rua e acompanhar o que foi feito. Uma pessoa descreve o problema, informa o local e pode anexar uma foto. Quando o endereço já tem uma ocorrência aberta, ela pode confirmar o relato existente. A equipe revisa os pedidos, encaminha pelo canal do município e registra o protocolo e a resolução.
 
 **Global Solution 2026 · CitizenTech · Engenharia de Software · FIAP**
 
@@ -17,17 +17,26 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m pip install -e . --no-deps
-zela-ml serve
+zela-ml serve --exemplo --equipe
 ```
 
 No Windows, crie o ambiente com `py -3.12 -m venv .venv` e ative com `.venv\Scripts\Activate.ps1` no PowerShell. O modelo treinado já está em `artifacts/`.
 
-Abra a [demonstração local](http://127.0.0.1:8000/) e experimente **Poste apagado** e **Outro assunto**. A [documentação interativa](http://127.0.0.1:8000/docs) descreve a API. O servidor da demonstração escuta em loopback.
+Ao iniciar com `--equipe`, defina uma senha de pelo menos 12 caracteres no terminal. Abra o [ZELA](http://127.0.0.1:8000/) e registre um relato. Em **Acompanhando**, aparecem os pedidos registrados ou confirmados neste navegador. Entre em **Área da equipe** para revisar pedidos e acessar a avaliação do modelo, o notebook e a documentação da API.
+
+O modo `--exemplo` usa três ocorrências fictícias em um banco separado. Para começar com uma base vazia, use `zela-ml serve --equipe`. O ZELA local escuta em `127.0.0.1`. Cada sessão da equipe expira em oito horas ou ao reiniciar o servidor. Esta versão usa uma senha compartilhada para a equipe local.
 
 ```sh
 zela-ml predict "O poste da esquina não acende e a rua fica escura à noite."
 python scripts/check.py
 ```
+
+## Acompanhamento e cópia dos dados
+
+- O cidadão pode registrar, confirmar e acompanhar uma ocorrência. O reconhecimento do navegador funciona por um identificador local.
+- A equipe pode corrigir a categoria, copiar o pedido para encaminhar no canal oficial e registrar o número recebido. Cada mudança de andamento aparece no histórico.
+- O ZELA guarda o relato e a foto no SQLite. Para copiar os dados, execute `zela-ml backup instance/copia.sqlite3`. Acrescente `--exemplo` para copiar o banco fictício.
+- Para recuperar os dados, pare o servidor, preserve uma cópia do banco atual e use uma cópia válida no lugar de `instance/zela.sqlite3` ou `instance/zela-exemplo.sqlite3`, conforme o ambiente. Reinicie e confira uma ocorrência e seu histórico. Arquivos do banco e cópias ficam fora do Git.
 
 ## Experimento
 
@@ -54,6 +63,6 @@ Os números descrevem a simulação. A validação com relatos de campo e a esti
 - [Notebook executado](notebooks/01_classificacao_relatos.ipynb) com análise da base, comparação, matriz, casos de erro e chamada à API. No editor, selecione o Python de `.venv` e execute as células em ordem.
 - [Origem e estrutura da base](data/README.md), [métricas em JSON](reports/metrics.json) e [erros do teste](reports/errors.csv).
 - `zela-ml dataset` recria o CSV. `zela-ml train` treina o modelo e atualiza os resultados e o manifesto de integridade. Use o artefato do repositório ou do próprio treino.
-- `POST /classify` recebe `{"text": "..."}` e devolve a categoria sugerida, três pontuações, termos associados e `requires_review`. `GET /health` verifica se o artefato foi carregado e `GET /model` informa as métricas e categorias. A API faz a classificação em memória.
+- A documentação em `/docs`, a avaliação em `/model` e a classificação em `POST /classify` exigem uma sessão da equipe. `POST /classify` recebe `{"text": "..."}` e devolve as categorias, pontuações, termos associados e `requires_review`. O cidadão usa as rotas de ocorrência, e a sugestão de categoria aparece na revisão da equipe.
 
 Para demonstrar uma versão, use o commit revisado com seu respectivo artefato e manifesto. O retorno a uma versão anterior usa o conjunto desses arquivos do commit escolhido. [Fluxo de desenvolvimento](CONTRIBUTING.md) · [Roteiro da apresentação](docs/apresentacao.md).
