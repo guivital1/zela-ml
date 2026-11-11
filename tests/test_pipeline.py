@@ -1,4 +1,5 @@
 import json
+from secrets import token_urlsafe
 
 import pandas as pd
 import pytest
@@ -16,8 +17,11 @@ def classifier():
 
 
 @pytest.fixture(scope="module")
-def client():
-    with TestClient(create_app()) as session:
+def client(tmp_path_factory):
+    password = token_urlsafe(16)
+    path = tmp_path_factory.mktemp("pipeline") / "test.sqlite3"
+    with TestClient(create_app(database_path=path, team_password=password)) as session:
+        assert session.post("/api/equipe/entrar", json={"senha": password}).status_code == 200
         yield session
 
 
@@ -75,7 +79,7 @@ def test_out_of_scope_is_flagged_for_review(classifier):
 def test_api_serves_model_and_demo(client):
     assert client.get("/health").json()["status"] == "ok"
     assert client.get("/").status_code == 200
-    assert "ZELA · Triagem de relatos" in client.get("/").text
+    assert "ZELA · Zeladoria urbana" in client.get("/").text
     assert client.get("/assets/app.js").status_code == 200
     assert client.get("/assets/logo.jpg").status_code == 200
     assert client.get("/evaluation/confusion-matrix.png").headers["content-type"] == "image/png"

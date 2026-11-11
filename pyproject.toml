@@ -12,6 +12,7 @@ dependencies = [
   "pandas>=2.2,<4",
   "matplotlib>=3.9,<4",
   "joblib>=1.4,<2",
+  "pillow>=11,<14",
   "fastapi>=0.115,<1",
   "uvicorn>=0.34,<1",
 ]
@@ -26,7 +27,7 @@ zela-ml = "zela_ml.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-zela_ml = ["static/*"]
+zela_ml = ["static/*", "technical.html"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

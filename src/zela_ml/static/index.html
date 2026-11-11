@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ZELA · Triagem de relatos</title>
+  <title>ZELA · Zeladoria urbana</title>
   <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
   <link rel="stylesheet" href="/assets/style.css">
   <script src="/assets/app.js" defer></script>
@@ -11,110 +11,161 @@
 <body>
   <div class="shell">
     <aside class="sidebar">
-      <a class="brand" href="#triagem" aria-label="ZELA, início">
+      <a class="brand" href="#ocorrencias" aria-label="ZELA, início">
         <img src="/assets/logo.jpg" width="42" height="42" alt="">
         <span>ZELA <small>Zeladoria urbana</small></span>
       </a>
       <nav aria-label="Área de trabalho">
-        <span class="nav-label">Área de trabalho</span>
-        <a href="#triagem" data-nav="triagem" aria-current="page">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v11H9l-5 3zM8 10h8M8 13h6"/></svg>
-          Triagem
+        <span class="nav-label">Meu bairro</span>
+        <a href="#ocorrencias" data-nav="ocorrencias" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 4-7 10-7 10s-7-6-7-10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          Ocorrências
         </a>
-        <a href="#avaliacao" data-nav="avaliacao">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16h16M9 16v-4m5 4V8m5 8V5"/></svg>
-          Avaliação
+        <a href="#acompanhando" data-nav="acompanhando">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg>
+          Acompanhando
         </a>
-        <a href="/docs" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 5l-4 14"/></svg>
-          API
+        <a href="#equipe" data-nav="equipe" class="team-nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Área da equipe
         </a>
       </nav>
-      <p class="sidebar-footer">CitizenTech · FIAP 2026</p>
     </aside>
     <div class="content">
       <header class="toolbar">
-        <button type="button" class="search-trigger" id="quick-search" aria-haspopup="dialog">
+        <form id="busca-form" class="toolbar-search" role="search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
-          <span>Busca rápida</span>
-          <kbd aria-hidden="true">⌘ K</kbd>
-        </button>
-        <span class="context"><span class="context-dot" aria-hidden="true"></span>Demonstração</span>
+          <input id="busca" type="search" placeholder="Buscar por rua ou código" aria-label="Buscar por rua ou código">
+        </form>
+        <span class="context" id="demo-label" hidden><span class="context-dot" aria-hidden="true"></span>Bairro de exemplo</span>
       </header>
       <main>
-        <section data-screen="triagem" aria-labelledby="title">
+        <div id="mensagem" class="notice" role="status" hidden></div>
+        <div id="falha" class="error" role="alert" hidden></div>
+        <section data-screen="lista" aria-labelledby="lista-titulo">
+          <div class="intro page-actions">
+            <div>
+              <h1 id="lista-titulo">Ocorrências do bairro</h1>
+              <p class="lead" id="lista-legenda">Veja o que precisa de atenção e acompanhe o andamento.</p>
+            </div>
+            <a class="submit action" href="#novo"><span aria-hidden="true">+</span> Novo relato</a>
+          </div>
+          <div class="list-toolbar">
+            <div class="filters" id="filtros" aria-label="Filtrar por situação">
+              <button type="button" data-filter="" aria-pressed="true">Todas</button>
+              <button type="button" data-filter="registrada" aria-pressed="false">Registradas</button>
+              <button type="button" data-filter="encaminhada" aria-pressed="false">Encaminhadas</button>
+              <button type="button" data-filter="resolvida" aria-pressed="false">Resolvidas</button>
+            </div>
+            <span class="list-count" id="contagem" aria-live="polite"></span>
+          </div>
+          <div id="lista" class="occurrences"></div>
+        </section>
+
+        <section data-screen="novo" aria-labelledby="novo-titulo" hidden>
           <div class="intro">
-            <h1 id="title">Triagem de relatos</h1>
-            <p class="lead">Descreva um problema da rua para identificar a categoria e preparar a revisão.</p>
+            <a class="back-link" href="#ocorrencias">← Ocorrências</a>
+            <h1 id="novo-titulo">Novo relato</h1>
+            <p class="lead">Diga onde está o problema e o que você encontrou.</p>
+          </div>
+          <form id="relato-form" class="panel report-form">
+            <label for="local">Onde está o problema?</label>
+            <input id="local" name="local" minlength="5" maxlength="160" placeholder="Rua e número ou ponto de referência" required>
+            <label for="descricao">O que aconteceu?</label>
+            <textarea id="descricao" name="descricao" minlength="12" maxlength="1000" placeholder="Ex. O poste perto do ponto de ônibus não acende à noite." required></textarea>
+            <label for="categoria">Tipo de problema <span>opcional</span></label>
+            <select id="categoria" name="categoria"></select>
+            <label for="foto">Foto do local <span>opcional</span></label>
+            <input id="foto" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="foto-ajuda">
+            <p class="field-help" id="foto-ajuda">Mostre o problema no espaço público. Use uma foto de até 2 MB.</p>
+            <div id="relato-erro" class="error" role="alert" hidden></div>
+            <div id="duplicatas" class="duplicate-box" hidden>
+              <h2>Já existe um relato nesse local</h2>
+              <p>Veja se é o mesmo problema. Se for, você pode confirmar na ocorrência já aberta.</p>
+              <div id="duplicatas-lista" class="occurrences"></div>
+              <button type="button" class="secondary" id="outro-problema">Registrar outro problema</button>
+            </div>
+            <div class="form-actions"><button class="submit" type="submit">Registrar relato</button></div>
+          </form>
+        </section>
+
+        <section data-screen="detalhe" aria-labelledby="detalhe-titulo" hidden>
+          <div class="intro">
+            <a class="back-link" href="#ocorrencias">← Ocorrências</a>
+            <p class="detail-code" id="detalhe-codigo"></p>
+            <h1 id="detalhe-titulo">Ocorrência</h1>
+            <p class="lead" id="detalhe-local"></p>
           </div>
           <div class="workspace">
-            <section class="editor" aria-labelledby="form-title">
-              <div class="section-heading"><h2 id="form-title">Novo relato</h2></div>
-              <form id="report-form">
-                <label for="report">Descrição do problema</label>
-                <textarea id="report" name="text" minlength="12" maxlength="2000" aria-describedby="length-hint" required placeholder="Ex. O poste da esquina não acende à noite e a passagem fica escura."></textarea>
-                <div class="input-help"><span id="length-hint">De 12 a 2.000 caracteres.</span><span id="counter" aria-hidden="true">0 / 2.000</span></div>
-                <div class="form-actions"><button class="submit" id="submit" type="submit">Analisar relato</button></div>
-              </form>
-              <div class="example-area">
-                <p class="examples-label">Cenários de exemplo</p>
-                <div class="examples" id="examples">
-                  <button type="button" data-text="A luminária da esquina está apagada há dias e a rua fica escura à noite.">Poste apagado</button>
-                  <button type="button" data-text="Há sacos de lixo e um sofá abandonado na esquina. Precisamos de retirada.">Descarte na rua</button>
-                  <button type="button" data-text="O bueiro está entupido e a água da chuva está voltando para a rua.">Bueiro entupido</button>
-                  <button type="button" data-text="A guia não tem rebaixamento e a cadeira de rodas não consegue atravessar.">Travessia bloqueada</button>
-                  <button type="button" data-text="O poste está apagado e a boca de lobo ao lado está entupida.">Relato com dois serviços</button>
-                  <button type="button" data-text="Gostaria de marcar uma consulta com o dentista na próxima semana.">Outro assunto</button>
-                </div>
-              </div>
-              <div id="error" role="alert" class="error" hidden></div>
-            </section>
-            <section class="result-panel" aria-labelledby="result-title">
+            <section class="panel detail-body" aria-labelledby="relato-titulo">
               <div class="section-heading">
-                <h2 id="result-title">Resultado da triagem</h2>
-                <span class="dataset-badge">Base sintética</span>
+                <h2 id="relato-titulo">Relato</h2>
+                <span id="detalhe-estado" class="status"></span>
               </div>
-              <p id="result-placeholder" role="status" class="placeholder">Analise um relato para ver as categorias sugeridas.</p>
-              <div id="result" class="result" aria-live="polite" aria-atomic="true" hidden>
-                <span id="review-status" class="status"></span>
-                <h3 id="category"></h3>
-                <p id="result-note"></p>
-                <div id="suggestions" class="suggestions"></div>
-                <p class="evidence-label">Termos associados à sugestão</p>
-                <div id="evidence" class="evidence"></div>
-                <p class="result-footnote">O operador confere a categoria antes de encaminhar o pedido.</p>
-              </div>
+              <p id="detalhe-descricao" class="description"></p>
+              <img id="detalhe-foto" class="report-photo" alt="Foto do problema no local" hidden>
+              <p id="detalhe-confirmacoes" class="field-help"></p>
+              <button id="confirmar" type="button" class="secondary" hidden>Também vi esse problema</button>
+              <p id="detalhe-acompanhando" class="field-help" hidden>Você acompanha esta ocorrência.</p>
+              <div id="detalhe-erro" class="error" role="alert" hidden></div>
+            </section>
+            <section class="panel" aria-labelledby="andamento-titulo">
+              <h2 id="andamento-titulo">Andamento</h2>
+              <p id="detalhe-protocolo" class="protocol" hidden></p>
+              <ol id="historico" class="timeline"></ol>
             </section>
           </div>
+          <form id="andamento-form" class="panel report-form staff-form" aria-labelledby="atualizar-titulo" hidden>
+            <h2 id="atualizar-titulo">Atualizar andamento</h2>
+            <p id="sugestao" class="field-help" hidden></p>
+            <label for="equipe-categoria">Tipo de problema</label>
+            <select id="equipe-categoria" required></select>
+            <label for="novo-estado">Novo andamento</label>
+            <select id="novo-estado" required></select>
+            <div id="protocolo-campo">
+              <label for="protocolo">Protocolo recebido</label>
+              <input id="protocolo" maxlength="80" placeholder="Número do pedido no canal oficial">
+              <p class="field-help">Use o protocolo que você recebeu ao encaminhar a solicitação.</p>
+              <button type="button" class="secondary" id="copiar">Copiar pedido</button>
+            </div>
+            <label for="nota">O que foi feito?</label>
+            <textarea id="nota" maxlength="300" rows="2" placeholder="Essa informação aparece no histórico."></textarea>
+            <div id="andamento-erro" class="error" role="alert" hidden></div>
+            <div class="form-actions"><button class="submit" type="submit">Salvar andamento</button></div>
+          </form>
         </section>
-        <section data-screen="avaliacao" aria-labelledby="method-title" hidden>
+
+        <section data-screen="equipe" aria-labelledby="equipe-titulo" hidden>
           <div class="intro">
-            <h1 id="method-title">Avaliação do modelo</h1>
-            <p class="lead">Seis categorias de zeladoria, com cenários de teste separados do treino.</p>
+            <h1 id="equipe-titulo">Área da equipe</h1>
+            <p class="lead">Revise ocorrências e acompanhe os pedidos do bairro.</p>
           </div>
-          <dl class="metrics">
-            <div><dt>F1 macro no teste sintético</dt><dd id="f1">—</dd></div>
-            <div><dt>Cenários independentes no teste</dt><dd id="test-scenarios">—</dd></div>
-            <div><dt>Relatos simulados na base</dt><dd id="dataset-size">—</dd></div>
-          </dl>
-          <figure class="matrix">
-            <figcaption>Matriz de confusão</figcaption>
-            <img src="/evaluation/confusion-matrix.png" width="1600" height="1120" alt="Matriz com as categorias esperadas e sugeridas no teste sintético" loading="lazy">
-          </figure>
-          <p class="method-note">Resultados da simulação. A validação em campo é a próxima etapa.</p>
+          <form id="entrar-form" class="panel report-form login" hidden>
+            <label for="senha">Senha da equipe</label>
+            <input type="password" id="senha" autocomplete="current-password" maxlength="256" required>
+            <div id="entrar-erro" class="error" role="alert" hidden></div>
+            <div class="form-actions"><button class="submit" type="submit">Entrar</button></div>
+          </form>
+          <div id="equipe-painel" hidden>
+            <div class="staff-actions">
+              <a class="secondary action" href="/equipe/tecnica">Área técnica</a>
+              <button id="sair" class="secondary" type="button">Sair</button>
+            </div>
+            <h2 class="section-title">Pedidos em andamento</h2>
+            <div id="equipe-lista" class="occurrences"></div>
+          </div>
         </section>
-        <footer><span>Global Solution · FIAP</span><span>ZELA · Classificador v0.1.0</span></footer>
+        <footer>CitizenTech · FIAP 2026</footer>
       </main>
     </div>
   </div>
-  <dialog id="search-dialog" aria-labelledby="search-title">
-    <div class="search-heading">
-      <h2 id="search-title">Busca rápida</h2>
-      <form method="dialog"><button type="submit" class="dismiss">Fechar</button></form>
-    </div>
-    <label class="search-label" for="search-query">Buscar página ou cenário</label>
-    <input id="search-query" type="search" placeholder="Ex. poste" autocomplete="off">
-    <div id="search-results" class="search-results"></div>
-  </dialog>
+  <template id="ocorrencia-card">
+    <a class="occurrence" href="#">
+      <div class="occurrence-top"><span data-item="tipo"></span><span class="status" data-item="estado"></span></div>
+      <h2 data-item="local"></h2>
+      <p class="occurrence-description" data-item="descricao"></p>
+      <div class="occurrence-footer"><span data-item="codigo"></span><span data-item="confirmacoes"></span><span aria-hidden="true">›</span></div>
+    </a>
+  </template>
 </body>
 </html>

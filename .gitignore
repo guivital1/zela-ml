@@ -10,3 +10,6 @@ __pycache__/
 .env.*
 artifacts/*.tmp
 work/
+instance/
+*.sqlite3
+*.sqlite3-*

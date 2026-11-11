@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 ARTIFACTS = ROOT / "artifacts"
 REPORTS = ROOT / "reports"
+INSTANCE = ROOT / "instance"
 SEED = 42
 
 CATEGORIES = {
