@@ -1,0 +1,116 @@
+const form = document.querySelector('#report-form');
+const input = document.querySelector('#report');
+const submit = document.querySelector('#submit');
+const result = document.querySelector('#result');
+const errorBox = document.querySelector('#error');
+let controller;
+
+const percentage = value => new Intl.NumberFormat('pt-BR', {
+  style: 'percent', maximumFractionDigits: 1
+}).format(value);
+
+function resetResult() {
+  controller?.abort();
+  submit.disabled = false;
+  submit.textContent = 'Analisar relato ↗';
+  result.hidden = true;
+  errorBox.hidden = true;
+  document.querySelector('#counter').textContent = `${input.value.length} / 2.000`;
+}
+
+input.addEventListener('input', resetResult);
+document.querySelector('#examples').addEventListener('click', event => {
+  const example = event.target.closest('button[data-text]');
+  if (example) {
+    input.value = example.dataset.text;
+    resetResult();
+    input.focus();
+  }
+});
+
+function showResult(data) {
+  const status = document.querySelector('#review-status');
+  status.textContent = data.requires_review ? 'Revisão necessária' : 'Sugestão disponível';
+  status.classList.toggle('review', data.requires_review);
+  document.querySelector('#category').textContent = data.label;
+  document.querySelector('#result-note').textContent = data.requires_review
+    ? data.review_reasons.join(' ')
+    : 'Confira a descrição e confirme a categoria durante a triagem.';
+  const suggestions = document.querySelector('#suggestions');
+  suggestions.replaceChildren();
+  for (const suggestion of data.suggestions) {
+    const row = document.createElement('div');
+    row.className = 'suggestion';
+    const label = document.createElement('div');
+    label.className = 'suggestion-label';
+    const name = document.createElement('span');
+    name.textContent = suggestion.label;
+    const score = document.createElement('span');
+    score.textContent = percentage(suggestion.score);
+    label.append(name, score);
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const fill = document.createElement('span');
+    fill.style.width = `${suggestion.score * 100}%`;
+    bar.append(fill);
+    row.append(label, bar);
+    suggestions.append(row);
+  }
+  const evidence = document.querySelector('#evidence');
+  evidence.replaceChildren();
+  for (const item of data.evidence_terms) {
+    const term = document.createElement('span');
+    term.textContent = item.term;
+    evidence.append(term);
+  }
+  if (!data.evidence_terms.length) evidence.textContent = 'Poucos termos informativos neste relato.';
+  result.hidden = false;
+}
+
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  resetResult();
+  const current = new AbortController();
+  controller = current;
+  submit.disabled = true;
+  submit.textContent = 'Analisando…';
+  try {
+    const response = await fetch('/classify', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: input.value }), signal: current.signal
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(typeof data.detail === 'string'
+        ? data.detail : 'Revise a descrição. Inclua pelo menos 8 letras e 12 caracteres.');
+    }
+    if (!current.signal.aborted) showResult(data);
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      errorBox.textContent = error.message === 'Failed to fetch'
+        ? 'A conexão com o modelo falhou. Verifique o servidor e tente novamente.'
+        : error.message;
+      errorBox.hidden = false;
+    }
+  } finally {
+    if (controller === current) {
+      submit.disabled = false;
+      submit.textContent = 'Analisar relato ↗';
+    }
+  }
+});
+
+async function loadMetrics() {
+  try {
+    const response = await fetch('/model');
+    if (!response.ok) throw new Error('Modelo indisponível');
+    const { metrics } = await response.json();
+    document.querySelector('#f1').textContent = percentage(metrics.test.f1_macro);
+    document.querySelector('#test-scenarios').textContent = metrics.split_scenarios.test;
+    document.querySelector('#dataset-size').textContent = metrics.rows;
+  } catch {
+    document.querySelector('#f1').textContent = 'Indisponível';
+  }
+}
+
+loadMetrics();

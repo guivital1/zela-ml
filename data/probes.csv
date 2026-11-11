@@ -1,0 +1,25 @@
+split,text,expected,reason
+validation,Quero marcar uma consulta com o dentista,revisao,fora do escopo
+validation,Como faço para renovar meu documento de identidade,revisao,fora do escopo
+validation,A entrega da minha compra está atrasada,revisao,fora do escopo
+validation,O acesso à minha conta bancária foi bloqueado,revisao,fora do escopo
+validation,Preciso consultar uma vaga de emprego,revisao,fora do escopo
+validation,Não tenho energia dentro de casa mas os postes estão acesos,revisao,serviço privado e negação
+validation,O poste está apagado e o bueiro está entupido na mesma esquina,revisao,dois serviços
+validation,Tem lixo espalhado e a rampa da calçada está quebrada,revisao,dois serviços
+validation,Preciso de ajuda com um problema aqui,revisao,descrição insuficiente
+validation,Alguém sabe como resolver isso na minha rua,revisao,descrição insuficiente
+validation,A árvore caiu sobre o asfalto e a pista também precisa de tapa buraco,revisao,dois serviços
+validation,O trânsito está ruim hoje e perdi o ônibus,revisao,fora do escopo
+test,Quero saber como conseguir uma segunda via da certidão,revisao,fora do escopo
+test,Meu benefício foi suspenso e preciso de orientação,revisao,fora do escopo
+test,Quero denunciar uma cobrança indevida no cartão,revisao,fora do escopo
+test,Preciso de um remédio que não encontrei na farmácia,revisao,fora do escopo
+test,O aplicativo de mensagens parou de abrir no meu celular,revisao,fora do escopo
+test,O encanamento do meu banheiro está vazando dentro do apartamento,revisao,serviço privado
+test,Os refletores da praça apagaram e há entulho na entrada,revisao,dois serviços
+test,A chuva alagou a rua e a árvore da esquina está com galhos partidos,revisao,dois serviços
+test,Aconteceu alguma coisa estranha perto de casa,revisao,descrição insuficiente
+test,Queria uma solução para o que está acontecendo aqui,revisao,descrição insuficiente
+test,A calçada tem um degrau e o bueiro ao lado está devolvendo água,revisao,dois serviços
+test,O bar da esquina faz muito barulho de madrugada,revisao,serviço fora da taxonomia

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rua em Pauta · Triagem de relatos</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Rua em Pauta, início"><span class="brand-mark" aria-hidden="true">r.</span> Rua em Pauta</a>
+    <span class="edition">CITIZENTECH / 2026</span>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <p class="eyebrow">LABORATÓRIO DE TRIAGEM</p>
+      <h1 id="title">Cada relato tem<br>um próximo passo.</h1>
+      <p class="lead">Descreva um problema da rua. O modelo sugere a categoria e mostra quais termos contribuíram para a triagem.</p>
+    </section>
+    <div class="workspace">
+      <section class="editor" aria-labelledby="form-title">
+        <div class="section-heading"><h2 id="form-title">O que aconteceu?</h2><span class="step">01 / RELATO</span></div>
+        <form id="report-form">
+          <label for="report">Descrição do problema</label>
+          <textarea id="report" name="text" minlength="12" maxlength="2000" required placeholder="Ex. O poste da esquina não acende à noite e a passagem fica escura."></textarea>
+          <div class="input-help"><span>Use entre 12 e 2.000 caracteres.</span><span id="counter">0 / 2.000</span></div>
+          <button class="submit" id="submit" type="submit">Analisar relato <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="examples-label">Ou experimente um cenário</p>
+        <div class="examples" id="examples">
+          <button type="button" data-text="A luminária da esquina está apagada há dias e a rua fica escura à noite.">Poste apagado</button>
+          <button type="button" data-text="Há sacos de lixo e um sofá abandonado na esquina. Precisamos de retirada.">Descarte na rua</button>
+          <button type="button" data-text="O bueiro está entupido e a água da chuva está voltando para a rua.">Bueiro entupido</button>
+          <button type="button" data-text="A guia não tem rebaixamento e a cadeira de rodas não consegue atravessar.">Travessia bloqueada</button>
+          <button type="button" data-text="O poste está apagado e a boca de lobo ao lado está entupida.">Relato com dois serviços</button>
+          <button type="button" data-text="Gostaria de marcar uma consulta com o dentista na próxima semana.">Outro assunto</button>
+        </div>
+        <div id="error" role="alert" class="error" hidden></div>
+        <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden>
+          <div class="section-heading"><h2>Sugestão de triagem</h2><span class="step">02 / ANÁLISE</span></div>
+          <span id="review-status" class="status"></span>
+          <h3 id="category"></h3>
+          <p id="result-note"></p>
+          <div id="suggestions" class="suggestions"></div>
+          <p class="evidence-label">Termos associados à sugestão</p>
+          <div id="evidence" class="evidence"></div>
+          <p class="result-footnote">A pontuação expressa a saída do modelo. O operador confere a categoria antes de encaminhar o pedido.</p>
+        </section>
+      </section>
+      <aside class="method" aria-labelledby="method-title">
+        <span class="dataset-badge">BASE SINTÉTICA</span>
+        <h2 id="method-title">O que está<br>sendo medido.</h2>
+        <p>Seis categorias de zeladoria, com comparação de modelos e teste em cenários separados do treino.</p>
+        <dl class="metrics">
+          <div><dt>F1 macro no teste sintético</dt><dd id="f1">—</dd></div>
+          <div><dt>Cenários independentes no teste</dt><dd id="test-scenarios">—</dd></div>
+          <div><dt>Relatos simulados na base</dt><dd id="dataset-size">—</dd></div>
+        </dl>
+        <p class="method-note">Os resultados descrevem esta simulação. A validação com relatos de campo é a próxima etapa.</p>
+        <a href="/docs" target="_blank" rel="noopener">Explorar a API <span aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
+    <footer><span>GLOBAL SOLUTION · FIAP</span><span>Classificação assistida por Machine Learning · v0.1.0</span></footer>
+  </main>
+</body>
+</html>

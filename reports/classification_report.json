@@ -1,0 +1,51 @@
+{
+  "Acessibilidade": {
+    "precision": 0.8518518518518519,
+    "recall": 0.92,
+    "f1-score": 0.8846153846153846,
+    "support": 25.0
+  },
+  "Áreas verdes": {
+    "precision": 0.65,
+    "recall": 1.0,
+    "f1-score": 0.7878787878787878,
+    "support": 26.0
+  },
+  "Drenagem": {
+    "precision": 0.9354838709677419,
+    "recall": 1.0,
+    "f1-score": 0.9666666666666667,
+    "support": 29.0
+  },
+  "Iluminação pública": {
+    "precision": 1.0,
+    "recall": 0.6923076923076923,
+    "f1-score": 0.8181818181818182,
+    "support": 26.0
+  },
+  "Limpeza urbana": {
+    "precision": 0.875,
+    "recall": 0.5,
+    "f1-score": 0.6363636363636364,
+    "support": 28.0
+  },
+  "Pavimentação": {
+    "precision": 0.8571428571428571,
+    "recall": 0.9230769230769231,
+    "f1-score": 0.8888888888888888,
+    "support": 26.0
+  },
+  "accuracy": 0.8375,
+  "macro avg": {
+    "precision": 0.8615797633270751,
+    "recall": 0.8392307692307693,
+    "f1-score": 0.8304325304325305,
+    "support": 160.0
+  },
+  "weighted avg": {
+    "precision": 0.8631940177504693,
+    "recall": 0.8375,
+    "f1-score": 0.8302224164724163,
+    "support": 160.0
+  }
+}

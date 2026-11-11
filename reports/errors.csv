@@ -1,0 +1,27 @@
+id,scenario,text,category,split,source,predicted,correct,score
+iluminacao-13-0,iluminacao-13,"A árvore foi podada, mas a iluminação da esquina continua apagada.",iluminacao,test,simulado,areas_verdes,False,0.4278196406550808
+iluminacao-13-1,iluminacao-13,"a arvore foi podada, mas a iluminacao da esquina continua apagada.",iluminacao,test,simulado,areas_verdes,False,0.4278196406550808
+iluminacao-13-2,iluminacao-13,"Bom dia. a árvore foi podada, mas a iluminação da esquina continua apagada.",iluminacao,test,simulado,areas_verdes,False,0.39962963184913747
+iluminacao-13-3,iluminacao-13,"A árvore foi podada, mas a iluminação da esquina continua apagada. Isso acontece há alguns dias.",iluminacao,test,simulado,areas_verdes,False,0.353480785166076
+iluminacao-15-0,iluminacao-15,A lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade.,iluminacao,test,simulado,acessibilidade,False,0.34304847054733983
+iluminacao-15-1,iluminacao-15,a lampada perto da faixa de pedestres perdeu quase toda a luminosidade.,iluminacao,test,simulado,acessibilidade,False,0.34304847054733983
+iluminacao-15-2,iluminacao-15,"No bairro, a lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade.",iluminacao,test,simulado,acessibilidade,False,0.31548481225827435
+iluminacao-15-3,iluminacao-15,A lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade. Outras pessoas também perceberam o problema.,iluminacao,test,simulado,acessibilidade,False,0.31088266978227813
+limpeza-02-0,limpeza-02,Jogaram um sofá velho e um colchão no terreno ao lado da rua.,limpeza,test,simulado,pavimentacao,False,0.48756561551296373
+limpeza-02-1,limpeza-02,jogaram um sofa velho e um colchao no terreno ao lado da rua.,limpeza,test,simulado,pavimentacao,False,0.48756561551296373
+limpeza-02-2,limpeza-02,Gostaria de registrar o seguinte problema. jogaram um sofá velho e um colchão no terreno ao lado da rua.,limpeza,test,simulado,pavimentacao,False,0.4023941519140153
+limpeza-02-3,limpeza-02,Jogaram um sofá velho e um colchão no terreno ao lado da rua. Fica no caminho de quem vai trabalhar.,limpeza,test,simulado,pavimentacao,False,0.3335120073988538
+limpeza-11-0,limpeza-11,A rua está cheia de folhas secas e pede uma equipe de varrição.,limpeza,test,simulado,areas_verdes,False,0.3270855534062907
+limpeza-11-1,limpeza-11,a rua esta cheia de folhas secas e pede uma equipe de varricao.,limpeza,test,simulado,areas_verdes,False,0.3270855534062907
+limpeza-11-2,limpeza-11,Gostaria de registrar o seguinte problema. a rua está cheia de folhas secas e pede uma equipe de varrição.,limpeza,test,simulado,areas_verdes,False,0.3186362174938663
+limpeza-11-3,limpeza-11,A rua está cheia de folhas secas e pede uma equipe de varrição. Fica no caminho de quem vai trabalhar.,limpeza,test,simulado,areas_verdes,False,0.33066121023319134
+limpeza-11-4,limpeza-11,a rua ta cheia de folhas secas e pede uma equipe de varricao.,limpeza,test,simulado,areas_verdes,False,0.3421823065033901
+limpeza-27-0,limpeza-27,"A árvore está saudável, o problema é o monte de entulho jogado ao redor.",limpeza,test,simulado,areas_verdes,False,0.5354384147831409
+limpeza-27-1,limpeza-27,"a arvore esta saudavel, o problema e o monte de entulho jogado ao redor.",limpeza,test,simulado,areas_verdes,False,0.5354384147831409
+limpeza-27-2,limpeza-27,"No bairro, a árvore está saudável, o problema é o monte de entulho jogado ao redor.",limpeza,test,simulado,areas_verdes,False,0.4569179238473788
+limpeza-27-3,limpeza-27,"A árvore está saudável, o problema é o monte de entulho jogado ao redor. Outras pessoas também perceberam o problema.",limpeza,test,simulado,areas_verdes,False,0.39496147540267385
+limpeza-27-4,limpeza-27,"a arvore ta saudavel, o problema e o monte de entulho jogado ao redor.",limpeza,test,simulado,areas_verdes,False,0.4549934386297807
+pavimentacao-08-0,pavimentacao-08,O trecho asfaltado cedeu perto da curva.,pavimentacao,test,simulado,drenagem,False,0.26535504377179103
+pavimentacao-08-1,pavimentacao-08,o trecho asfaltado cedeu perto da curva.,pavimentacao,test,simulado,drenagem,False,0.26535504377179103
+acessibilidade-26-2,acessibilidade-26,"Gostaria de registrar o seguinte problema. já retiraram o lixo, mas o piso tátil da passagem continua danificado.",acessibilidade,test,simulado,limpeza,False,0.24765138363491454
+acessibilidade-26-3,acessibilidade-26,"Já retiraram o lixo, mas o piso tátil da passagem continua danificado. Fica no caminho de quem vai trabalhar.",acessibilidade,test,simulado,limpeza,False,0.2373233034276001
