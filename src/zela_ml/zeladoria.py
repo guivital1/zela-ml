@@ -77,6 +77,10 @@ MUNICIPAL_MIGRATION = (
     "ALTER TABLE historico ADD COLUMN pedido_resposta TEXT",
     "CREATE UNIQUE INDEX pedido_resposta_por_ocorrencia ON historico(ocorrencia, pedido_resposta)",
 )
+REVIEW_MIGRATION = (
+    "ALTER TABLE ocorrencias ADD COLUMN segunda_sugestao TEXT",
+    "ALTER TABLE ocorrencias ADD COLUMN requer_revisao INTEGER",
+)
 SUMMARY = """
 SELECT o.id, o.descricao, o.local, o.categoria, o.estado, o.reaberta, o.versao, o.protocolo,
        o.criado_em, o.atualizado_em, o.foto IS NOT NULL AS tem_foto,
@@ -125,7 +129,7 @@ class Occurrences:
         with self.connect() as conn:
             conn.execute("BEGIN IMMEDIATE")
             version = conn.execute("PRAGMA user_version").fetchone()[0]
-            if version > 3:
+            if version > 4:
                 raise RuntimeError("O banco foi criado por uma versão mais recente do ZELA.")
             if version == 0:
                 for statement in SCHEMA.split(";"):
@@ -146,6 +150,10 @@ class Occurrences:
                 for statement in MUNICIPAL_MIGRATION:
                     conn.execute(statement)
                 conn.execute("PRAGMA user_version = 3")
+            if version < 4:
+                for statement in REVIEW_MIGRATION:
+                    conn.execute(statement)
+                conn.execute("PRAGMA user_version = 4")
 
     @staticmethod
     def save_address(conn: sqlite3.Connection, occurrence: int, address: Endereco) -> None:
@@ -206,9 +214,12 @@ class Occurrences:
                     ).fetchone()
                 )
             if team:
-                item["sugestao"] = conn.execute(
-                    "SELECT sugestao FROM ocorrencias WHERE id = ?", (occurrence,)
-                ).fetchone()[0]
+                suggestion = conn.execute(
+                    "SELECT sugestao, segunda_sugestao, requer_revisao FROM ocorrencias "
+                    "WHERE id = ?",
+                    (occurrence,),
+                ).fetchone()
+                item.update(suggestion)
                 item["categoria_revisada"] = bool(
                     conn.execute(
                         "SELECT 1 FROM revisoes_categoria WHERE ocorrencia = ?", (occurrence,)
@@ -234,6 +245,8 @@ class Occurrences:
         photo: bytes | None,
         separate: bool,
         model: str | None = None,
+        alternative: str | None = None,
+        requires_review: bool | None = None,
     ) -> int:
         timestamp = now()
         place_key = normalize(address.local)
@@ -267,8 +280,8 @@ class Occurrences:
             occurrence = conn.execute(
                 """INSERT INTO ocorrencias (
                     visitante, pedido, descricao, local, local_chave, categoria, sugestao,
-                    foto, criado_em, atualizado_em, modelo
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    foto, criado_em, atualizado_em, modelo, segunda_sugestao, requer_revisao
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     person,
                     key,
@@ -281,6 +294,8 @@ class Occurrences:
                     timestamp,
                     timestamp,
                     model,
+                    alternative,
+                    requires_review,
                 ),
             ).lastrowid
             self.save_address(conn, occurrence, address)

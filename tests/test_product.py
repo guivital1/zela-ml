@@ -226,6 +226,35 @@ def test_category_review_records_corrections_without_changing_status(app):
         assert result["correcoes"][0]["id"] == item["id"]
 
 
+def test_uncertain_suggestions_survive_review_and_stay_with_the_team(app):
+    web, password = app
+    with TestClient(web) as resident, TestClient(web) as staff:
+        item = create(
+            resident,
+            report(
+                descricao="O poste está apagado e o bueiro da esquina vive entupido quando chove.",
+                categoria="iluminacao",
+            ),
+        )
+        assert "sugestao" not in item
+        assert "requer_revisao" not in item
+        assert staff.post("/api/equipe/entrar", json={"senha": password}).status_code == 200
+        detail = staff.get(f"/api/ocorrencias/{item['id']}").json()
+        assert detail["requer_revisao"] == 1
+        assert detail["sugestao"] == "iluminacao"
+        assert detail["segunda_sugestao"] == "drenagem"
+        revised = staff.patch(
+            f"/api/equipe/ocorrencias/{item['id']}/categoria",
+            json={
+                "versao": detail["versao"],
+                "categoria": "drenagem",
+            },
+        ).json()
+        assert revised["categoria_revisada"]
+        assert revised["categoria"] == "drenagem"
+        assert revised["sugestao"] == "iluminacao"
+
+
 def test_municipal_replies_are_public_ordered_and_bound_to_the_protocol(app):
     web, password = app
     with TestClient(web) as resident, TestClient(web) as staff:

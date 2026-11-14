@@ -227,15 +227,24 @@ function showDetail(item) {
     const stage = element('mudanca-andamento');
     stage.hidden = item.estado === 'resolvida';
     stage.disabled = stage.hidden;
-    showCategories(element('equipe-categoria'), item.categoria || item.sugestao || '');
+    const manualReview = Boolean(item.sugestao) && item.requer_revisao !== 0;
+    const selected = manualReview && !item.categoria_revisada
+      ? '' : item.categoria || item.sugestao || '';
+    showCategories(element('equipe-categoria'), selected);
     const states = [new Option('Resolvida', 'resolvida')];
     if (item.estado === 'registrada' || item.estado === 'reaberta') {
       states.unshift(new Option('Encaminhada', 'encaminhada'));
     }
     element('novo-estado').replaceChildren(...states);
     element('protocolo').value = item.estado === 'reaberta' ? item.protocolo || '' : '';
-    message('sugestao', item.sugestao
-      ? `Sugestão do modelo: ${categories[item.sugestao]}.` : '');
+    const options = [item.sugestao, item.segunda_sugestao].filter(Boolean)
+      .map(category => categories[category]).join(' ou ');
+    const suggestion = manualReview
+      ? (item.segunda_sugestao ? `Sugestões para revisão: ${options}.` : `Sugestão anterior: ${options}.`)
+      : (options ? `Sugestão do modelo: ${categories[item.sugestao]}.` : '');
+    const reported = manualReview && !item.categoria_revisada && item.categoria
+      ? ` Tipo informado pelo morador: ${categories[item.categoria]}.` : '';
+    message('sugestao', suggestion + reported);
     element('revisar-categoria').textContent = item.categoria_revisada
       ? 'Salvar categoria' : 'Confirmar categoria';
     adjustUpdate();
@@ -536,7 +545,9 @@ element('revisar-categoria').addEventListener('click', async event => {
 });
 
 element('copiar').addEventListener('click', async () => {
-  const category = categories[element('equipe-categoria').value] || detail.tipo;
+  const selection = element('equipe-categoria');
+  if (!selection.reportValidity()) return;
+  const category = categories[selection.value];
   const text = `Solicitação de zeladoria: ${category}\nLocal: ${detail.local}\n${detail.descricao}`;
   try {
     await navigator.clipboard.writeText(text);

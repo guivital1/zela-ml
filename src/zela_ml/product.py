@@ -159,7 +159,7 @@ def create_occurrence(payload: Report, request: Request, response: Response):
     person = visitor(request, response)
     photo = prepare_photo(payload.foto)
     classifier = request.app.state.classifier
-    suggestion = classifier.predict(payload.descricao)["category"] if classifier else None
+    prediction = classifier.predict(payload.descricao) if classifier else None
     try:
         occurrence = request.app.state.occurrences.create(
             person,
@@ -167,10 +167,12 @@ def create_occurrence(payload: Report, request: Request, response: Response):
             payload.descricao,
             payload.address(),
             payload.categoria,
-            suggestion,
+            prediction["category"] if prediction else None,
             photo,
             payload.outro_problema,
             classifier.version if classifier else None,
+            alternative=prediction["suggestions"][1]["category"] if prediction else None,
+            requires_review=prediction["requires_review"] if prediction else None,
         )
     except DuplicateLocation as error:
         raise HTTPException(409, {"ocorrencias": error.matches}) from error

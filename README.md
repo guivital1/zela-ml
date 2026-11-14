@@ -49,13 +49,16 @@ As seis categorias são iluminação pública, limpeza urbana, pavimentação, d
 | --- | ---: |
 | F1 macro do modelo | **0,830** |
 | F1 macro da referência pela frequência | 0,051 |
+| F1 macro da regra de palavras-chave | 0,674 |
 | Acurácia | 83,75% |
 | Cenários com todas as variações classificadas corretamente | 29 de 36 |
 | Intervalo de 95% para F1 macro, com reamostragem por cenário | 0,685 a 0,939 |
 | Relatos com pontuação e margem acima dos limites de revisão | 18 de 160 |
 | Casos ambíguos ou fora do escopo sinalizados para revisão | 11 de 12 |
 
-O modelo selecionado combina TF-IDF de palavras e caracteres com regressão logística. A política de revisão priorizou precisão na validação. No teste, todos os 18 relatos que passaram pelos limites receberam a categoria correta, mas a cobertura foi baixa. Entre os casos de desafio, o modelo deixou passar um relato que misturava alagamento e galhos quebrados. O operador confere o encaminhamento mesmo quando a sugestão está acima do limite.
+O modelo selecionado combina TF-IDF de palavras e caracteres com regressão logística. Quando a pontuação é baixa ou as categorias estão próximas, a equipe vê as duas primeiras opções e escolhe a categoria. No teste, o modelo acertou os 18 relatos que passaram pelos limites de revisão. Entre os casos de desafio, deixou passar um relato que misturava alagamento e galhos quebrados. O operador confere a categoria antes de encaminhar.
+
+A regra de palavras-chave usa um dicionário fixo e deixa empates ou textos sem correspondência para revisão. Isso ocorreu em 70 dos 160 relatos do teste. O F1 conta essas abstenções como erros para a categoria esperada. A [comparação detalhada](reports/comparacao_robustez.csv) reúne ainda 18 exemplos sintéticos escritos para desafiar a correspondência exata.
 
 Os números descrevem a simulação. A validação com relatos de campo e a estimativa do efeito sobre o tempo de triagem ficam para o piloto.
 

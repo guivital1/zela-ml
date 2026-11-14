@@ -111,6 +111,10 @@ notebook.cells = [
         regressões logísticas com TF-IDF de palavras e uma combinação de palavras
         com n-gramas de caracteres.
 
+        Também avaliamos um dicionário fixo de palavras-chave. Cada termo distinto
+        soma um ponto à categoria. Empates e textos sem correspondência vão para
+        revisão. Essa referência fica fora da seleção do modelo.
+
         Caracteres ajudam a compartilhar informação entre flexões e abreviações.
         A regressão logística permite inspecionar os pesos associados à sugestão.
         A seleção usa F1 macro na validação, com desempate por log loss.
@@ -140,6 +144,10 @@ notebook.cells = [
             'referência no teste': metrics['baseline_test'],
             'modelo no teste': metrics['test'],
         }).T)
+        regra = metrics['keywords_test']
+        print(f"F1 macro da regra: {regra['f1_macro']:.3f}")
+        print("Relatos sem categoria pela regra:", regra['review_count'],
+              "de", metrics['split_rows']['test'])
         interval = metrics['test_f1_macro_ci95']
         print(f"F1 macro: {metrics['test']['f1_macro']:.3f}")
         print(f"Intervalo por cenário: {interval['low']:.3f} a {interval['high']:.3f}")
@@ -156,17 +164,25 @@ notebook.cells = [
 
         Os casos do teste permanecem congelados. Melhorias futuras serão escolhidas
         na validação e exigirão um novo teste independente para uma nova estimativa.
+
+        Os 18 exemplos sintéticos adicionais foram construídos para desafiar a
+        correspondência exata de termos. Eles ilustram falhas com abreviações,
+        digitação e descrições indiretas.
     """),
     code("""
         errors = pd.read_csv(REPORTS / 'errors.csv')
         display(errors.drop_duplicates('scenario')[['text', 'category', 'predicted', 'score']])
         print(f'{len(errors)} variações com erro em {errors.scenario.nunique()} cenários')
+        display(pd.DataFrame(metrics['keywords_test']['robustez_sintetica']).T)
+        display(pd.read_csv(REPORTS / 'comparacao_robustez.csv')[
+            ['tipo', 'texto', 'categoria', 'modelo', 'regra']
+        ])
     """),
     markdown("""
         ## 6. Cobertura, revisão e casos difíceis
 
-        A sugestão sempre fica disponível ao operador. O marcador de revisão sinaliza
-        pontuação baixa ou pouca diferença entre as categorias mais prováveis.
+        Quando a pontuação é baixa ou as duas primeiras categorias estão próximas,
+        o ZELA mostra as duas opções e pede que o operador escolha a categoria.
         A política foi escolhida na validação para preservar a precisão, o que
         pode reduzir bastante a cobertura das sugestões com marcador favorável.
 

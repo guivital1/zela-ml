@@ -21,6 +21,7 @@ from sklearn.pipeline import FeatureUnion, Pipeline
 
 from zela_ml import __version__
 from zela_ml.dataset import dataset_hash, load_dataset
+from zela_ml.keywords import keywords_prediction
 from zela_ml.settings import ARTIFACTS, CATEGORIES, DATA, REPORTS, SEED
 
 
@@ -181,6 +182,38 @@ def write_json(path: Path, value: dict) -> None:
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def keyword_comparison(model: Pipeline, test: pd.DataFrame) -> dict:
+    predicted = test["text"].map(keywords_prediction)
+    covered = predicted != "revisao"
+    robustness = pd.read_csv(DATA / "robustez.csv")
+    robustness["modelo"] = model.predict(robustness["texto"])
+    robustness["regra"] = robustness["texto"].map(keywords_prediction)
+    robustness["acerto_modelo"] = robustness["modelo"] == robustness["categoria"]
+    robustness["acerto_regra"] = robustness["regra"] == robustness["categoria"]
+    robustness.to_csv(REPORTS / "comparacao_robustez.csv", index=False)
+    by_type = robustness.groupby("tipo", sort=False)
+    summary = by_type.agg(
+        relatos=("texto", "size"),
+        acertos_modelo=("acerto_modelo", "sum"),
+        acertos_regra=("acerto_regra", "sum"),
+    )
+    return {
+        "f1_macro": float(
+            f1_score(
+                test["category"],
+                predicted,
+                labels=list(CATEGORIES),
+                average="macro",
+                zero_division=0,
+            )
+        ),
+        "accuracy": float(accuracy_score(test["category"], predicted)),
+        "covered": int(covered.sum()),
+        "review_count": int((~covered).sum()),
+        "robustez_sintetica": summary.to_dict(orient="index"),
+    }
+
+
 def train() -> dict:
     frame = load_dataset()
     train_set = frame[frame["split"] == "train"]
@@ -265,6 +298,7 @@ def train() -> dict:
         "test": scores(model, test),
         "test_f1_macro_ci95": scenario_interval(test, predicted),
         "baseline_test": scores(fitted["referencia_frequencia"], test),
+        "keywords_test": keyword_comparison(model, test),
         "review_policy": policy,
         "test_selective": review_scores(model, test, policy),
         "challenge_test": {
