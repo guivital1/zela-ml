@@ -76,3 +76,27 @@ Os números descrevem a simulação. A validação com relatos de campo e a esti
 - A documentação em `/docs`, a avaliação em `/model` e a classificação em `POST /classify` exigem uma sessão da equipe. `POST /classify` recebe `{"text": "..."}` e devolve as categorias, pontuações, termos associados e `requires_review`. O cidadão usa as rotas de ocorrência, e a sugestão de categoria aparece na revisão da equipe.
 
 Para demonstrar uma versão, use o commit revisado com seu respectivo artefato e manifesto. O retorno a uma versão anterior usa o conjunto desses arquivos do commit escolhido. [Fluxo de desenvolvimento](CONTRIBUTING.md) · [Roteiro da apresentação](docs/apresentacao.md).
+
+## Aplicação C# · CitizenTech
+
+A aplicação de console do ZELA registra necessidades de iluminação pública, limpeza urbana e pavimentação, mostra o protocolo e permite acompanhar o avanço do atendimento durante a sessão. Os dados ficam apenas na memória e são apagados ao fechar o programa.
+
+### Executar
+
+Requer o .NET SDK 8.0 ou superior. No terminal, a partir da raiz do repositório:
+
+```sh
+dotnet run --project csharp/Zela.CitizenTech/Zela.CitizenTech.csproj
+```
+
+Escolha **1** para registrar uma ocorrência, informe categoria, relato e endereço; use **2** para acompanhar os relatos e **3** para avançar o status usando o protocolo. A pasta [evidencias](csharp/evidencias/) contém a entrada usada e a saída real de uma execução de exemplo.
+
+### Organização e POO
+
+- `Models/Endereco.cs` encapsula rua, número e bairro e valida os campos obrigatórios.
+- `Models/Ocorrencia.cs` define a ocorrência base, protege os dados com propriedades controladas e centraliza as transições de status.
+- `OcorrenciaIluminacao`, `OcorrenciaLimpeza` e `OcorrenciaPavimentacao` herdam de `Ocorrencia` e personalizam categoria e orientação de triagem por sobrescrita.
+- `Services/CentralDeAtendimento.cs` mantém a coleção privada, cria protocolos e busca relatos sem expor a lista interna.
+- `ConsoleUi/AplicacaoConsole.cs` conduz a interação e percorre as ocorrências pelo tipo base, demonstrando polimorfismo.
+
+A solução usa classes e organização por pastas, sem persistência externa ou bibliotecas adicionais.

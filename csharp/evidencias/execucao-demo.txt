@@ -1,0 +1,164 @@
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+Qual situação você quer registrar?
+1. Iluminação pública
+2. Limpeza urbana
+3. Pavimentação
+Categoria: Conte o que está acontecendo: Rua: Número (ou s/n): Bairro:
+Pronto. Seu relato foi registrado.
+Protocolo: ZL-2026-0001
+Local: Rua das Flores, 127 · Vila Nova
+O protocolo fica disponível enquanto esta aplicação estiver aberta.
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+Qual situação você quer registrar?
+1. Iluminação pública
+2. Limpeza urbana
+3. Pavimentação
+Categoria: Conte o que está acontecendo: Rua: Número (ou s/n): Bairro:
+Pronto. Seu relato foi registrado.
+Protocolo: ZL-2026-0002
+Local: Rua dos Ipês, 54 · Vila Nova
+O protocolo fica disponível enquanto esta aplicação estiver aberta.
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+Qual situação você quer registrar?
+1. Iluminação pública
+2. Limpeza urbana
+3. Pavimentação
+Categoria: Conte o que está acontecendo: Rua: Número (ou s/n): Bairro:
+Pronto. Seu relato foi registrado.
+Protocolo: ZL-2026-0003
+Local: Avenida Central, 800 · Centro
+O protocolo fica disponível enquanto esta aplicação estiver aberta.
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+3 ocorrência(s) nesta sessão
+──────────────────────────────────────────────
+ZL-2026-0001 · Iluminação pública
+Local: Rua das Flores, 127 · Vila Nova
+Relato: O poste da esquina está apagado durante a noite.
+Registrada em: 19/11/2026 19:48
+Status: Recebida
+Triagem: Verificar o poste e a lâmpada no endereço informado.
+──────────────────────────────────────────────
+ZL-2026-0002 · Limpeza urbana
+Local: Rua dos Ipês, 54 · Vila Nova
+Relato: Há sacos e móveis descartados no passeio.
+Registrada em: 19/11/2026 19:48
+Status: Recebida
+Triagem: Avaliar o volume, o tipo de resíduo e a necessidade de coleta.
+──────────────────────────────────────────────
+ZL-2026-0003 · Pavimentação
+Local: Avenida Central, 800 · Centro
+Relato: Há um buraco fundo perto da faixa de pedestres.
+Registrada em: 19/11/2026 19:48
+Status: Recebida
+Triagem: Inspecionar o trecho e avaliar o risco para pedestres e veículos.
+──────────────────────────────────────────────
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+Informe o protocolo: Atendimento atualizado: Em análise.
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+3 ocorrência(s) nesta sessão
+──────────────────────────────────────────────
+ZL-2026-0001 · Iluminação pública
+Local: Rua das Flores, 127 · Vila Nova
+Relato: O poste da esquina está apagado durante a noite.
+Registrada em: 19/11/2026 19:48
+Status: Em análise
+Triagem: Verificar o poste e a lâmpada no endereço informado.
+──────────────────────────────────────────────
+ZL-2026-0002 · Limpeza urbana
+Local: Rua dos Ipês, 54 · Vila Nova
+Relato: Há sacos e móveis descartados no passeio.
+Registrada em: 19/11/2026 19:48
+Status: Recebida
+Triagem: Avaliar o volume, o tipo de resíduo e a necessidade de coleta.
+──────────────────────────────────────────────
+ZL-2026-0003 · Pavimentação
+Local: Avenida Central, 800 · Centro
+Relato: Há um buraco fundo perto da faixa de pedestres.
+Registrada em: 19/11/2026 19:48
+Status: Recebida
+Triagem: Inspecionar o trecho e avaliar o risco para pedestres e veículos.
+──────────────────────────────────────────────
+
+Pressione Enter para continuar.
+
+╭────────────────────────────────────────────╮
+│                    ZELA                    │
+│       Cuidado com a rua começa aqui        │
+╰────────────────────────────────────────────╯
+1. Registrar uma necessidade da rua
+2. Acompanhar ocorrências desta sessão
+3. Avançar o atendimento de uma ocorrência
+0. Sair
+
+O que você gostaria de fazer?
+Obrigado por usar o ZELA. Até a próxima!
