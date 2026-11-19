@@ -1,0 +1,29 @@
+1
+1
+O poste da esquina está apagado durante a noite.
+Rua das Flores
+127
+Vila Nova
+
+1
+2
+Há sacos e móveis descartados no passeio.
+Rua dos Ipês
+54
+Vila Nova
+
+1
+3
+Há um buraco fundo perto da faixa de pedestres.
+Avenida Central
+800
+Centro
+
+2
+
+3
+ZL-2026-0001
+
+2
+
+0
