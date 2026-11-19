@@ -1,0 +1,13 @@
+split,text,expected,reason,suggested,score,requires_review
+test,Quero saber como conseguir uma segunda via da certidão,revisao,fora do escopo,pavimentacao,0.45979162790279543,True
+test,Meu benefício foi suspenso e preciso de orientação,revisao,fora do escopo,acessibilidade,0.4647635260501089,True
+test,Quero denunciar uma cobrança indevida no cartão,revisao,fora do escopo,pavimentacao,0.2604036597407987,True
+test,Preciso de um remédio que não encontrei na farmácia,revisao,fora do escopo,limpeza,0.2843532382960466,True
+test,O aplicativo de mensagens parou de abrir no meu celular,revisao,fora do escopo,drenagem,0.3265199057783492,True
+test,O encanamento do meu banheiro está vazando dentro do apartamento,revisao,serviço privado,pavimentacao,0.3264853032082392,True
+test,Os refletores da praça apagaram e há entulho na entrada,revisao,dois serviços,iluminacao,0.5668449907044317,True
+test,A chuva alagou a rua e a árvore da esquina está com galhos partidos,revisao,dois serviços,areas_verdes,0.7554289590056463,False
+test,Aconteceu alguma coisa estranha perto de casa,revisao,descrição insuficiente,limpeza,0.2314531715135014,True
+test,Queria uma solução para o que está acontecendo aqui,revisao,descrição insuficiente,drenagem,0.2759340976741422,True
+test,A calçada tem um degrau e o bueiro ao lado está devolvendo água,revisao,dois serviços,acessibilidade,0.3878416473463131,True
+test,O bar da esquina faz muito barulho de madrugada,revisao,serviço fora da taxonomia,areas_verdes,0.29716932901200627,True

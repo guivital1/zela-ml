@@ -1,0 +1,19 @@
+tipo,categoria,texto,modelo,regra,acerto_modelo,acerto_regra
+abreviacao,iluminacao,Ilum. da rua tá apagada há três noites.,iluminacao,revisao,True,False
+abreviacao,limpeza,Tem resíd. da feira espalhado na esquina desde ontem.,limpeza,revisao,True,False
+abreviacao,pavimentacao,Precisa de recap. no trecho da curva do ônibus.,areas_verdes,revisao,False,False
+abreviacao,drenagem,O bueir. da esquina entupiu depois da chuva.,drenagem,revisao,True,False
+abreviacao,acessibilidade,Tá faltando acesso p/ cadeir. de rodas na faixa.,acessibilidade,revisao,True,False
+abreviacao,areas_verdes,A veget. tomou a passagem atrás da quadra.,iluminacao,revisao,False,False
+digitacao,iluminacao,A lampda pública da esquina queimou no sábado.,iluminacao,revisao,True,False
+digitacao,limpeza,O entuloh jogado perto da escola ocupou a passagem.,drenagem,revisao,False,False
+digitacao,pavimentacao,Um burcao abriu no meio da via depois da obra.,pavimentacao,revisao,True,False
+digitacao,drenagem,A enxuurrada parou no cruzamento porque não tem vazão.,drenagem,revisao,True,False
+digitacao,acessibilidade,A rampaa foi bloqueada com um desnível na entrada.,acessibilidade,revisao,True,False
+digitacao,areas_verdes,Os galhso caíram na passagem de pedestres.,acessibilidade,revisao,False,False
+indireta,iluminacao,Quando anoitece ninguém consegue enxergar o caminho do ponto.,iluminacao,revisao,True,False
+indireta,limpeza,Deixaram um sofá e sacos com restos atrás da quadra.,limpeza,revisao,True,False
+indireta,pavimentacao,Os carros desviam de uma depressão no meio da via.,pavimentacao,revisao,True,False
+indireta,drenagem,Quando chove a água volta pela grade e invade as garagens.,drenagem,revisao,True,False
+indireta,acessibilidade,Quem usa andador precisa descer para a rua porque a entrada tem degraus.,acessibilidade,revisao,True,False
+indireta,areas_verdes,A copa invadiu a garagem e os ramos tocam o telhado.,areas_verdes,revisao,True,False

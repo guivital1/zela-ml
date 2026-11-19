@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZELA · Zeladoria urbana</title>
+  <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#ocorrencias" aria-label="ZELA, início">
+        <img src="/assets/logo.jpg" width="42" height="42" alt="">
+        <span>ZELA <small>Zeladoria urbana</small></span>
+      </a>
+      <nav aria-label="Área de trabalho">
+        <span class="nav-label">Meu bairro</span>
+        <a href="#ocorrencias" data-nav="ocorrencias" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 4-7 10-7 10s-7-6-7-10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          Ocorrências
+        </a>
+        <a href="#acompanhando" data-nav="acompanhando">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg>
+          Acompanhando
+        </a>
+        <a href="#equipe" data-nav="equipe" class="team-nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Área da equipe
+        </a>
+      </nav>
+    </aside>
+    <div class="content">
+      <header class="toolbar">
+        <form id="busca-form" class="toolbar-search" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
+          <input id="busca" type="search" placeholder="Buscar por rua ou código" aria-label="Buscar por rua ou código">
+        </form>
+        <span class="context" id="demo-label" hidden><span class="context-dot" aria-hidden="true"></span>Bairro de exemplo</span>
+      </header>
+      <main>
+        <div id="mensagem" class="notice" role="status" hidden></div>
+        <div id="falha" class="error" role="alert" hidden></div>
+        <section data-screen="lista" aria-labelledby="lista-titulo">
+          <div class="intro page-actions">
+            <div>
+              <h1 id="lista-titulo">Ocorrências do bairro</h1>
+              <p class="lead" id="lista-legenda">Veja o que precisa de atenção e acompanhe o andamento.</p>
+            </div>
+            <a class="submit action" href="#novo"><span aria-hidden="true">+</span> Novo relato</a>
+          </div>
+          <div class="list-toolbar">
+            <div class="filters" id="filtros" aria-label="Filtrar por situação">
+              <button type="button" data-filter="" aria-pressed="true">Todas</button>
+              <button type="button" data-filter="registrada" aria-pressed="false">Registradas</button>
+              <button type="button" data-filter="encaminhada" aria-pressed="false">Encaminhadas</button>
+              <button type="button" data-filter="reaberta" aria-pressed="false">Em nova revisão</button>
+              <button type="button" data-filter="resolvida" aria-pressed="false">Resolvidas</button>
+            </div>
+            <span class="list-count" id="contagem" aria-live="polite"></span>
+          </div>
+          <div id="lista" class="occurrences"></div>
+        </section>
+
+        <section data-screen="novo" aria-labelledby="novo-titulo" hidden>
+          <div class="intro">
+            <a class="back-link" href="#ocorrencias">← Ocorrências</a>
+            <h1 id="novo-titulo">Novo relato</h1>
+            <p class="lead">Diga onde está o problema e o que você encontrou.</p>
+          </div>
+          <form id="relato-form" class="panel report-form">
+            <label for="local">Rua ou local</label>
+            <input id="local" name="rua" minlength="3" maxlength="100" placeholder="Ex. Rua das Acácias" required>
+            <div class="address-fields">
+              <div><label for="numero">Número <span>opcional</span></label><input id="numero" maxlength="16" placeholder="Ex. 120"></div>
+              <div><label for="bairro">Bairro <span>opcional</span></label><input id="bairro" maxlength="40"></div>
+            </div>
+            <label for="descricao">O que aconteceu?</label>
+            <textarea id="descricao" name="descricao" minlength="12" maxlength="1000" placeholder="Ex. O poste perto do ponto de ônibus não acende à noite." required></textarea>
+            <label for="categoria">Tipo de problema <span>opcional</span></label>
+            <select id="categoria" name="categoria"></select>
+            <label for="foto">Foto do local <span>opcional</span></label>
+            <input id="foto" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="foto-ajuda">
+            <p class="field-help" id="foto-ajuda">Mostre o problema no espaço público. Use uma foto de até 2 MB.</p>
+            <div id="relato-erro" class="error" role="alert" hidden></div>
+            <div id="duplicatas" class="duplicate-box" hidden>
+              <h2>Já existe um relato nesse local</h2>
+              <p>Veja se é o mesmo problema. Se for, você pode confirmar na ocorrência já aberta.</p>
+              <div id="duplicatas-lista" class="occurrences"></div>
+              <button type="button" class="secondary" id="outro-problema">Registrar outro problema</button>
+            </div>
+            <div class="form-actions"><button class="submit" type="submit">Registrar relato</button></div>
+          </form>
+        </section>
+
+        <section data-screen="detalhe" aria-labelledby="detalhe-titulo" hidden>
+          <div class="intro">
+            <a id="detalhe-voltar" class="back-link" href="#ocorrencias">← Ocorrências</a>
+            <p class="detail-code" id="detalhe-codigo"></p>
+            <h1 id="detalhe-titulo">Ocorrência</h1>
+            <p class="lead" id="detalhe-local"></p>
+          </div>
+          <div class="workspace">
+            <section class="panel detail-body" aria-labelledby="relato-titulo">
+              <div class="section-heading">
+                <h2 id="relato-titulo">Relato</h2>
+                <span id="detalhe-estado" class="status"></span>
+              </div>
+              <p id="detalhe-descricao" class="description"></p>
+              <img id="detalhe-foto" class="report-photo" alt="Foto do problema no local" hidden>
+              <p id="detalhe-confirmacoes" class="field-help"></p>
+              <div class="detail-actions">
+                <button id="confirmar" type="button" class="secondary" hidden>Também vi esse problema</button>
+                <button id="compartilhar" type="button" class="secondary">Compartilhar ocorrência</button>
+              </div>
+              <p id="compartilhar-status" class="field-help" role="status" hidden></p>
+              <div id="compartilhar-manual" class="report-form share-fallback" hidden>
+                <label for="link-ocorrencia">Link da ocorrência</label>
+                <input id="link-ocorrencia" type="url" readonly>
+              </div>
+              <p id="detalhe-acompanhando" class="field-help" hidden>Você acompanha esta ocorrência.</p>
+              <div id="detalhe-erro" class="error" role="alert" hidden></div>
+            </section>
+            <section class="panel" aria-labelledby="andamento-titulo">
+              <h2 id="andamento-titulo">Andamento</h2>
+              <p id="detalhe-protocolo" class="protocol" hidden></p>
+              <div id="ultimo-retorno" class="municipal-reply" hidden>
+                <h3>Último retorno da prefeitura</h3>
+                <p id="prefeitura-data" class="field-help"></p>
+                <p id="prefeitura-resposta"></p>
+                <div id="prefeitura-proximo" hidden>
+                  <strong id="prefeitura-passo-titulo">Próximo passo</strong>
+                  <p id="prefeitura-passo"></p>
+                </div>
+              </div>
+              <ol id="historico" class="timeline"></ol>
+            </section>
+          </div>
+          <section id="retorno" class="panel staff-form" aria-labelledby="retorno-titulo" hidden>
+            <h2 id="retorno-titulo">O problema foi resolvido?</h2>
+            <div class="staff-actions return-actions">
+              <button id="reparo-confirmado" class="secondary" type="button">Sim, foi resolvido</button>
+              <button id="ainda-acontece" class="secondary" type="button" aria-expanded="false" aria-controls="retorno-form">Ainda acontece</button>
+            </div>
+            <form id="retorno-form" class="report-form" hidden>
+              <label for="retorno-nota">O que continua acontecendo?</label>
+              <textarea id="retorno-nota" maxlength="300" rows="2"></textarea>
+              <label for="retorno-foto">Foto do local <span>opcional</span></label>
+              <input id="retorno-foto" type="file" accept="image/jpeg,image/png,image/webp">
+              <p class="field-help">Inclua uma observação ou uma foto de até 2 MB.</p>
+              <div class="form-actions"><button class="submit" type="submit">Enviar para revisão</button></div>
+            </form>
+            <div id="retorno-erro" class="error" role="alert" hidden></div>
+          </section>
+          <form id="andamento-form" class="panel report-form staff-form" aria-labelledby="atualizar-titulo" hidden>
+            <h2 id="atualizar-titulo">Revisar ocorrência</h2>
+            <p id="sugestao" class="field-help" hidden></p>
+            <label for="equipe-categoria">Tipo de problema</label>
+            <select id="equipe-categoria" aria-describedby="sugestao" required></select>
+            <button id="revisar-categoria" type="button" class="secondary review-button">Salvar categoria</button>
+            <fieldset id="mudanca-andamento" class="stage-fields">
+              <legend>Andamento</legend>
+              <label for="novo-estado">Novo andamento</label>
+              <select id="novo-estado" required></select>
+              <div id="protocolo-campo">
+                <label for="protocolo">Protocolo recebido</label>
+                <input id="protocolo" maxlength="80" placeholder="Número do pedido no canal oficial">
+                <button type="button" class="secondary review-button" id="copiar">Copiar pedido</button>
+              </div>
+              <label for="nota">O que foi feito?</label>
+              <textarea id="nota" maxlength="300" rows="2" placeholder="Essa informação aparece no histórico."></textarea>
+              <div class="form-actions"><button class="submit" type="submit">Salvar andamento</button></div>
+            </fieldset>
+            <div id="andamento-erro" class="error" role="alert" hidden></div>
+          </form>
+          <details id="resposta-equipe" class="panel staff-form" hidden>
+            <summary>Registrar resposta da prefeitura</summary>
+            <form id="resposta-form" class="report-form">
+              <label for="resposta-data">Recebida em</label>
+              <input id="resposta-data" type="date" required>
+              <label for="resposta-nota">Resposta recebida</label>
+              <textarea id="resposta-nota" minlength="3" maxlength="500" rows="2" required></textarea>
+              <label for="resposta-passo">Próximo passo e responsável</label>
+              <textarea id="resposta-passo" minlength="3" maxlength="240" rows="2" placeholder="Ex. A prefeitura fará a vistoria." required></textarea>
+              <p class="field-help">A resposta e o próximo passo aparecem na página pública.</p>
+              <div id="resposta-erro" class="error" role="alert" hidden></div>
+              <div class="form-actions"><button class="submit" type="submit">Salvar resposta</button></div>
+            </form>
+          </details>
+        </section>
+
+        <section data-screen="equipe" aria-labelledby="equipe-titulo" hidden>
+          <div class="intro">
+            <h1 id="equipe-titulo">Área da equipe</h1>
+            <p class="lead">Revise ocorrências e acompanhe os pedidos do bairro.</p>
+          </div>
+          <form id="entrar-form" class="panel report-form login" hidden>
+            <label for="senha">Senha da equipe</label>
+            <input type="password" id="senha" autocomplete="current-password" maxlength="256" required>
+            <div id="entrar-erro" class="error" role="alert" hidden></div>
+            <div class="form-actions"><button class="submit" type="submit">Entrar</button></div>
+          </form>
+          <div id="equipe-painel" hidden>
+            <div class="staff-actions">
+              <a class="secondary action" href="/equipe/tecnica">Área técnica</a>
+              <button id="sair" class="secondary" type="button">Sair</button>
+            </div>
+            <h2 class="section-title">Fila de ocorrências</h2>
+            <div class="filters queue-filters" id="equipe-filtros" aria-label="Filtrar fila da equipe">
+              <button type="button" data-queue="revisao" aria-pressed="true">Para revisar</button>
+              <button type="button" data-queue="encaminhada" aria-pressed="false">Encaminhadas</button>
+              <button type="button" data-queue="resolvida" aria-pressed="false">Resolvidas</button>
+            </div>
+            <div id="equipe-lista" class="occurrences"></div>
+          </div>
+        </section>
+        <footer>CitizenTech · FIAP 2026</footer>
+      </main>
+    </div>
+  </div>
+  <template id="ocorrencia-card">
+    <a class="occurrence" href="#">
+      <div class="occurrence-top"><span data-item="tipo"></span><span class="status" data-item="estado"></span></div>
+      <h2 data-item="local"></h2>
+      <p class="occurrence-description" data-item="descricao"></p>
+      <div class="occurrence-footer"><span data-item="codigo"></span><span data-item="confirmacoes"></span><span aria-hidden="true">›</span></div>
+    </a>
+  </template>
+</body>
+</html>

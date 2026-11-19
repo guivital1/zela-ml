@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZELA · Área técnica</title>
+  <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/technical.js" defer></script>
+</head>
+<body>
+  <main class="technical">
+    <div class="intro">
+      <a class="back-link" href="/#equipe">← Área da equipe</a>
+      <h1>Área técnica</h1>
+      <p class="lead">Avaliação do classificador de relatos em dados simulados.</p>
+    </div>
+    <div class="staff-actions">
+      <a class="secondary action" href="/equipe/notebook">Baixar notebook</a>
+      <a class="secondary action" href="/docs">Documentação da API</a>
+    </div>
+    <div id="metrics-error" class="error" role="alert" hidden></div>
+    <dl class="metrics">
+      <div><dt>F1 macro no teste sintético</dt><dd id="f1">—</dd></div>
+      <div><dt>Cenários independentes no teste</dt><dd id="test-scenarios">—</dd></div>
+      <div><dt>Relatos simulados na base</dt><dd id="dataset-size">—</dd></div>
+    </dl>
+    <figure class="matrix">
+      <figcaption>Matriz de confusão</figcaption>
+      <img src="/evaluation/confusion-matrix.png" width="1600" height="1120" alt="Categorias esperadas e sugeridas no teste sintético">
+    </figure>
+    <p class="field-help">Os resultados descrevem a base sintética. A validação em campo permanece pendente.</p>
+    <section class="panel staff-form" aria-labelledby="review-title">
+      <h2 id="review-title">Categorias revisadas pela equipe</h2>
+      <p id="review-description" class="field-help"></p>
+      <ul id="review-results"></ul>
+      <div id="correcoes" hidden>
+        <h3>Correções recentes</h3>
+        <ul id="correcoes-lista"></ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

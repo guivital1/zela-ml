@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "seed": 42,
+  "dataset_source": "simulado",
+  "dataset_sha256": "c70600737ed18ac89325406676ef6121d5f16ff2c9eb2d7a607d8b0b7367da50",
+  "rows": 810,
+  "scenarios": 180,
+  "split_rows": {
+    "train": 488,
+    "validation": 162,
+    "test": 160
+  },
+  "split_scenarios": {
+    "test": 36,
+    "train": 108,
+    "validation": 36
+  },
+  "selected_model": "tfidf_palavras_caracteres",
+  "selection_metric": "f1_macro de validação, desempate por log_loss",
+  "validation": {
+    "accuracy": 0.8641975308641975,
+    "f1_macro": 0.8620954442383013,
+    "log_loss": 0.8955678543053378,
+    "scenario_all_variants_correct": 0.8611111111111112
+  },
+  "test": {
+    "accuracy": 0.8375,
+    "f1_macro": 0.8304325304325305,
+    "log_loss": 0.8338104613998265,
+    "scenario_all_variants_correct": 0.8055555555555556
+  },
+  "test_f1_macro_ci95": {
+    "low": 0.6854537337662339,
+    "high": 0.9387733214200514,
+    "resamples": 1000,
+    "unit": "scenario",
+    "scope": "incerteza dentro da base sintética"
+  },
+  "baseline_test": {
+    "accuracy": 0.18125,
+    "f1_macro": 0.05114638447971781,
+    "log_loss": 1.7914196388796104,
+    "scenario_all_variants_correct": 0.16666666666666666
+  },
+  "keywords_test": {
+    "f1_macro": 0.674011430400958,
+    "accuracy": 0.5375,
+    "covered": 90,
+    "review_count": 70,
+    "robustez_sintetica": {
+      "abreviacao": {
+        "relatos": 6,
+        "acertos_modelo": 4,
+        "acertos_regra": 0
+      },
+      "digitacao": {
+        "relatos": 6,
+        "acertos_modelo": 4,
+        "acertos_regra": 0
+      },
+      "indireta": {
+        "relatos": 6,
+        "acertos_modelo": 6,
+        "acertos_regra": 0
+      }
+    }
+  },
+  "review_policy": {
+    "threshold": 0.75,
+    "margin": 0.4
+  },
+  "test_selective": {
+    "coverage": 0.1125,
+    "accepted_count": 18,
+    "precision_accepted": 1.0,
+    "review_count": 142
+  },
+  "challenge_test": {
+    "total": 12,
+    "sent_to_review": 11,
+    "accepted_incorrectly": 1
+  },
+  "limitations": [
+    "Base sintética de 180 cenários; variações do mesmo cenário são correlacionadas.",
+    "Vocabulário e estilos de escrita compartilham um catálogo controlado.",
+    "Métricas estimam desempenho nesta simulação; validação de campo permanece pendente.",
+    "Pontuações do modelo exigem validação em dados reais antes de uso operacional.",
+    "Relatos com vários serviços, negação ou contexto privado podem ser mal classificados.",
+    "O responsável revisa o pedido antes de encaminhá-lo ao órgão público."
+  ]
+}

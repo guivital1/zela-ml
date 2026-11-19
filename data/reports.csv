@@ -1,0 +1,811 @@
+id,scenario,text,category,split,source
+iluminacao-01-0,iluminacao-01,O poste da esquina está apagado todas as noites e precisamos que troquem a lâmpada.,iluminacao,validation,simulado
+iluminacao-01-1,iluminacao-01,o poste da esquina esta apagado todas as noites e precisamos que troquem a lampada.,iluminacao,validation,simulado
+iluminacao-01-2,iluminacao-01,Bom dia. o poste da esquina está apagado todas as noites e precisamos que troquem a lâmpada.,iluminacao,validation,simulado
+iluminacao-01-3,iluminacao-01,O poste da esquina está apagado todas as noites e precisamos que troquem a lâmpada. Isso acontece há alguns dias.,iluminacao,validation,simulado
+iluminacao-01-4,iluminacao-01,o poste da esquina ta apagado todas as noites e precisamo q troquem a lampada.,iluminacao,validation,simulado
+iluminacao-02-0,iluminacao-02,As luminárias da praça não acendem depois que escurece.,iluminacao,test,simulado
+iluminacao-02-1,iluminacao-02,as luminarias da praca nao acendem depois que escurece.,iluminacao,test,simulado
+iluminacao-02-2,iluminacao-02,Gostaria de registrar o seguinte problema. as luminárias da praça não acendem depois que escurece.,iluminacao,test,simulado
+iluminacao-02-3,iluminacao-02,As luminárias da praça não acendem depois que escurece. Fica no caminho de quem vai trabalhar.,iluminacao,test,simulado
+iluminacao-02-4,iluminacao-02,as luminarias da praca nao acendem depois q escurece.,iluminacao,test,simulado
+iluminacao-03-0,iluminacao-03,A luz da rua pisca sem parar e o trecho fica escuro.,iluminacao,train,simulado
+iluminacao-03-1,iluminacao-03,a luz da rua pisca sem parar e o trecho fica escuro.,iluminacao,train,simulado
+iluminacao-03-2,iluminacao-03,"No bairro, a luz da rua pisca sem parar e o trecho fica escuro.",iluminacao,train,simulado
+iluminacao-03-3,iluminacao-03,A luz da rua pisca sem parar e o trecho fica escuro. Outras pessoas também perceberam o problema.,iluminacao,train,simulado
+iluminacao-04-0,iluminacao-04,O braço da luminária caiu e a lâmpada ficou pendurada no fio.,iluminacao,test,simulado
+iluminacao-04-1,iluminacao-04,o braco da luminaria caiu e a lampada ficou pendurada no fio.,iluminacao,test,simulado
+iluminacao-04-2,iluminacao-04,Bom dia. o braço da luminária caiu e a lâmpada ficou pendurada no fio.,iluminacao,test,simulado
+iluminacao-04-3,iluminacao-04,O braço da luminária caiu e a lâmpada ficou pendurada no fio. Isso acontece há alguns dias.,iluminacao,test,simulado
+iluminacao-05-0,iluminacao-05,A passarela está sem iluminação e não dá para enxergar os degraus à noite.,iluminacao,train,simulado
+iluminacao-05-1,iluminacao-05,a passarela esta sem iluminacao e nao da para enxergar os degraus a noite.,iluminacao,train,simulado
+iluminacao-05-2,iluminacao-05,Gostaria de registrar o seguinte problema. a passarela está sem iluminação e não dá para enxergar os degraus à noite.,iluminacao,train,simulado
+iluminacao-05-3,iluminacao-05,A passarela está sem iluminação e não dá para enxergar os degraus à noite. Fica no caminho de quem vai trabalhar.,iluminacao,train,simulado
+iluminacao-05-4,iluminacao-05,a passarela ta sem iluminacao e nao da para enxergar os degraus a noite.,iluminacao,train,simulado
+iluminacao-06-0,iluminacao-06,Os refletores da quadra pública estão queimados.,iluminacao,train,simulado
+iluminacao-06-1,iluminacao-06,os refletores da quadra publica estao queimados.,iluminacao,train,simulado
+iluminacao-06-2,iluminacao-06,"No bairro, os refletores da quadra pública estão queimados.",iluminacao,train,simulado
+iluminacao-06-3,iluminacao-06,Os refletores da quadra pública estão queimados. Outras pessoas também perceberam o problema.,iluminacao,train,simulado
+iluminacao-07-0,iluminacao-07,A lâmpada do poste fica ligada durante o dia inteiro.,iluminacao,train,simulado
+iluminacao-07-1,iluminacao-07,a lampada do poste fica ligada durante o dia inteiro.,iluminacao,train,simulado
+iluminacao-07-2,iluminacao-07,Bom dia. a lâmpada do poste fica ligada durante o dia inteiro.,iluminacao,train,simulado
+iluminacao-07-3,iluminacao-07,A lâmpada do poste fica ligada durante o dia inteiro. Isso acontece há alguns dias.,iluminacao,train,simulado
+iluminacao-08-0,iluminacao-08,O cabo da iluminação pública se soltou e a luminária apagou.,iluminacao,validation,simulado
+iluminacao-08-1,iluminacao-08,o cabo da iluminacao publica se soltou e a luminaria apagou.,iluminacao,validation,simulado
+iluminacao-08-2,iluminacao-08,Gostaria de registrar o seguinte problema. o cabo da iluminação pública se soltou e a luminária apagou.,iluminacao,validation,simulado
+iluminacao-08-3,iluminacao-08,O cabo da iluminação pública se soltou e a luminária apagou. Fica no caminho de quem vai trabalhar.,iluminacao,validation,simulado
+iluminacao-09-0,iluminacao-09,"Fizeram manutenção no poste, mas a luz não voltou a funcionar.",iluminacao,validation,simulado
+iluminacao-09-1,iluminacao-09,"fizeram manutencao no poste, mas a luz nao voltou a funcionar.",iluminacao,validation,simulado
+iluminacao-09-2,iluminacao-09,"No bairro, fizeram manutenção no poste, mas a luz não voltou a funcionar.",iluminacao,validation,simulado
+iluminacao-09-3,iluminacao-09,"Fizeram manutenção no poste, mas a luz não voltou a funcionar. Outras pessoas também perceberam o problema.",iluminacao,validation,simulado
+iluminacao-10-0,iluminacao-10,Há três postes seguidos sem luz no caminho do ponto de ônibus.,iluminacao,train,simulado
+iluminacao-10-1,iluminacao-10,ha tres postes seguidos sem luz no caminho do ponto de onibus.,iluminacao,train,simulado
+iluminacao-10-2,iluminacao-10,Bom dia. há três postes seguidos sem luz no caminho do ponto de ônibus.,iluminacao,train,simulado
+iluminacao-10-3,iluminacao-10,Há três postes seguidos sem luz no caminho do ponto de ônibus. Isso acontece há alguns dias.,iluminacao,train,simulado
+iluminacao-11-0,iluminacao-11,A luminária está acendendo e apagando a cada poucos segundos.,iluminacao,train,simulado
+iluminacao-11-1,iluminacao-11,a luminaria esta acendendo e apagando a cada poucos segundos.,iluminacao,train,simulado
+iluminacao-11-2,iluminacao-11,Gostaria de registrar o seguinte problema. a luminária está acendendo e apagando a cada poucos segundos.,iluminacao,train,simulado
+iluminacao-11-3,iluminacao-11,A luminária está acendendo e apagando a cada poucos segundos. Fica no caminho de quem vai trabalhar.,iluminacao,train,simulado
+iluminacao-11-4,iluminacao-11,a luminaria ta acendendo e apagando a cada poucos segundos.,iluminacao,train,simulado
+iluminacao-12-0,iluminacao-12,O globo do poste quebrou e a lâmpada ficou exposta.,iluminacao,train,simulado
+iluminacao-12-1,iluminacao-12,o globo do poste quebrou e a lampada ficou exposta.,iluminacao,train,simulado
+iluminacao-12-2,iluminacao-12,"No bairro, o globo do poste quebrou e a lâmpada ficou exposta.",iluminacao,train,simulado
+iluminacao-12-3,iluminacao-12,O globo do poste quebrou e a lâmpada ficou exposta. Outras pessoas também perceberam o problema.,iluminacao,train,simulado
+iluminacao-13-0,iluminacao-13,"A árvore foi podada, mas a iluminação da esquina continua apagada.",iluminacao,test,simulado
+iluminacao-13-1,iluminacao-13,"a arvore foi podada, mas a iluminacao da esquina continua apagada.",iluminacao,test,simulado
+iluminacao-13-2,iluminacao-13,"Bom dia. a árvore foi podada, mas a iluminação da esquina continua apagada.",iluminacao,test,simulado
+iluminacao-13-3,iluminacao-13,"A árvore foi podada, mas a iluminação da esquina continua apagada. Isso acontece há alguns dias.",iluminacao,test,simulado
+iluminacao-14-0,iluminacao-14,A saída da escola fica escura porque o poste não acende.,iluminacao,validation,simulado
+iluminacao-14-1,iluminacao-14,a saida da escola fica escura porque o poste nao acende.,iluminacao,validation,simulado
+iluminacao-14-2,iluminacao-14,Gostaria de registrar o seguinte problema. a saída da escola fica escura porque o poste não acende.,iluminacao,validation,simulado
+iluminacao-14-3,iluminacao-14,A saída da escola fica escura porque o poste não acende. Fica no caminho de quem vai trabalhar.,iluminacao,validation,simulado
+iluminacao-14-4,iluminacao-14,a saida da escola fica escura porq o poste nao acende.,iluminacao,validation,simulado
+iluminacao-15-0,iluminacao-15,A lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade.,iluminacao,test,simulado
+iluminacao-15-1,iluminacao-15,a lampada perto da faixa de pedestres perdeu quase toda a luminosidade.,iluminacao,test,simulado
+iluminacao-15-2,iluminacao-15,"No bairro, a lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade.",iluminacao,test,simulado
+iluminacao-15-3,iluminacao-15,A lâmpada perto da faixa de pedestres perdeu quase toda a luminosidade. Outras pessoas também perceberam o problema.,iluminacao,test,simulado
+iluminacao-16-0,iluminacao-16,"O sensor do poste parece estar com defeito, a luz só funciona de dia.",iluminacao,train,simulado
+iluminacao-16-1,iluminacao-16,"o sensor do poste parece estar com defeito, a luz so funciona de dia.",iluminacao,train,simulado
+iluminacao-16-2,iluminacao-16,"Bom dia. o sensor do poste parece estar com defeito, a luz só funciona de dia.",iluminacao,train,simulado
+iluminacao-16-3,iluminacao-16,"O sensor do poste parece estar com defeito, a luz só funciona de dia. Isso acontece há alguns dias.",iluminacao,train,simulado
+iluminacao-17-0,iluminacao-17,Os pontos de luz do canteiro central estão todos desligados.,iluminacao,test,simulado
+iluminacao-17-1,iluminacao-17,os pontos de luz do canteiro central estao todos desligados.,iluminacao,test,simulado
+iluminacao-17-2,iluminacao-17,Gostaria de registrar o seguinte problema. os pontos de luz do canteiro central estão todos desligados.,iluminacao,test,simulado
+iluminacao-17-3,iluminacao-17,Os pontos de luz do canteiro central estão todos desligados. Fica no caminho de quem vai trabalhar.,iluminacao,test,simulado
+iluminacao-18-0,iluminacao-18,A luminária da travessa está virada para o céu e não ilumina a rua.,iluminacao,test,simulado
+iluminacao-18-1,iluminacao-18,a luminaria da travessa esta virada para o ceu e nao ilumina a rua.,iluminacao,test,simulado
+iluminacao-18-2,iluminacao-18,"No bairro, a luminária da travessa está virada para o céu e não ilumina a rua.",iluminacao,test,simulado
+iluminacao-18-3,iluminacao-18,A luminária da travessa está virada para o céu e não ilumina a rua. Outras pessoas também perceberam o problema.,iluminacao,test,simulado
+iluminacao-18-4,iluminacao-18,a luminaria da travessa ta virada para o ceu e nao ilumina a rua.,iluminacao,test,simulado
+iluminacao-19-0,iluminacao-19,O conjunto de luzes da escadaria pública parou de funcionar.,iluminacao,validation,simulado
+iluminacao-19-1,iluminacao-19,o conjunto de luzes da escadaria publica parou de funcionar.,iluminacao,validation,simulado
+iluminacao-19-2,iluminacao-19,Bom dia. o conjunto de luzes da escadaria pública parou de funcionar.,iluminacao,validation,simulado
+iluminacao-19-3,iluminacao-19,O conjunto de luzes da escadaria pública parou de funcionar. Isso acontece há alguns dias.,iluminacao,validation,simulado
+iluminacao-20-0,iluminacao-20,A fiação do poste está rompida e deixou a viela sem luz.,iluminacao,train,simulado
+iluminacao-20-1,iluminacao-20,a fiacao do poste esta rompida e deixou a viela sem luz.,iluminacao,train,simulado
+iluminacao-20-2,iluminacao-20,Gostaria de registrar o seguinte problema. a fiação do poste está rompida e deixou a viela sem luz.,iluminacao,train,simulado
+iluminacao-20-3,iluminacao-20,A fiação do poste está rompida e deixou a viela sem luz. Fica no caminho de quem vai trabalhar.,iluminacao,train,simulado
+iluminacao-20-4,iluminacao-20,a fiacao do poste ta rompida e deixou a viela sem luz.,iluminacao,train,simulado
+iluminacao-21-0,iluminacao-21,"A nova lâmpada foi instalada, mas nunca acendeu à noite.",iluminacao,train,simulado
+iluminacao-21-1,iluminacao-21,"a nova lampada foi instalada, mas nunca acendeu a noite.",iluminacao,train,simulado
+iluminacao-21-2,iluminacao-21,"No bairro, a nova lâmpada foi instalada, mas nunca acendeu à noite.",iluminacao,train,simulado
+iluminacao-21-3,iluminacao-21,"A nova lâmpada foi instalada, mas nunca acendeu à noite. Outras pessoas também perceberam o problema.",iluminacao,train,simulado
+iluminacao-22-0,iluminacao-22,A luminária na entrada da praça está falhando desde a chuva.,iluminacao,train,simulado
+iluminacao-22-1,iluminacao-22,a luminaria na entrada da praca esta falhando desde a chuva.,iluminacao,train,simulado
+iluminacao-22-2,iluminacao-22,Bom dia. a luminária na entrada da praça está falhando desde a chuva.,iluminacao,train,simulado
+iluminacao-22-3,iluminacao-22,A luminária na entrada da praça está falhando desde a chuva. Isso acontece há alguns dias.,iluminacao,train,simulado
+iluminacao-22-4,iluminacao-22,a luminaria na entrada da praca ta falhando desde a chuva.,iluminacao,train,simulado
+iluminacao-23-0,iluminacao-23,A luz amarelada do poste apagou e a troca ainda não aconteceu.,iluminacao,train,simulado
+iluminacao-23-1,iluminacao-23,a luz amarelada do poste apagou e a troca ainda nao aconteceu.,iluminacao,train,simulado
+iluminacao-23-2,iluminacao-23,Gostaria de registrar o seguinte problema. a luz amarelada do poste apagou e a troca ainda não aconteceu.,iluminacao,train,simulado
+iluminacao-23-3,iluminacao-23,A luz amarelada do poste apagou e a troca ainda não aconteceu. Fica no caminho de quem vai trabalhar.,iluminacao,train,simulado
+iluminacao-24-0,iluminacao-24,"Uma das lâmpadas da ponte está quebrada, deixando o caminho escuro.",iluminacao,train,simulado
+iluminacao-24-1,iluminacao-24,"uma das lampadas da ponte esta quebrada, deixando o caminho escuro.",iluminacao,train,simulado
+iluminacao-24-2,iluminacao-24,"No bairro, uma das lâmpadas da ponte está quebrada, deixando o caminho escuro.",iluminacao,train,simulado
+iluminacao-24-3,iluminacao-24,"Uma das lâmpadas da ponte está quebrada, deixando o caminho escuro. Outras pessoas também perceberam o problema.",iluminacao,train,simulado
+iluminacao-24-4,iluminacao-24,"uma das lampadas da ponte ta quebrada, deixando o caminho escuro.",iluminacao,train,simulado
+iluminacao-25-0,iluminacao-25,A carcaça da luminária está aberta e a luz está desligada.,iluminacao,train,simulado
+iluminacao-25-1,iluminacao-25,a carcaca da luminaria esta aberta e a luz esta desligada.,iluminacao,train,simulado
+iluminacao-25-2,iluminacao-25,Bom dia. a carcaça da luminária está aberta e a luz está desligada.,iluminacao,train,simulado
+iluminacao-25-3,iluminacao-25,A carcaça da luminária está aberta e a luz está desligada. Isso acontece há alguns dias.,iluminacao,train,simulado
+iluminacao-25-4,iluminacao-25,a carcaca da luminaria ta aberta e a luz ta desligada.,iluminacao,train,simulado
+iluminacao-26-0,iluminacao-26,O corredor de pedestres tem vários pontos de iluminação queimados.,iluminacao,train,simulado
+iluminacao-26-1,iluminacao-26,o corredor de pedestres tem varios pontos de iluminacao queimados.,iluminacao,train,simulado
+iluminacao-26-2,iluminacao-26,Gostaria de registrar o seguinte problema. o corredor de pedestres tem vários pontos de iluminação queimados.,iluminacao,train,simulado
+iluminacao-26-3,iluminacao-26,O corredor de pedestres tem vários pontos de iluminação queimados. Fica no caminho de quem vai trabalhar.,iluminacao,train,simulado
+iluminacao-27-0,iluminacao-27,"Recolheram o lixo, mas o pedido é para arrumar a luz do poste apagado.",iluminacao,train,simulado
+iluminacao-27-1,iluminacao-27,"recolheram o lixo, mas o pedido e para arrumar a luz do poste apagado.",iluminacao,train,simulado
+iluminacao-27-2,iluminacao-27,"No bairro, recolheram o lixo, mas o pedido é para arrumar a luz do poste apagado.",iluminacao,train,simulado
+iluminacao-27-3,iluminacao-27,"Recolheram o lixo, mas o pedido é para arrumar a luz do poste apagado. Outras pessoas também perceberam o problema.",iluminacao,train,simulado
+iluminacao-28-0,iluminacao-28,"O poste ilumina só a fachada, a luminária precisa ser reposicionada para a rua.",iluminacao,train,simulado
+iluminacao-28-1,iluminacao-28,"o poste ilumina so a fachada, a luminaria precisa ser reposicionada para a rua.",iluminacao,train,simulado
+iluminacao-28-2,iluminacao-28,"Bom dia. o poste ilumina só a fachada, a luminária precisa ser reposicionada para a rua.",iluminacao,train,simulado
+iluminacao-28-3,iluminacao-28,"O poste ilumina só a fachada, a luminária precisa ser reposicionada para a rua. Isso acontece há alguns dias.",iluminacao,train,simulado
+iluminacao-29-0,iluminacao-29,A iluminação pública da rotatória não liga há várias noites.,iluminacao,validation,simulado
+iluminacao-29-1,iluminacao-29,a iluminacao publica da rotatoria nao liga ha varias noites.,iluminacao,validation,simulado
+iluminacao-29-2,iluminacao-29,Gostaria de registrar o seguinte problema. a iluminação pública da rotatória não liga há várias noites.,iluminacao,validation,simulado
+iluminacao-29-3,iluminacao-29,A iluminação pública da rotatória não liga há várias noites. Fica no caminho de quem vai trabalhar.,iluminacao,validation,simulado
+iluminacao-30-0,iluminacao-30,O painel elétrico das luminárias da praça apresenta falhas e as luzes apagam.,iluminacao,train,simulado
+iluminacao-30-1,iluminacao-30,o painel eletrico das luminarias da praca apresenta falhas e as luzes apagam.,iluminacao,train,simulado
+iluminacao-30-2,iluminacao-30,"No bairro, o painel elétrico das luminárias da praça apresenta falhas e as luzes apagam.",iluminacao,train,simulado
+iluminacao-30-3,iluminacao-30,O painel elétrico das luminárias da praça apresenta falhas e as luzes apagam. Outras pessoas também perceberam o problema.,iluminacao,train,simulado
+limpeza-01-0,limpeza-01,Há sacos de lixo acumulados na esquina e precisam ser recolhidos.,limpeza,train,simulado
+limpeza-01-1,limpeza-01,ha sacos de lixo acumulados na esquina e precisam ser recolhidos.,limpeza,train,simulado
+limpeza-01-2,limpeza-01,Bom dia. há sacos de lixo acumulados na esquina e precisam ser recolhidos.,limpeza,train,simulado
+limpeza-01-3,limpeza-01,Há sacos de lixo acumulados na esquina e precisam ser recolhidos. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-02-0,limpeza-02,Jogaram um sofá velho e um colchão no terreno ao lado da rua.,limpeza,test,simulado
+limpeza-02-1,limpeza-02,jogaram um sofa velho e um colchao no terreno ao lado da rua.,limpeza,test,simulado
+limpeza-02-2,limpeza-02,Gostaria de registrar o seguinte problema. jogaram um sofá velho e um colchão no terreno ao lado da rua.,limpeza,test,simulado
+limpeza-02-3,limpeza-02,Jogaram um sofá velho e um colchão no terreno ao lado da rua. Fica no caminho de quem vai trabalhar.,limpeza,test,simulado
+limpeza-03-0,limpeza-03,O caminhão não passou e os resíduos ficaram na calçada.,limpeza,train,simulado
+limpeza-03-1,limpeza-03,o caminhao nao passou e os residuos ficaram na calcada.,limpeza,train,simulado
+limpeza-03-2,limpeza-03,"No bairro, o caminhão não passou e os resíduos ficaram na calçada.",limpeza,train,simulado
+limpeza-03-3,limpeza-03,O caminhão não passou e os resíduos ficaram na calçada. Outras pessoas também perceberam o problema.,limpeza,train,simulado
+limpeza-04-0,limpeza-04,Há entulho de obra despejado perto do ponto de ônibus.,limpeza,train,simulado
+limpeza-04-1,limpeza-04,ha entulho de obra despejado perto do ponto de onibus.,limpeza,train,simulado
+limpeza-04-2,limpeza-04,Bom dia. há entulho de obra despejado perto do ponto de ônibus.,limpeza,train,simulado
+limpeza-04-3,limpeza-04,Há entulho de obra despejado perto do ponto de ônibus. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-05-0,limpeza-05,A lixeira pública está transbordando com sacolas espalhadas em volta.,limpeza,train,simulado
+limpeza-05-1,limpeza-05,a lixeira publica esta transbordando com sacolas espalhadas em volta.,limpeza,train,simulado
+limpeza-05-2,limpeza-05,Gostaria de registrar o seguinte problema. a lixeira pública está transbordando com sacolas espalhadas em volta.,limpeza,train,simulado
+limpeza-05-3,limpeza-05,A lixeira pública está transbordando com sacolas espalhadas em volta. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-05-4,limpeza-05,a lixeira publica ta transbordando com sacolas espalhadas em volta.,limpeza,train,simulado
+limpeza-06-0,limpeza-06,Depois da feira sobraram caixas e restos de alimentos na rua.,limpeza,validation,simulado
+limpeza-06-1,limpeza-06,depois da feira sobraram caixas e restos de alimentos na rua.,limpeza,validation,simulado
+limpeza-06-2,limpeza-06,"No bairro, depois da feira sobraram caixas e restos de alimentos na rua.",limpeza,validation,simulado
+limpeza-06-3,limpeza-06,Depois da feira sobraram caixas e restos de alimentos na rua. Outras pessoas também perceberam o problema.,limpeza,validation,simulado
+limpeza-07-0,limpeza-07,A praça está cheia de garrafas e embalagens que precisam de varrição.,limpeza,validation,simulado
+limpeza-07-1,limpeza-07,a praca esta cheia de garrafas e embalagens que precisam de varricao.,limpeza,validation,simulado
+limpeza-07-2,limpeza-07,Bom dia. a praça está cheia de garrafas e embalagens que precisam de varrição.,limpeza,validation,simulado
+limpeza-07-3,limpeza-07,A praça está cheia de garrafas e embalagens que precisam de varrição. Isso acontece há alguns dias.,limpeza,validation,simulado
+limpeza-07-4,limpeza-07,a praca ta cheia de garrafas e embalagens q precisam de varricao.,limpeza,validation,simulado
+limpeza-08-0,limpeza-08,Descartaram pneus usados na beira do córrego e precisam retirar.,limpeza,validation,simulado
+limpeza-08-1,limpeza-08,descartaram pneus usados na beira do corrego e precisam retirar.,limpeza,validation,simulado
+limpeza-08-2,limpeza-08,Gostaria de registrar o seguinte problema. descartaram pneus usados na beira do córrego e precisam retirar.,limpeza,validation,simulado
+limpeza-08-3,limpeza-08,Descartaram pneus usados na beira do córrego e precisam retirar. Fica no caminho de quem vai trabalhar.,limpeza,validation,simulado
+limpeza-09-0,limpeza-09,O contêiner de resíduos quebrou e o lixo fica espalhado no chão.,limpeza,train,simulado
+limpeza-09-1,limpeza-09,o conteiner de residuos quebrou e o lixo fica espalhado no chao.,limpeza,train,simulado
+limpeza-09-2,limpeza-09,"No bairro, o contêiner de resíduos quebrou e o lixo fica espalhado no chão.",limpeza,train,simulado
+limpeza-09-3,limpeza-09,O contêiner de resíduos quebrou e o lixo fica espalhado no chão. Outras pessoas também perceberam o problema.,limpeza,train,simulado
+limpeza-10-0,limpeza-10,Há móveis abandonados ocupando a passagem e precisamos da retirada.,limpeza,train,simulado
+limpeza-10-1,limpeza-10,ha moveis abandonados ocupando a passagem e precisamos da retirada.,limpeza,train,simulado
+limpeza-10-2,limpeza-10,Bom dia. há móveis abandonados ocupando a passagem e precisamos da retirada.,limpeza,train,simulado
+limpeza-10-3,limpeza-10,Há móveis abandonados ocupando a passagem e precisamos da retirada. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-10-4,limpeza-10,ha moveis abandonados ocupando a passagem e precisamo da retirada.,limpeza,train,simulado
+limpeza-11-0,limpeza-11,A rua está cheia de folhas secas e pede uma equipe de varrição.,limpeza,test,simulado
+limpeza-11-1,limpeza-11,a rua esta cheia de folhas secas e pede uma equipe de varricao.,limpeza,test,simulado
+limpeza-11-2,limpeza-11,Gostaria de registrar o seguinte problema. a rua está cheia de folhas secas e pede uma equipe de varrição.,limpeza,test,simulado
+limpeza-11-3,limpeza-11,A rua está cheia de folhas secas e pede uma equipe de varrição. Fica no caminho de quem vai trabalhar.,limpeza,test,simulado
+limpeza-11-4,limpeza-11,a rua ta cheia de folhas secas e pede uma equipe de varricao.,limpeza,test,simulado
+limpeza-12-0,limpeza-12,O ecoponto está com resíduos acumulados do lado de fora.,limpeza,test,simulado
+limpeza-12-1,limpeza-12,o ecoponto esta com residuos acumulados do lado de fora.,limpeza,test,simulado
+limpeza-12-2,limpeza-12,"No bairro, o ecoponto está com resíduos acumulados do lado de fora.",limpeza,test,simulado
+limpeza-12-3,limpeza-12,O ecoponto está com resíduos acumulados do lado de fora. Outras pessoas também perceberam o problema.,limpeza,test,simulado
+limpeza-12-4,limpeza-12,o ecoponto ta com residuos acumulados do lado de fora.,limpeza,test,simulado
+limpeza-13-0,limpeza-13,As papeleiras da praça foram danificadas e o lixo está se espalhando.,limpeza,validation,simulado
+limpeza-13-1,limpeza-13,as papeleiras da praca foram danificadas e o lixo esta se espalhando.,limpeza,validation,simulado
+limpeza-13-2,limpeza-13,Bom dia. as papeleiras da praça foram danificadas e o lixo está se espalhando.,limpeza,validation,simulado
+limpeza-13-3,limpeza-13,As papeleiras da praça foram danificadas e o lixo está se espalhando. Isso acontece há alguns dias.,limpeza,validation,simulado
+limpeza-13-4,limpeza-13,as papeleiras da praca foram danificadas e o lixo ta se espalhando.,limpeza,validation,simulado
+limpeza-14-0,limpeza-14,Precisamos recolher os sacos deixados depois da limpeza de um terreno.,limpeza,train,simulado
+limpeza-14-1,limpeza-14,precisamos recolher os sacos deixados depois da limpeza de um terreno.,limpeza,train,simulado
+limpeza-14-2,limpeza-14,Gostaria de registrar o seguinte problema. precisamos recolher os sacos deixados depois da limpeza de um terreno.,limpeza,train,simulado
+limpeza-14-3,limpeza-14,Precisamos recolher os sacos deixados depois da limpeza de um terreno. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-14-4,limpeza-14,precisamo recolher os sacos deixados depois da limpeza de um terreno.,limpeza,train,simulado
+limpeza-15-0,limpeza-15,A coleta seletiva não retirou o material reciclável desta semana.,limpeza,train,simulado
+limpeza-15-1,limpeza-15,a coleta seletiva nao retirou o material reciclavel desta semana.,limpeza,train,simulado
+limpeza-15-2,limpeza-15,"No bairro, a coleta seletiva não retirou o material reciclável desta semana.",limpeza,train,simulado
+limpeza-15-3,limpeza-15,A coleta seletiva não retirou o material reciclável desta semana. Outras pessoas também perceberam o problema.,limpeza,train,simulado
+limpeza-15-4,limpeza-15,a coleta seletiva nao retirou o material reciclavel dta semana.,limpeza,train,simulado
+limpeza-16-0,limpeza-16,Há restos de construção e tijolos despejados junto ao muro.,limpeza,train,simulado
+limpeza-16-1,limpeza-16,ha restos de construcao e tijolos despejados junto ao muro.,limpeza,train,simulado
+limpeza-16-2,limpeza-16,Bom dia. há restos de construção e tijolos despejados junto ao muro.,limpeza,train,simulado
+limpeza-16-3,limpeza-16,Há restos de construção e tijolos despejados junto ao muro. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-17-0,limpeza-17,O lixo está atraindo animais na área do ponto final de ônibus.,limpeza,train,simulado
+limpeza-17-1,limpeza-17,o lixo esta atraindo animais na area do ponto final de onibus.,limpeza,train,simulado
+limpeza-17-2,limpeza-17,Gostaria de registrar o seguinte problema. o lixo está atraindo animais na área do ponto final de ônibus.,limpeza,train,simulado
+limpeza-17-3,limpeza-17,O lixo está atraindo animais na área do ponto final de ônibus. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-17-4,limpeza-17,o lixo ta atraindo animais na area do ponto final de onibus.,limpeza,train,simulado
+limpeza-18-0,limpeza-18,Precisamos de lavagem da área pública após o acúmulo de resíduos da feira.,limpeza,validation,simulado
+limpeza-18-1,limpeza-18,precisamos de lavagem da area publica apos o acumulo de residuos da feira.,limpeza,validation,simulado
+limpeza-18-2,limpeza-18,"No bairro, precisamos de lavagem da área pública após o acúmulo de resíduos da feira.",limpeza,validation,simulado
+limpeza-18-3,limpeza-18,Precisamos de lavagem da área pública após o acúmulo de resíduos da feira. Outras pessoas também perceberam o problema.,limpeza,validation,simulado
+limpeza-18-4,limpeza-18,precisamo de lavagem da area publica apos o acumulo de residuos da feira.,limpeza,validation,simulado
+limpeza-19-0,limpeza-19,O canteiro foi usado para descarte de sacolas e embalagens.,limpeza,train,simulado
+limpeza-19-1,limpeza-19,o canteiro foi usado para descarte de sacolas e embalagens.,limpeza,train,simulado
+limpeza-19-2,limpeza-19,Bom dia. o canteiro foi usado para descarte de sacolas e embalagens.,limpeza,train,simulado
+limpeza-19-3,limpeza-19,O canteiro foi usado para descarte de sacolas e embalagens. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-20-0,limpeza-20,As caçambas estão cheias e há detritos pela via inteira.,limpeza,train,simulado
+limpeza-20-1,limpeza-20,as cacambas estao cheias e ha detritos pela via inteira.,limpeza,train,simulado
+limpeza-20-2,limpeza-20,Gostaria de registrar o seguinte problema. as caçambas estão cheias e há detritos pela via inteira.,limpeza,train,simulado
+limpeza-20-3,limpeza-20,As caçambas estão cheias e há detritos pela via inteira. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-21-0,limpeza-21,Um eletrodoméstico abandonado está há dias na esquina e precisa ser removido.,limpeza,train,simulado
+limpeza-21-1,limpeza-21,um eletrodomestico abandonado esta ha dias na esquina e precisa ser removido.,limpeza,train,simulado
+limpeza-21-2,limpeza-21,"No bairro, um eletrodoméstico abandonado está há dias na esquina e precisa ser removido.",limpeza,train,simulado
+limpeza-21-3,limpeza-21,Um eletrodoméstico abandonado está há dias na esquina e precisa ser removido. Outras pessoas também perceberam o problema.,limpeza,train,simulado
+limpeza-21-4,limpeza-21,um eletrodomestico abandonado ta ha dias na esquina e precisa ser removido.,limpeza,train,simulado
+limpeza-22-0,limpeza-22,"A calçada está boa, mas há lixo e sacos de entulho impedindo a passagem.",limpeza,test,simulado
+limpeza-22-1,limpeza-22,"a calcada esta boa, mas ha lixo e sacos de entulho impedindo a passagem.",limpeza,test,simulado
+limpeza-22-2,limpeza-22,"Bom dia. a calçada está boa, mas há lixo e sacos de entulho impedindo a passagem.",limpeza,test,simulado
+limpeza-22-3,limpeza-22,"A calçada está boa, mas há lixo e sacos de entulho impedindo a passagem. Isso acontece há alguns dias.",limpeza,test,simulado
+limpeza-22-4,limpeza-22,"a calcada ta boa, mas ha lixo e sacos de entulho impedindo a passagem.",limpeza,test,simulado
+limpeza-23-0,limpeza-23,O parquinho está coberto de copos descartáveis depois do evento.,limpeza,train,simulado
+limpeza-23-1,limpeza-23,o parquinho esta coberto de copos descartaveis depois do evento.,limpeza,train,simulado
+limpeza-23-2,limpeza-23,Gostaria de registrar o seguinte problema. o parquinho está coberto de copos descartáveis depois do evento.,limpeza,train,simulado
+limpeza-23-3,limpeza-23,O parquinho está coberto de copos descartáveis depois do evento. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-23-4,limpeza-23,o parquinho ta coberto de copos descartaveis depois do evento.,limpeza,train,simulado
+limpeza-24-0,limpeza-24,A coleta deixou parte dos resíduos no chão e precisamos que voltem.,limpeza,train,simulado
+limpeza-24-1,limpeza-24,a coleta deixou parte dos residuos no chao e precisamos que voltem.,limpeza,train,simulado
+limpeza-24-2,limpeza-24,"No bairro, a coleta deixou parte dos resíduos no chão e precisamos que voltem.",limpeza,train,simulado
+limpeza-24-3,limpeza-24,A coleta deixou parte dos resíduos no chão e precisamos que voltem. Outras pessoas também perceberam o problema.,limpeza,train,simulado
+limpeza-24-4,limpeza-24,a coleta deixou parte dos residuos no chao e precisamo q voltem.,limpeza,train,simulado
+limpeza-25-0,limpeza-25,"Tem cacos de vidro espalhados na praça, solicitamos varrição.",limpeza,test,simulado
+limpeza-25-1,limpeza-25,"tem cacos de vidro espalhados na praca, solicitamos varricao.",limpeza,test,simulado
+limpeza-25-2,limpeza-25,"Bom dia. tem cacos de vidro espalhados na praça, solicitamos varrição.",limpeza,test,simulado
+limpeza-25-3,limpeza-25,"Tem cacos de vidro espalhados na praça, solicitamos varrição. Isso acontece há alguns dias.",limpeza,test,simulado
+limpeza-26-0,limpeza-26,A passarela está com muito lixo acumulado e mau cheiro.,limpeza,train,simulado
+limpeza-26-1,limpeza-26,a passarela esta com muito lixo acumulado e mau cheiro.,limpeza,train,simulado
+limpeza-26-2,limpeza-26,Gostaria de registrar o seguinte problema. a passarela está com muito lixo acumulado e mau cheiro.,limpeza,train,simulado
+limpeza-26-3,limpeza-26,A passarela está com muito lixo acumulado e mau cheiro. Fica no caminho de quem vai trabalhar.,limpeza,train,simulado
+limpeza-26-4,limpeza-26,a passarela ta com muito lixo acumulado e mau cheiro.,limpeza,train,simulado
+limpeza-27-0,limpeza-27,"A árvore está saudável, o problema é o monte de entulho jogado ao redor.",limpeza,test,simulado
+limpeza-27-1,limpeza-27,"a arvore esta saudavel, o problema e o monte de entulho jogado ao redor.",limpeza,test,simulado
+limpeza-27-2,limpeza-27,"No bairro, a árvore está saudável, o problema é o monte de entulho jogado ao redor.",limpeza,test,simulado
+limpeza-27-3,limpeza-27,"A árvore está saudável, o problema é o monte de entulho jogado ao redor. Outras pessoas também perceberam o problema.",limpeza,test,simulado
+limpeza-27-4,limpeza-27,"a arvore ta saudavel, o problema e o monte de entulho jogado ao redor.",limpeza,test,simulado
+limpeza-28-0,limpeza-28,Há um ponto recorrente de descarte irregular de restos de móveis.,limpeza,train,simulado
+limpeza-28-1,limpeza-28,ha um ponto recorrente de descarte irregular de restos de moveis.,limpeza,train,simulado
+limpeza-28-2,limpeza-28,Bom dia. há um ponto recorrente de descarte irregular de restos de móveis.,limpeza,train,simulado
+limpeza-28-3,limpeza-28,Há um ponto recorrente de descarte irregular de restos de móveis. Isso acontece há alguns dias.,limpeza,train,simulado
+limpeza-29-0,limpeza-29,"O poste funciona, mas alguém abandonou lixo na base e precisa recolher.",limpeza,train,simulado
+limpeza-29-1,limpeza-29,"o poste funciona, mas alguem abandonou lixo na base e precisa recolher.",limpeza,train,simulado
+limpeza-29-2,limpeza-29,"Gostaria de registrar o seguinte problema. o poste funciona, mas alguém abandonou lixo na base e precisa recolher.",limpeza,train,simulado
+limpeza-29-3,limpeza-29,"O poste funciona, mas alguém abandonou lixo na base e precisa recolher. Fica no caminho de quem vai trabalhar.",limpeza,train,simulado
+limpeza-30-0,limpeza-30,Sacos rasgados estão espalhando resíduos pelo passeio em frente ao mercado.,limpeza,validation,simulado
+limpeza-30-1,limpeza-30,sacos rasgados estao espalhando residuos pelo passeio em frente ao mercado.,limpeza,validation,simulado
+limpeza-30-2,limpeza-30,"No bairro, sacos rasgados estão espalhando resíduos pelo passeio em frente ao mercado.",limpeza,validation,simulado
+limpeza-30-3,limpeza-30,Sacos rasgados estão espalhando resíduos pelo passeio em frente ao mercado. Outras pessoas também perceberam o problema.,limpeza,validation,simulado
+pavimentacao-01-0,pavimentacao-01,Abriu um buraco no asfalto e os carros precisam desviar.,pavimentacao,train,simulado
+pavimentacao-01-1,pavimentacao-01,abriu um buraco no asfalto e os carros precisam desviar.,pavimentacao,train,simulado
+pavimentacao-01-2,pavimentacao-01,Bom dia. abriu um buraco no asfalto e os carros precisam desviar.,pavimentacao,train,simulado
+pavimentacao-01-3,pavimentacao-01,Abriu um buraco no asfalto e os carros precisam desviar. Isso acontece há alguns dias.,pavimentacao,train,simulado
+pavimentacao-02-0,pavimentacao-02,A pista está cheia de crateras perto do cruzamento.,pavimentacao,train,simulado
+pavimentacao-02-1,pavimentacao-02,a pista esta cheia de crateras perto do cruzamento.,pavimentacao,train,simulado
+pavimentacao-02-2,pavimentacao-02,Gostaria de registrar o seguinte problema. a pista está cheia de crateras perto do cruzamento.,pavimentacao,train,simulado
+pavimentacao-02-3,pavimentacao-02,A pista está cheia de crateras perto do cruzamento. Fica no caminho de quem vai trabalhar.,pavimentacao,train,simulado
+pavimentacao-02-4,pavimentacao-02,a pista ta cheia de crateras perto do cruzamento.,pavimentacao,train,simulado
+pavimentacao-03-0,pavimentacao-03,O recapeamento soltou e deixou um degrau no pavimento da rua.,pavimentacao,train,simulado
+pavimentacao-03-1,pavimentacao-03,o recapeamento soltou e deixou um degrau no pavimento da rua.,pavimentacao,train,simulado
+pavimentacao-03-2,pavimentacao-03,"No bairro, o recapeamento soltou e deixou um degrau no pavimento da rua.",pavimentacao,train,simulado
+pavimentacao-03-3,pavimentacao-03,O recapeamento soltou e deixou um degrau no pavimento da rua. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-04-0,pavimentacao-04,Há uma depressão na faixa de rolamento que faz os veículos baterem embaixo.,pavimentacao,test,simulado
+pavimentacao-04-1,pavimentacao-04,ha uma depressao na faixa de rolamento que faz os veiculos baterem embaixo.,pavimentacao,test,simulado
+pavimentacao-04-2,pavimentacao-04,Bom dia. há uma depressão na faixa de rolamento que faz os veículos baterem embaixo.,pavimentacao,test,simulado
+pavimentacao-04-3,pavimentacao-04,Há uma depressão na faixa de rolamento que faz os veículos baterem embaixo. Isso acontece há alguns dias.,pavimentacao,test,simulado
+pavimentacao-04-4,pavimentacao-04,ha uma depressao na faixa de rolamento q faz os veiculos baterem embaixo.,pavimentacao,test,simulado
+pavimentacao-05-0,pavimentacao-05,O asfalto está esfarelando em frente ao ponto final de ônibus.,pavimentacao,train,simulado
+pavimentacao-05-1,pavimentacao-05,o asfalto esta esfarelando em frente ao ponto final de onibus.,pavimentacao,train,simulado
+pavimentacao-05-2,pavimentacao-05,Gostaria de registrar o seguinte problema. o asfalto está esfarelando em frente ao ponto final de ônibus.,pavimentacao,train,simulado
+pavimentacao-05-3,pavimentacao-05,O asfalto está esfarelando em frente ao ponto final de ônibus. Fica no caminho de quem vai trabalhar.,pavimentacao,train,simulado
+pavimentacao-05-4,pavimentacao-05,o asfalto ta esfarelando em frente ao ponto final de onibus.,pavimentacao,train,simulado
+pavimentacao-06-0,pavimentacao-06,"Depois da obra, o remendo da pista afundou.",pavimentacao,validation,simulado
+pavimentacao-06-1,pavimentacao-06,"depois da obra, o remendo da pista afundou.",pavimentacao,validation,simulado
+pavimentacao-06-2,pavimentacao-06,"No bairro, depois da obra, o remendo da pista afundou.",pavimentacao,validation,simulado
+pavimentacao-06-3,pavimentacao-06,"Depois da obra, o remendo da pista afundou. Outras pessoas também perceberam o problema.",pavimentacao,validation,simulado
+pavimentacao-07-0,pavimentacao-07,A rua tem rachaduras grandes no pavimento e precisa de reparo.,pavimentacao,test,simulado
+pavimentacao-07-1,pavimentacao-07,a rua tem rachaduras grandes no pavimento e precisa de reparo.,pavimentacao,test,simulado
+pavimentacao-07-2,pavimentacao-07,Bom dia. a rua tem rachaduras grandes no pavimento e precisa de reparo.,pavimentacao,test,simulado
+pavimentacao-07-3,pavimentacao-07,A rua tem rachaduras grandes no pavimento e precisa de reparo. Isso acontece há alguns dias.,pavimentacao,test,simulado
+pavimentacao-08-0,pavimentacao-08,O trecho asfaltado cedeu perto da curva.,pavimentacao,test,simulado
+pavimentacao-08-1,pavimentacao-08,o trecho asfaltado cedeu perto da curva.,pavimentacao,test,simulado
+pavimentacao-08-2,pavimentacao-08,Gostaria de registrar o seguinte problema. o trecho asfaltado cedeu perto da curva.,pavimentacao,test,simulado
+pavimentacao-08-3,pavimentacao-08,O trecho asfaltado cedeu perto da curva. Fica no caminho de quem vai trabalhar.,pavimentacao,test,simulado
+pavimentacao-09-0,pavimentacao-09,A camada de asfalto se desprendeu e deixou pedras soltas na pista.,pavimentacao,train,simulado
+pavimentacao-09-1,pavimentacao-09,a camada de asfalto se desprendeu e deixou pedras soltas na pista.,pavimentacao,train,simulado
+pavimentacao-09-2,pavimentacao-09,"No bairro, a camada de asfalto se desprendeu e deixou pedras soltas na pista.",pavimentacao,train,simulado
+pavimentacao-09-3,pavimentacao-09,A camada de asfalto se desprendeu e deixou pedras soltas na pista. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-10-0,pavimentacao-10,Há várias ondulações na via que atrapalham o trânsito.,pavimentacao,train,simulado
+pavimentacao-10-1,pavimentacao-10,ha varias ondulacoes na via que atrapalham o transito.,pavimentacao,train,simulado
+pavimentacao-10-2,pavimentacao-10,Bom dia. há várias ondulações na via que atrapalham o trânsito.,pavimentacao,train,simulado
+pavimentacao-10-3,pavimentacao-10,Há várias ondulações na via que atrapalham o trânsito. Isso acontece há alguns dias.,pavimentacao,train,simulado
+pavimentacao-10-4,pavimentacao-10,ha varias ondulacoes na via q atrapalham o transito.,pavimentacao,train,simulado
+pavimentacao-11-0,pavimentacao-11,O buraco aumentou depois da passagem dos ônibus e precisa ser tapado.,pavimentacao,validation,simulado
+pavimentacao-11-1,pavimentacao-11,o buraco aumentou depois da passagem dos onibus e precisa ser tapado.,pavimentacao,validation,simulado
+pavimentacao-11-2,pavimentacao-11,Gostaria de registrar o seguinte problema. o buraco aumentou depois da passagem dos ônibus e precisa ser tapado.,pavimentacao,validation,simulado
+pavimentacao-11-3,pavimentacao-11,O buraco aumentou depois da passagem dos ônibus e precisa ser tapado. Fica no caminho de quem vai trabalhar.,pavimentacao,validation,simulado
+pavimentacao-12-0,pavimentacao-12,A pavimentação da avenida está deteriorada em vários pontos.,pavimentacao,validation,simulado
+pavimentacao-12-1,pavimentacao-12,a pavimentacao da avenida esta deteriorada em varios pontos.,pavimentacao,validation,simulado
+pavimentacao-12-2,pavimentacao-12,"No bairro, a pavimentação da avenida está deteriorada em vários pontos.",pavimentacao,validation,simulado
+pavimentacao-12-3,pavimentacao-12,A pavimentação da avenida está deteriorada em vários pontos. Outras pessoas também perceberam o problema.,pavimentacao,validation,simulado
+pavimentacao-12-4,pavimentacao-12,a pavimentacao da avenida ta deteriorada em varios pontos.,pavimentacao,validation,simulado
+pavimentacao-13-0,pavimentacao-13,Fizeram um corte na rua para uma obra e não restauraram o asfalto.,pavimentacao,train,simulado
+pavimentacao-13-1,pavimentacao-13,fizeram um corte na rua para uma obra e nao restauraram o asfalto.,pavimentacao,train,simulado
+pavimentacao-13-2,pavimentacao-13,Bom dia. fizeram um corte na rua para uma obra e não restauraram o asfalto.,pavimentacao,train,simulado
+pavimentacao-13-3,pavimentacao-13,Fizeram um corte na rua para uma obra e não restauraram o asfalto. Isso acontece há alguns dias.,pavimentacao,train,simulado
+pavimentacao-14-0,pavimentacao-14,O piso da pista da ponte está com falhas e buracos.,pavimentacao,train,simulado
+pavimentacao-14-1,pavimentacao-14,o piso da pista da ponte esta com falhas e buracos.,pavimentacao,train,simulado
+pavimentacao-14-2,pavimentacao-14,Gostaria de registrar o seguinte problema. o piso da pista da ponte está com falhas e buracos.,pavimentacao,train,simulado
+pavimentacao-14-3,pavimentacao-14,O piso da pista da ponte está com falhas e buracos. Fica no caminho de quem vai trabalhar.,pavimentacao,train,simulado
+pavimentacao-14-4,pavimentacao-14,o piso da pista da ponte ta com falhas e buracos.,pavimentacao,train,simulado
+pavimentacao-15-0,pavimentacao-15,A borda da faixa de rolamento está desmoronando.,pavimentacao,train,simulado
+pavimentacao-15-1,pavimentacao-15,a borda da faixa de rolamento esta desmoronando.,pavimentacao,train,simulado
+pavimentacao-15-2,pavimentacao-15,"No bairro, a borda da faixa de rolamento está desmoronando.",pavimentacao,train,simulado
+pavimentacao-15-3,pavimentacao-15,A borda da faixa de rolamento está desmoronando. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-15-4,pavimentacao-15,a borda da faixa de rolamento ta desmoronando.,pavimentacao,train,simulado
+pavimentacao-16-0,pavimentacao-16,O remendo do tapa-buraco saiu e a cratera reapareceu.,pavimentacao,test,simulado
+pavimentacao-16-1,pavimentacao-16,o remendo do tapa-buraco saiu e a cratera reapareceu.,pavimentacao,test,simulado
+pavimentacao-16-2,pavimentacao-16,Bom dia. o remendo do tapa-buraco saiu e a cratera reapareceu.,pavimentacao,test,simulado
+pavimentacao-16-3,pavimentacao-16,O remendo do tapa-buraco saiu e a cratera reapareceu. Isso acontece há alguns dias.,pavimentacao,test,simulado
+pavimentacao-17-0,pavimentacao-17,A via apresenta um desnível forte entre duas camadas de asfalto.,pavimentacao,train,simulado
+pavimentacao-17-1,pavimentacao-17,a via apresenta um desnivel forte entre duas camadas de asfalto.,pavimentacao,train,simulado
+pavimentacao-17-2,pavimentacao-17,Gostaria de registrar o seguinte problema. a via apresenta um desnível forte entre duas camadas de asfalto.,pavimentacao,train,simulado
+pavimentacao-17-3,pavimentacao-17,A via apresenta um desnível forte entre duas camadas de asfalto. Fica no caminho de quem vai trabalhar.,pavimentacao,train,simulado
+pavimentacao-18-0,pavimentacao-18,A pista está afundando na aproximação do semáforo.,pavimentacao,train,simulado
+pavimentacao-18-1,pavimentacao-18,a pista esta afundando na aproximacao do semaforo.,pavimentacao,train,simulado
+pavimentacao-18-2,pavimentacao-18,"No bairro, a pista está afundando na aproximação do semáforo.",pavimentacao,train,simulado
+pavimentacao-18-3,pavimentacao-18,A pista está afundando na aproximação do semáforo. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-18-4,pavimentacao-18,a pista ta afundando na aproximacao do semaforo.,pavimentacao,train,simulado
+pavimentacao-19-0,pavimentacao-19,Uma cavidade no asfalto está danificando os pneus dos carros.,pavimentacao,train,simulado
+pavimentacao-19-1,pavimentacao-19,uma cavidade no asfalto esta danificando os pneus dos carros.,pavimentacao,train,simulado
+pavimentacao-19-2,pavimentacao-19,Bom dia. uma cavidade no asfalto está danificando os pneus dos carros.,pavimentacao,train,simulado
+pavimentacao-19-3,pavimentacao-19,Uma cavidade no asfalto está danificando os pneus dos carros. Isso acontece há alguns dias.,pavimentacao,train,simulado
+pavimentacao-19-4,pavimentacao-19,uma cavidade no asfalto ta danificando os pneus dos carros.,pavimentacao,train,simulado
+pavimentacao-20-0,pavimentacao-20,O pavimento está irregular por toda a extensão da travessa.,pavimentacao,test,simulado
+pavimentacao-20-1,pavimentacao-20,o pavimento esta irregular por toda a extensao da travessa.,pavimentacao,test,simulado
+pavimentacao-20-2,pavimentacao-20,Gostaria de registrar o seguinte problema. o pavimento está irregular por toda a extensão da travessa.,pavimentacao,test,simulado
+pavimentacao-20-3,pavimentacao-20,O pavimento está irregular por toda a extensão da travessa. Fica no caminho de quem vai trabalhar.,pavimentacao,test,simulado
+pavimentacao-20-4,pavimentacao-20,o pavimento ta irregular por toda a extensao da travessa.,pavimentacao,test,simulado
+pavimentacao-21-0,pavimentacao-21,"A sarjeta está limpa, o reparo solicitado é no buraco do asfalto ao lado.",pavimentacao,train,simulado
+pavimentacao-21-1,pavimentacao-21,"a sarjeta esta limpa, o reparo solicitado e no buraco do asfalto ao lado.",pavimentacao,train,simulado
+pavimentacao-21-2,pavimentacao-21,"No bairro, a sarjeta está limpa, o reparo solicitado é no buraco do asfalto ao lado.",pavimentacao,train,simulado
+pavimentacao-21-3,pavimentacao-21,"A sarjeta está limpa, o reparo solicitado é no buraco do asfalto ao lado. Outras pessoas também perceberam o problema.",pavimentacao,train,simulado
+pavimentacao-21-4,pavimentacao-21,"a sarjeta ta limpa, o reparo solicitado e no buraco do asfalto ao lado.",pavimentacao,train,simulado
+pavimentacao-22-0,pavimentacao-22,O asfalto junto à lombada está destruído e precisa de recomposição.,pavimentacao,validation,simulado
+pavimentacao-22-1,pavimentacao-22,o asfalto junto a lombada esta destruido e precisa de recomposicao.,pavimentacao,validation,simulado
+pavimentacao-22-2,pavimentacao-22,Bom dia. o asfalto junto à lombada está destruído e precisa de recomposição.,pavimentacao,validation,simulado
+pavimentacao-22-3,pavimentacao-22,O asfalto junto à lombada está destruído e precisa de recomposição. Isso acontece há alguns dias.,pavimentacao,validation,simulado
+pavimentacao-22-4,pavimentacao-22,o asfalto junto a lombada ta destruido e precisa de recomposicao.,pavimentacao,validation,simulado
+pavimentacao-23-0,pavimentacao-23,Há um pedaço da pista sem pavimentação após a manutenção da tubulação.,pavimentacao,train,simulado
+pavimentacao-23-1,pavimentacao-23,ha um pedaco da pista sem pavimentacao apos a manutencao da tubulacao.,pavimentacao,train,simulado
+pavimentacao-23-2,pavimentacao-23,Gostaria de registrar o seguinte problema. há um pedaço da pista sem pavimentação após a manutenção da tubulação.,pavimentacao,train,simulado
+pavimentacao-23-3,pavimentacao-23,Há um pedaço da pista sem pavimentação após a manutenção da tubulação. Fica no caminho de quem vai trabalhar.,pavimentacao,train,simulado
+pavimentacao-24-0,pavimentacao-24,A ciclovia asfaltada está com crateras que obrigam a desviar para a pista.,pavimentacao,validation,simulado
+pavimentacao-24-1,pavimentacao-24,a ciclovia asfaltada esta com crateras que obrigam a desviar para a pista.,pavimentacao,validation,simulado
+pavimentacao-24-2,pavimentacao-24,"No bairro, a ciclovia asfaltada está com crateras que obrigam a desviar para a pista.",pavimentacao,validation,simulado
+pavimentacao-24-3,pavimentacao-24,A ciclovia asfaltada está com crateras que obrigam a desviar para a pista. Outras pessoas também perceberam o problema.,pavimentacao,validation,simulado
+pavimentacao-24-4,pavimentacao-24,a ciclovia asfaltada ta com crateras q obrigam a desviar para a pista.,pavimentacao,validation,simulado
+pavimentacao-25-0,pavimentacao-25,O revestimento da rua soltou e deixou a base exposta.,pavimentacao,train,simulado
+pavimentacao-25-1,pavimentacao-25,o revestimento da rua soltou e deixou a base exposta.,pavimentacao,train,simulado
+pavimentacao-25-2,pavimentacao-25,Bom dia. o revestimento da rua soltou e deixou a base exposta.,pavimentacao,train,simulado
+pavimentacao-25-3,pavimentacao-25,O revestimento da rua soltou e deixou a base exposta. Isso acontece há alguns dias.,pavimentacao,train,simulado
+pavimentacao-26-0,pavimentacao-26,"A água já baixou, mas ficou um buraco grande no asfalto.",pavimentacao,test,simulado
+pavimentacao-26-1,pavimentacao-26,"a agua ja baixou, mas ficou um buraco grande no asfalto.",pavimentacao,test,simulado
+pavimentacao-26-2,pavimentacao-26,"Gostaria de registrar o seguinte problema. a água já baixou, mas ficou um buraco grande no asfalto.",pavimentacao,test,simulado
+pavimentacao-26-3,pavimentacao-26,"A água já baixou, mas ficou um buraco grande no asfalto. Fica no caminho de quem vai trabalhar.",pavimentacao,test,simulado
+pavimentacao-27-0,pavimentacao-27,O chão da via está cedendo sob os veículos na entrada da rua.,pavimentacao,train,simulado
+pavimentacao-27-1,pavimentacao-27,o chao da via esta cedendo sob os veiculos na entrada da rua.,pavimentacao,train,simulado
+pavimentacao-27-2,pavimentacao-27,"No bairro, o chão da via está cedendo sob os veículos na entrada da rua.",pavimentacao,train,simulado
+pavimentacao-27-3,pavimentacao-27,O chão da via está cedendo sob os veículos na entrada da rua. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-27-4,pavimentacao-27,o chao da via ta cedendo sob os veiculos na entrada da rua.,pavimentacao,train,simulado
+pavimentacao-28-0,pavimentacao-28,"O posto de luz funciona, o problema é a cratera na pista logo abaixo.",pavimentacao,train,simulado
+pavimentacao-28-1,pavimentacao-28,"o posto de luz funciona, o problema e a cratera na pista logo abaixo.",pavimentacao,train,simulado
+pavimentacao-28-2,pavimentacao-28,"Bom dia. o posto de luz funciona, o problema é a cratera na pista logo abaixo.",pavimentacao,train,simulado
+pavimentacao-28-3,pavimentacao-28,"O posto de luz funciona, o problema é a cratera na pista logo abaixo. Isso acontece há alguns dias.",pavimentacao,train,simulado
+pavimentacao-29-0,pavimentacao-29,O serviço de reparo da pavimentação ficou incompleto e deixou uma vala na rua.,pavimentacao,validation,simulado
+pavimentacao-29-1,pavimentacao-29,o servico de reparo da pavimentacao ficou incompleto e deixou uma vala na rua.,pavimentacao,validation,simulado
+pavimentacao-29-2,pavimentacao-29,Gostaria de registrar o seguinte problema. o serviço de reparo da pavimentação ficou incompleto e deixou uma vala na rua.,pavimentacao,validation,simulado
+pavimentacao-29-3,pavimentacao-29,O serviço de reparo da pavimentação ficou incompleto e deixou uma vala na rua. Fica no caminho de quem vai trabalhar.,pavimentacao,validation,simulado
+pavimentacao-30-0,pavimentacao-30,O pavimento do corredor de ônibus está quebrado e esburacado.,pavimentacao,train,simulado
+pavimentacao-30-1,pavimentacao-30,o pavimento do corredor de onibus esta quebrado e esburacado.,pavimentacao,train,simulado
+pavimentacao-30-2,pavimentacao-30,"No bairro, o pavimento do corredor de ônibus está quebrado e esburacado.",pavimentacao,train,simulado
+pavimentacao-30-3,pavimentacao-30,O pavimento do corredor de ônibus está quebrado e esburacado. Outras pessoas também perceberam o problema.,pavimentacao,train,simulado
+pavimentacao-30-4,pavimentacao-30,o pavimento do corredor de onibus ta quebrado e esburacado.,pavimentacao,train,simulado
+drenagem-01-0,drenagem-01,A boca de lobo está entupida e a água da chuva não escoa.,drenagem,test,simulado
+drenagem-01-1,drenagem-01,a boca de lobo esta entupida e a agua da chuva nao escoa.,drenagem,test,simulado
+drenagem-01-2,drenagem-01,Bom dia. a boca de lobo está entupida e a água da chuva não escoa.,drenagem,test,simulado
+drenagem-01-3,drenagem-01,A boca de lobo está entupida e a água da chuva não escoa. Isso acontece há alguns dias.,drenagem,test,simulado
+drenagem-01-4,drenagem-01,a boca de lobo ta entupida e a agua da chuva nao escoa.,drenagem,test,simulado
+drenagem-02-0,drenagem-02,O bueiro transborda sempre que começa a chover.,drenagem,test,simulado
+drenagem-02-1,drenagem-02,o bueiro transborda sempre que comeca a chover.,drenagem,test,simulado
+drenagem-02-2,drenagem-02,Gostaria de registrar o seguinte problema. o bueiro transborda sempre que começa a chover.,drenagem,test,simulado
+drenagem-02-3,drenagem-02,O bueiro transborda sempre que começa a chover. Fica no caminho de quem vai trabalhar.,drenagem,test,simulado
+drenagem-02-4,drenagem-02,o bueiro transborda sempre q comeca a chover.,drenagem,test,simulado
+drenagem-03-0,drenagem-03,A galeria de águas pluviais parece obstruída e a rua fica alagada.,drenagem,train,simulado
+drenagem-03-1,drenagem-03,a galeria de aguas pluviais parece obstruida e a rua fica alagada.,drenagem,train,simulado
+drenagem-03-2,drenagem-03,"No bairro, a galeria de águas pluviais parece obstruída e a rua fica alagada.",drenagem,train,simulado
+drenagem-03-3,drenagem-03,A galeria de águas pluviais parece obstruída e a rua fica alagada. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-04-0,drenagem-04,A canaleta está bloqueada e a enxurrada entra nas casas.,drenagem,train,simulado
+drenagem-04-1,drenagem-04,a canaleta esta bloqueada e a enxurrada entra nas casas.,drenagem,train,simulado
+drenagem-04-2,drenagem-04,Bom dia. a canaleta está bloqueada e a enxurrada entra nas casas.,drenagem,train,simulado
+drenagem-04-3,drenagem-04,A canaleta está bloqueada e a enxurrada entra nas casas. Isso acontece há alguns dias.,drenagem,train,simulado
+drenagem-04-4,drenagem-04,a canaleta ta bloqueada e a enxurrada entra nas casas.,drenagem,train,simulado
+drenagem-05-0,drenagem-05,A grelha do ralo da rua está tomada de resíduos e precisa de desobstrução.,drenagem,train,simulado
+drenagem-05-1,drenagem-05,a grelha do ralo da rua esta tomada de residuos e precisa de desobstrucao.,drenagem,train,simulado
+drenagem-05-2,drenagem-05,Gostaria de registrar o seguinte problema. a grelha do ralo da rua está tomada de resíduos e precisa de desobstrução.,drenagem,train,simulado
+drenagem-05-3,drenagem-05,A grelha do ralo da rua está tomada de resíduos e precisa de desobstrução. Fica no caminho de quem vai trabalhar.,drenagem,train,simulado
+drenagem-05-4,drenagem-05,a grelha do ralo da rua ta tomada de residuos e precisa de desobstrucao.,drenagem,train,simulado
+drenagem-06-0,drenagem-06,A água fica parada no cruzamento porque não chega até o bueiro.,drenagem,train,simulado
+drenagem-06-1,drenagem-06,a agua fica parada no cruzamento porque nao chega ate o bueiro.,drenagem,train,simulado
+drenagem-06-2,drenagem-06,"No bairro, a água fica parada no cruzamento porque não chega até o bueiro.",drenagem,train,simulado
+drenagem-06-3,drenagem-06,A água fica parada no cruzamento porque não chega até o bueiro. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-06-4,drenagem-06,a agua fica parada no cruzamento porq nao chega ate o bueiro.,drenagem,train,simulado
+drenagem-07-0,drenagem-07,O canal de drenagem está assoreado e precisa de limpeza.,drenagem,train,simulado
+drenagem-07-1,drenagem-07,o canal de drenagem esta assoreado e precisa de limpeza.,drenagem,train,simulado
+drenagem-07-2,drenagem-07,Bom dia. o canal de drenagem está assoreado e precisa de limpeza.,drenagem,train,simulado
+drenagem-07-3,drenagem-07,O canal de drenagem está assoreado e precisa de limpeza. Isso acontece há alguns dias.,drenagem,train,simulado
+drenagem-07-4,drenagem-07,o canal de drenagem ta assoreado e precisa de limpeza.,drenagem,train,simulado
+drenagem-08-0,drenagem-08,O poço de visita está devolvendo água durante a chuva.,drenagem,validation,simulado
+drenagem-08-1,drenagem-08,o poco de visita esta devolvendo agua durante a chuva.,drenagem,validation,simulado
+drenagem-08-2,drenagem-08,Gostaria de registrar o seguinte problema. o poço de visita está devolvendo água durante a chuva.,drenagem,validation,simulado
+drenagem-08-3,drenagem-08,O poço de visita está devolvendo água durante a chuva. Fica no caminho de quem vai trabalhar.,drenagem,validation,simulado
+drenagem-08-4,drenagem-08,o poco de visita ta devolvendo agua durante a chuva.,drenagem,validation,simulado
+drenagem-09-0,drenagem-09,O sistema de escoamento da praça não dá vazão à água.,drenagem,train,simulado
+drenagem-09-1,drenagem-09,o sistema de escoamento da praca nao da vazao a agua.,drenagem,train,simulado
+drenagem-09-2,drenagem-09,"No bairro, o sistema de escoamento da praça não dá vazão à água.",drenagem,train,simulado
+drenagem-09-3,drenagem-09,O sistema de escoamento da praça não dá vazão à água. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-10-0,drenagem-10,A sarjeta ficou bloqueada e a chuva está correndo para a calçada.,drenagem,train,simulado
+drenagem-10-1,drenagem-10,a sarjeta ficou bloqueada e a chuva esta correndo para a calcada.,drenagem,train,simulado
+drenagem-10-2,drenagem-10,Bom dia. a sarjeta ficou bloqueada e a chuva está correndo para a calçada.,drenagem,train,simulado
+drenagem-10-3,drenagem-10,A sarjeta ficou bloqueada e a chuva está correndo para a calçada. Isso acontece há alguns dias.,drenagem,train,simulado
+drenagem-10-4,drenagem-10,a sarjeta ficou bloqueada e a chuva ta correndo para a calcada.,drenagem,train,simulado
+drenagem-11-0,drenagem-11,O ralo perto do ponto de ônibus não consegue drenar a água.,drenagem,validation,simulado
+drenagem-11-1,drenagem-11,o ralo perto do ponto de onibus nao consegue drenar a agua.,drenagem,validation,simulado
+drenagem-11-2,drenagem-11,Gostaria de registrar o seguinte problema. o ralo perto do ponto de ônibus não consegue drenar a água.,drenagem,validation,simulado
+drenagem-11-3,drenagem-11,O ralo perto do ponto de ônibus não consegue drenar a água. Fica no caminho de quem vai trabalhar.,drenagem,validation,simulado
+drenagem-12-0,drenagem-12,O córrego está represado por uma obstrução e a água está subindo.,drenagem,test,simulado
+drenagem-12-1,drenagem-12,o corrego esta represado por uma obstrucao e a agua esta subindo.,drenagem,test,simulado
+drenagem-12-2,drenagem-12,"No bairro, o córrego está represado por uma obstrução e a água está subindo.",drenagem,test,simulado
+drenagem-12-3,drenagem-12,O córrego está represado por uma obstrução e a água está subindo. Outras pessoas também perceberam o problema.,drenagem,test,simulado
+drenagem-12-4,drenagem-12,o corrego ta represado por uma obstrucao e a agua ta subindo.,drenagem,test,simulado
+drenagem-13-0,drenagem-13,Há alagamento recorrente na parte baixa da rua e precisamos verificar a drenagem.,drenagem,validation,simulado
+drenagem-13-1,drenagem-13,ha alagamento recorrente na parte baixa da rua e precisamos verificar a drenagem.,drenagem,validation,simulado
+drenagem-13-2,drenagem-13,Bom dia. há alagamento recorrente na parte baixa da rua e precisamos verificar a drenagem.,drenagem,validation,simulado
+drenagem-13-3,drenagem-13,Há alagamento recorrente na parte baixa da rua e precisamos verificar a drenagem. Isso acontece há alguns dias.,drenagem,validation,simulado
+drenagem-13-4,drenagem-13,ha alagamento recorrente na parte baixa da rua e precisamo verificar a drenagem.,drenagem,validation,simulado
+drenagem-14-0,drenagem-14,O tubo que leva a água da chuva está obstruído.,drenagem,train,simulado
+drenagem-14-1,drenagem-14,o tubo que leva a agua da chuva esta obstruido.,drenagem,train,simulado
+drenagem-14-2,drenagem-14,Gostaria de registrar o seguinte problema. o tubo que leva a água da chuva está obstruído.,drenagem,train,simulado
+drenagem-14-3,drenagem-14,O tubo que leva a água da chuva está obstruído. Fica no caminho de quem vai trabalhar.,drenagem,train,simulado
+drenagem-14-4,drenagem-14,o tubo q leva a agua da chuva ta obstruido.,drenagem,train,simulado
+drenagem-15-0,drenagem-15,As saídas de água da passarela estão entupidas e acumulam poças.,drenagem,train,simulado
+drenagem-15-1,drenagem-15,as saidas de agua da passarela estao entupidas e acumulam pocas.,drenagem,train,simulado
+drenagem-15-2,drenagem-15,"No bairro, as saídas de água da passarela estão entupidas e acumulam poças.",drenagem,train,simulado
+drenagem-15-3,drenagem-15,As saídas de água da passarela estão entupidas e acumulam poças. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-16-0,drenagem-16,A boca de lobo ficou coberta por folhas e a rua inundou.,drenagem,test,simulado
+drenagem-16-1,drenagem-16,a boca de lobo ficou coberta por folhas e a rua inundou.,drenagem,test,simulado
+drenagem-16-2,drenagem-16,Bom dia. a boca de lobo ficou coberta por folhas e a rua inundou.,drenagem,test,simulado
+drenagem-16-3,drenagem-16,A boca de lobo ficou coberta por folhas e a rua inundou. Isso acontece há alguns dias.,drenagem,test,simulado
+drenagem-17-0,drenagem-17,A canalização pluvial está devolvendo água pela tampa.,drenagem,validation,simulado
+drenagem-17-1,drenagem-17,a canalizacao pluvial esta devolvendo agua pela tampa.,drenagem,validation,simulado
+drenagem-17-2,drenagem-17,Gostaria de registrar o seguinte problema. a canalização pluvial está devolvendo água pela tampa.,drenagem,validation,simulado
+drenagem-17-3,drenagem-17,A canalização pluvial está devolvendo água pela tampa. Fica no caminho de quem vai trabalhar.,drenagem,validation,simulado
+drenagem-17-4,drenagem-17,a canalizacao pluvial ta devolvendo agua pela tampa.,drenagem,validation,simulado
+drenagem-18-0,drenagem-18,A água empoça por dias perto da esquina por falta de escoamento.,drenagem,train,simulado
+drenagem-18-1,drenagem-18,a agua empoca por dias perto da esquina por falta de escoamento.,drenagem,train,simulado
+drenagem-18-2,drenagem-18,"No bairro, a água empoça por dias perto da esquina por falta de escoamento.",drenagem,train,simulado
+drenagem-18-3,drenagem-18,A água empoça por dias perto da esquina por falta de escoamento. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-19-0,drenagem-19,A grelha de drenagem está danificada e acumula água na pista.,drenagem,test,simulado
+drenagem-19-1,drenagem-19,a grelha de drenagem esta danificada e acumula agua na pista.,drenagem,test,simulado
+drenagem-19-2,drenagem-19,Bom dia. a grelha de drenagem está danificada e acumula água na pista.,drenagem,test,simulado
+drenagem-19-3,drenagem-19,A grelha de drenagem está danificada e acumula água na pista. Isso acontece há alguns dias.,drenagem,test,simulado
+drenagem-19-4,drenagem-19,a grelha de drenagem ta danificada e acumula agua na pista.,drenagem,test,simulado
+drenagem-20-0,drenagem-20,O coletor pluvial está obstruído e a enxurrada atravessa a avenida.,drenagem,validation,simulado
+drenagem-20-1,drenagem-20,o coletor pluvial esta obstruido e a enxurrada atravessa a avenida.,drenagem,validation,simulado
+drenagem-20-2,drenagem-20,Gostaria de registrar o seguinte problema. o coletor pluvial está obstruído e a enxurrada atravessa a avenida.,drenagem,validation,simulado
+drenagem-20-3,drenagem-20,O coletor pluvial está obstruído e a enxurrada atravessa a avenida. Fica no caminho de quem vai trabalhar.,drenagem,validation,simulado
+drenagem-20-4,drenagem-20,o coletor pluvial ta obstruido e a enxurrada atravessa a avenida.,drenagem,validation,simulado
+drenagem-21-0,drenagem-21,A vala de drenagem está cheia de terra e não conduz a água.,drenagem,train,simulado
+drenagem-21-1,drenagem-21,a vala de drenagem esta cheia de terra e nao conduz a agua.,drenagem,train,simulado
+drenagem-21-2,drenagem-21,"No bairro, a vala de drenagem está cheia de terra e não conduz a água.",drenagem,train,simulado
+drenagem-21-3,drenagem-21,A vala de drenagem está cheia de terra e não conduz a água. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-21-4,drenagem-21,a vala de drenagem ta cheia de terra e nao conduz a agua.,drenagem,train,simulado
+drenagem-22-0,drenagem-22,O bueiro faz a água voltar para a rua mesmo depois que a chuva passa.,drenagem,train,simulado
+drenagem-22-1,drenagem-22,o bueiro faz a agua voltar para a rua mesmo depois que a chuva passa.,drenagem,train,simulado
+drenagem-22-2,drenagem-22,Bom dia. o bueiro faz a água voltar para a rua mesmo depois que a chuva passa.,drenagem,train,simulado
+drenagem-22-3,drenagem-22,O bueiro faz a água voltar para a rua mesmo depois que a chuva passa. Isso acontece há alguns dias.,drenagem,train,simulado
+drenagem-22-4,drenagem-22,o bueiro faz a agua voltar para a rua mesmo depois q a chuva passa.,drenagem,train,simulado
+drenagem-23-0,drenagem-23,Precisamos desassorear o trecho do canal que transborda na chuva.,drenagem,train,simulado
+drenagem-23-1,drenagem-23,precisamos desassorear o trecho do canal que transborda na chuva.,drenagem,train,simulado
+drenagem-23-2,drenagem-23,Gostaria de registrar o seguinte problema. precisamos desassorear o trecho do canal que transborda na chuva.,drenagem,train,simulado
+drenagem-23-3,drenagem-23,Precisamos desassorear o trecho do canal que transborda na chuva. Fica no caminho de quem vai trabalhar.,drenagem,train,simulado
+drenagem-23-4,drenagem-23,precisamo desassorear o trecho do canal q transborda na chuva.,drenagem,train,simulado
+drenagem-24-0,drenagem-24,A passagem inferior acumula água porque a drenagem parou de funcionar.,drenagem,train,simulado
+drenagem-24-1,drenagem-24,a passagem inferior acumula agua porque a drenagem parou de funcionar.,drenagem,train,simulado
+drenagem-24-2,drenagem-24,"No bairro, a passagem inferior acumula água porque a drenagem parou de funcionar.",drenagem,train,simulado
+drenagem-24-3,drenagem-24,A passagem inferior acumula água porque a drenagem parou de funcionar. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-24-4,drenagem-24,a passagem inferior acumula agua porq a drenagem parou de funcionar.,drenagem,train,simulado
+drenagem-25-0,drenagem-25,"O asfalto está inteiro, mas a boca de lobo não está dando vazão.",drenagem,train,simulado
+drenagem-25-1,drenagem-25,"o asfalto esta inteiro, mas a boca de lobo nao esta dando vazao.",drenagem,train,simulado
+drenagem-25-2,drenagem-25,"Bom dia. o asfalto está inteiro, mas a boca de lobo não está dando vazão.",drenagem,train,simulado
+drenagem-25-3,drenagem-25,"O asfalto está inteiro, mas a boca de lobo não está dando vazão. Isso acontece há alguns dias.",drenagem,train,simulado
+drenagem-25-4,drenagem-25,"o asfalto ta inteiro, mas a boca de lobo nao ta dando vazao.",drenagem,train,simulado
+drenagem-26-0,drenagem-26,"Tem lixo bloqueando o ralo pluvial, o pedido é para desentupir a drenagem.",drenagem,train,simulado
+drenagem-26-1,drenagem-26,"tem lixo bloqueando o ralo pluvial, o pedido e para desentupir a drenagem.",drenagem,train,simulado
+drenagem-26-2,drenagem-26,"Gostaria de registrar o seguinte problema. tem lixo bloqueando o ralo pluvial, o pedido é para desentupir a drenagem.",drenagem,train,simulado
+drenagem-26-3,drenagem-26,"Tem lixo bloqueando o ralo pluvial, o pedido é para desentupir a drenagem. Fica no caminho de quem vai trabalhar.",drenagem,train,simulado
+drenagem-27-0,drenagem-27,O escoamento superficial foi interrompido e formou uma grande poça na rua.,drenagem,train,simulado
+drenagem-27-1,drenagem-27,o escoamento superficial foi interrompido e formou uma grande poca na rua.,drenagem,train,simulado
+drenagem-27-2,drenagem-27,"No bairro, o escoamento superficial foi interrompido e formou uma grande poça na rua.",drenagem,train,simulado
+drenagem-27-3,drenagem-27,O escoamento superficial foi interrompido e formou uma grande poça na rua. Outras pessoas também perceberam o problema.,drenagem,train,simulado
+drenagem-28-0,drenagem-28,A tubulação pluvial está rompida e a água retorna pelo passeio.,drenagem,train,simulado
+drenagem-28-1,drenagem-28,a tubulacao pluvial esta rompida e a agua retorna pelo passeio.,drenagem,train,simulado
+drenagem-28-2,drenagem-28,Bom dia. a tubulação pluvial está rompida e a água retorna pelo passeio.,drenagem,train,simulado
+drenagem-28-3,drenagem-28,A tubulação pluvial está rompida e a água retorna pelo passeio. Isso acontece há alguns dias.,drenagem,train,simulado
+drenagem-28-4,drenagem-28,a tubulacao pluvial ta rompida e a agua retorna pelo passeio.,drenagem,train,simulado
+drenagem-29-0,drenagem-29,A saída da galeria está bloqueada e o nível da água não baixa.,drenagem,test,simulado
+drenagem-29-1,drenagem-29,a saida da galeria esta bloqueada e o nivel da agua nao baixa.,drenagem,test,simulado
+drenagem-29-2,drenagem-29,Gostaria de registrar o seguinte problema. a saída da galeria está bloqueada e o nível da água não baixa.,drenagem,test,simulado
+drenagem-29-3,drenagem-29,A saída da galeria está bloqueada e o nível da água não baixa. Fica no caminho de quem vai trabalhar.,drenagem,test,simulado
+drenagem-29-4,drenagem-29,a saida da galeria ta bloqueada e o nivel da agua nao baixa.,drenagem,test,simulado
+drenagem-30-0,drenagem-30,A sarjeta não conduz a chuva até o coletor e a esquina fica submersa.,drenagem,validation,simulado
+drenagem-30-1,drenagem-30,a sarjeta nao conduz a chuva ate o coletor e a esquina fica submersa.,drenagem,validation,simulado
+drenagem-30-2,drenagem-30,"No bairro, a sarjeta não conduz a chuva até o coletor e a esquina fica submersa.",drenagem,validation,simulado
+drenagem-30-3,drenagem-30,A sarjeta não conduz a chuva até o coletor e a esquina fica submersa. Outras pessoas também perceberam o problema.,drenagem,validation,simulado
+acessibilidade-01-0,acessibilidade-01,A rampa da esquina está quebrada e não consigo passar com a cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-01-1,acessibilidade-01,a rampa da esquina esta quebrada e nao consigo passar com a cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-01-2,acessibilidade-01,Bom dia. a rampa da esquina está quebrada e não consigo passar com a cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-01-3,acessibilidade-01,A rampa da esquina está quebrada e não consigo passar com a cadeira de rodas. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-01-4,acessibilidade-01,a rampa da esquina ta quebrada e nao consigo passar com a cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-02-0,acessibilidade-02,Falta rebaixamento de guia para atravessar a rua com o carrinho de bebê.,acessibilidade,test,simulado
+acessibilidade-02-1,acessibilidade-02,falta rebaixamento de guia para atravessar a rua com o carrinho de bebe.,acessibilidade,test,simulado
+acessibilidade-02-2,acessibilidade-02,Gostaria de registrar o seguinte problema. falta rebaixamento de guia para atravessar a rua com o carrinho de bebê.,acessibilidade,test,simulado
+acessibilidade-02-3,acessibilidade-02,Falta rebaixamento de guia para atravessar a rua com o carrinho de bebê. Fica no caminho de quem vai trabalhar.,acessibilidade,test,simulado
+acessibilidade-03-0,acessibilidade-03,O piso tátil foi interrompido por uma obra e precisa ser recomposto.,acessibilidade,validation,simulado
+acessibilidade-03-1,acessibilidade-03,o piso tatil foi interrompido por uma obra e precisa ser recomposto.,acessibilidade,validation,simulado
+acessibilidade-03-2,acessibilidade-03,"No bairro, o piso tátil foi interrompido por uma obra e precisa ser recomposto.",acessibilidade,validation,simulado
+acessibilidade-03-3,acessibilidade-03,O piso tátil foi interrompido por uma obra e precisa ser recomposto. Outras pessoas também perceberam o problema.,acessibilidade,validation,simulado
+acessibilidade-04-0,acessibilidade-04,A calçada tem um degrau alto que bloqueia a passagem de pedestres.,acessibilidade,train,simulado
+acessibilidade-04-1,acessibilidade-04,a calcada tem um degrau alto que bloqueia a passagem de pedestres.,acessibilidade,train,simulado
+acessibilidade-04-2,acessibilidade-04,Bom dia. a calçada tem um degrau alto que bloqueia a passagem de pedestres.,acessibilidade,train,simulado
+acessibilidade-04-3,acessibilidade-04,A calçada tem um degrau alto que bloqueia a passagem de pedestres. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-04-4,acessibilidade-04,a calcada tem um degrau alto q bloqueia a passagem de pedestres.,acessibilidade,train,simulado
+acessibilidade-05-0,acessibilidade-05,A rampa de acesso é estreita e a cadeira de rodas não cabe.,acessibilidade,train,simulado
+acessibilidade-05-1,acessibilidade-05,a rampa de acesso e estreita e a cadeira de rodas nao cabe.,acessibilidade,train,simulado
+acessibilidade-05-2,acessibilidade-05,Gostaria de registrar o seguinte problema. a rampa de acesso é estreita e a cadeira de rodas não cabe.,acessibilidade,train,simulado
+acessibilidade-05-3,acessibilidade-05,A rampa de acesso é estreita e a cadeira de rodas não cabe. Fica no caminho de quem vai trabalhar.,acessibilidade,train,simulado
+acessibilidade-06-0,acessibilidade-06,Os blocos da calçada estão soltos e fazem as pessoas tropeçarem.,acessibilidade,test,simulado
+acessibilidade-06-1,acessibilidade-06,os blocos da calcada estao soltos e fazem as pessoas tropecarem.,acessibilidade,test,simulado
+acessibilidade-06-2,acessibilidade-06,"No bairro, os blocos da calçada estão soltos e fazem as pessoas tropeçarem.",acessibilidade,test,simulado
+acessibilidade-06-3,acessibilidade-06,Os blocos da calçada estão soltos e fazem as pessoas tropeçarem. Outras pessoas também perceberam o problema.,acessibilidade,test,simulado
+acessibilidade-07-0,acessibilidade-07,Um poste foi instalado no meio da faixa livre do passeio.,acessibilidade,test,simulado
+acessibilidade-07-1,acessibilidade-07,um poste foi instalado no meio da faixa livre do passeio.,acessibilidade,test,simulado
+acessibilidade-07-2,acessibilidade-07,Bom dia. um poste foi instalado no meio da faixa livre do passeio.,acessibilidade,test,simulado
+acessibilidade-07-3,acessibilidade-07,Um poste foi instalado no meio da faixa livre do passeio. Isso acontece há alguns dias.,acessibilidade,test,simulado
+acessibilidade-08-0,acessibilidade-08,O corrimão da escadaria pública está quebrado.,acessibilidade,validation,simulado
+acessibilidade-08-1,acessibilidade-08,o corrimao da escadaria publica esta quebrado.,acessibilidade,validation,simulado
+acessibilidade-08-2,acessibilidade-08,Gostaria de registrar o seguinte problema. o corrimão da escadaria pública está quebrado.,acessibilidade,validation,simulado
+acessibilidade-08-3,acessibilidade-08,O corrimão da escadaria pública está quebrado. Fica no caminho de quem vai trabalhar.,acessibilidade,validation,simulado
+acessibilidade-08-4,acessibilidade-08,o corrimao da escadaria publica ta quebrado.,acessibilidade,validation,simulado
+acessibilidade-09-0,acessibilidade-09,A travessia não tem continuidade entre as rampas dos dois lados.,acessibilidade,validation,simulado
+acessibilidade-09-1,acessibilidade-09,a travessia nao tem continuidade entre as rampas dos dois lados.,acessibilidade,validation,simulado
+acessibilidade-09-2,acessibilidade-09,"No bairro, a travessia não tem continuidade entre as rampas dos dois lados.",acessibilidade,validation,simulado
+acessibilidade-09-3,acessibilidade-09,A travessia não tem continuidade entre as rampas dos dois lados. Outras pessoas também perceberam o problema.,acessibilidade,validation,simulado
+acessibilidade-10-0,acessibilidade-10,A calçada está tão inclinada que dificulta o deslocamento com andador.,acessibilidade,train,simulado
+acessibilidade-10-1,acessibilidade-10,a calcada esta tao inclinada que dificulta o deslocamento com andador.,acessibilidade,train,simulado
+acessibilidade-10-2,acessibilidade-10,Bom dia. a calçada está tão inclinada que dificulta o deslocamento com andador.,acessibilidade,train,simulado
+acessibilidade-10-3,acessibilidade-10,A calçada está tão inclinada que dificulta o deslocamento com andador. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-10-4,acessibilidade-10,a calcada ta tao inclinada q dificulta o deslocamento com andador.,acessibilidade,train,simulado
+acessibilidade-11-0,acessibilidade-11,O piso do passeio está cheio de falhas e precisamos reconstruir a passagem.,acessibilidade,validation,simulado
+acessibilidade-11-1,acessibilidade-11,o piso do passeio esta cheio de falhas e precisamos reconstruir a passagem.,acessibilidade,validation,simulado
+acessibilidade-11-2,acessibilidade-11,Gostaria de registrar o seguinte problema. o piso do passeio está cheio de falhas e precisamos reconstruir a passagem.,acessibilidade,validation,simulado
+acessibilidade-11-3,acessibilidade-11,O piso do passeio está cheio de falhas e precisamos reconstruir a passagem. Fica no caminho de quem vai trabalhar.,acessibilidade,validation,simulado
+acessibilidade-11-4,acessibilidade-11,o piso do passeio ta cheio de falhas e precisamo reconstruir a passagem.,acessibilidade,validation,simulado
+acessibilidade-12-0,acessibilidade-12,A guia rebaixada termina em um obstáculo que impede o acesso.,acessibilidade,validation,simulado
+acessibilidade-12-1,acessibilidade-12,a guia rebaixada termina em um obstaculo que impede o acesso.,acessibilidade,validation,simulado
+acessibilidade-12-2,acessibilidade-12,"No bairro, a guia rebaixada termina em um obstáculo que impede o acesso.",acessibilidade,validation,simulado
+acessibilidade-12-3,acessibilidade-12,A guia rebaixada termina em um obstáculo que impede o acesso. Outras pessoas também perceberam o problema.,acessibilidade,validation,simulado
+acessibilidade-12-4,acessibilidade-12,a guia rebaixada termina em um obstaculo q impede o acesso.,acessibilidade,validation,simulado
+acessibilidade-13-0,acessibilidade-13,A entrada da praça tem só escadas e falta uma rota acessível.,acessibilidade,test,simulado
+acessibilidade-13-1,acessibilidade-13,a entrada da praca tem so escadas e falta uma rota acessivel.,acessibilidade,test,simulado
+acessibilidade-13-2,acessibilidade-13,Bom dia. a entrada da praça tem só escadas e falta uma rota acessível.,acessibilidade,test,simulado
+acessibilidade-13-3,acessibilidade-13,A entrada da praça tem só escadas e falta uma rota acessível. Isso acontece há alguns dias.,acessibilidade,test,simulado
+acessibilidade-14-0,acessibilidade-14,A faixa livre de circulação foi bloqueada por uma estrutura fixa.,acessibilidade,train,simulado
+acessibilidade-14-1,acessibilidade-14,a faixa livre de circulacao foi bloqueada por uma estrutura fixa.,acessibilidade,train,simulado
+acessibilidade-14-2,acessibilidade-14,Gostaria de registrar o seguinte problema. a faixa livre de circulação foi bloqueada por uma estrutura fixa.,acessibilidade,train,simulado
+acessibilidade-14-3,acessibilidade-14,A faixa livre de circulação foi bloqueada por uma estrutura fixa. Fica no caminho de quem vai trabalhar.,acessibilidade,train,simulado
+acessibilidade-15-0,acessibilidade-15,O piso de orientação para pessoas com deficiência visual está quebrado.,acessibilidade,train,simulado
+acessibilidade-15-1,acessibilidade-15,o piso de orientacao para pessoas com deficiencia visual esta quebrado.,acessibilidade,train,simulado
+acessibilidade-15-2,acessibilidade-15,"No bairro, o piso de orientação para pessoas com deficiência visual está quebrado.",acessibilidade,train,simulado
+acessibilidade-15-3,acessibilidade-15,O piso de orientação para pessoas com deficiência visual está quebrado. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-15-4,acessibilidade-15,o piso de orientacao para pessoas com deficiencia visual ta quebrado.,acessibilidade,train,simulado
+acessibilidade-16-0,acessibilidade-16,A passagem de pedestres é interrompida por um desnível no passeio.,acessibilidade,train,simulado
+acessibilidade-16-1,acessibilidade-16,a passagem de pedestres e interrompida por um desnivel no passeio.,acessibilidade,train,simulado
+acessibilidade-16-2,acessibilidade-16,Bom dia. a passagem de pedestres é interrompida por um desnível no passeio.,acessibilidade,train,simulado
+acessibilidade-16-3,acessibilidade-16,A passagem de pedestres é interrompida por um desnível no passeio. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-17-0,acessibilidade-17,Há um vão aberto na calçada que dificulta o caminho de quem usa bengala.,acessibilidade,train,simulado
+acessibilidade-17-1,acessibilidade-17,ha um vao aberto na calcada que dificulta o caminho de quem usa bengala.,acessibilidade,train,simulado
+acessibilidade-17-2,acessibilidade-17,Gostaria de registrar o seguinte problema. há um vão aberto na calçada que dificulta o caminho de quem usa bengala.,acessibilidade,train,simulado
+acessibilidade-17-3,acessibilidade-17,Há um vão aberto na calçada que dificulta o caminho de quem usa bengala. Fica no caminho de quem vai trabalhar.,acessibilidade,train,simulado
+acessibilidade-17-4,acessibilidade-17,ha um vao aberto na calcada q dificulta o caminho de quem usa bengala.,acessibilidade,train,simulado
+acessibilidade-18-0,acessibilidade-18,A rampa está com uma inclinação que impede a subida com cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-18-1,acessibilidade-18,a rampa esta com uma inclinacao que impede a subida com cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-18-2,acessibilidade-18,"No bairro, a rampa está com uma inclinação que impede a subida com cadeira de rodas.",acessibilidade,train,simulado
+acessibilidade-18-3,acessibilidade-18,A rampa está com uma inclinação que impede a subida com cadeira de rodas. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-18-4,acessibilidade-18,a rampa ta com uma inclinacao q impede a subida com cadeira de rodas.,acessibilidade,train,simulado
+acessibilidade-19-0,acessibilidade-19,O calçamento está afundado e idosos estão tendo dificuldade para passar.,acessibilidade,validation,simulado
+acessibilidade-19-1,acessibilidade-19,o calcamento esta afundado e idosos estao tendo dificuldade para passar.,acessibilidade,validation,simulado
+acessibilidade-19-2,acessibilidade-19,Bom dia. o calçamento está afundado e idosos estão tendo dificuldade para passar.,acessibilidade,validation,simulado
+acessibilidade-19-3,acessibilidade-19,O calçamento está afundado e idosos estão tendo dificuldade para passar. Isso acontece há alguns dias.,acessibilidade,validation,simulado
+acessibilidade-19-4,acessibilidade-19,o calcamento ta afundado e idosos estao tendo dificuldade para passar.,acessibilidade,validation,simulado
+acessibilidade-20-0,acessibilidade-20,Falta uma ligação acessível entre o ponto de ônibus e a calçada.,acessibilidade,train,simulado
+acessibilidade-20-1,acessibilidade-20,falta uma ligacao acessivel entre o ponto de onibus e a calcada.,acessibilidade,train,simulado
+acessibilidade-20-2,acessibilidade-20,Gostaria de registrar o seguinte problema. falta uma ligação acessível entre o ponto de ônibus e a calçada.,acessibilidade,train,simulado
+acessibilidade-20-3,acessibilidade-20,Falta uma ligação acessível entre o ponto de ônibus e a calçada. Fica no caminho de quem vai trabalhar.,acessibilidade,train,simulado
+acessibilidade-21-0,acessibilidade-21,Os degraus da escadaria estão quebrados e o corrimão se soltou.,acessibilidade,train,simulado
+acessibilidade-21-1,acessibilidade-21,os degraus da escadaria estao quebrados e o corrimao se soltou.,acessibilidade,train,simulado
+acessibilidade-21-2,acessibilidade-21,"No bairro, os degraus da escadaria estão quebrados e o corrimão se soltou.",acessibilidade,train,simulado
+acessibilidade-21-3,acessibilidade-21,Os degraus da escadaria estão quebrados e o corrimão se soltou. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-22-0,acessibilidade-22,A superfície da rampa se desfez e as rodas ficam presas.,acessibilidade,train,simulado
+acessibilidade-22-1,acessibilidade-22,a superficie da rampa se desfez e as rodas ficam presas.,acessibilidade,train,simulado
+acessibilidade-22-2,acessibilidade-22,Bom dia. a superfície da rampa se desfez e as rodas ficam presas.,acessibilidade,train,simulado
+acessibilidade-22-3,acessibilidade-22,A superfície da rampa se desfez e as rodas ficam presas. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-23-0,acessibilidade-23,O acesso ao parque tem uma barreira que impede a passagem de cadeira de rodas.,acessibilidade,test,simulado
+acessibilidade-23-1,acessibilidade-23,o acesso ao parque tem uma barreira que impede a passagem de cadeira de rodas.,acessibilidade,test,simulado
+acessibilidade-23-2,acessibilidade-23,Gostaria de registrar o seguinte problema. o acesso ao parque tem uma barreira que impede a passagem de cadeira de rodas.,acessibilidade,test,simulado
+acessibilidade-23-3,acessibilidade-23,O acesso ao parque tem uma barreira que impede a passagem de cadeira de rodas. Fica no caminho de quem vai trabalhar.,acessibilidade,test,simulado
+acessibilidade-23-4,acessibilidade-23,o acesso ao parq tem uma barreira q impede a passagem de cadeira de rodas.,acessibilidade,test,simulado
+acessibilidade-24-0,acessibilidade-24,O passeio está sem piso e as pessoas precisam caminhar pela rua.,acessibilidade,train,simulado
+acessibilidade-24-1,acessibilidade-24,o passeio esta sem piso e as pessoas precisam caminhar pela rua.,acessibilidade,train,simulado
+acessibilidade-24-2,acessibilidade-24,"No bairro, o passeio está sem piso e as pessoas precisam caminhar pela rua.",acessibilidade,train,simulado
+acessibilidade-24-3,acessibilidade-24,O passeio está sem piso e as pessoas precisam caminhar pela rua. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-24-4,acessibilidade-24,o passeio ta sem piso e as pessoas precisam caminhar pela rua.,acessibilidade,train,simulado
+acessibilidade-25-0,acessibilidade-25,"O asfalto da pista está bom, precisamos arrumar a rampa da calçada.",acessibilidade,train,simulado
+acessibilidade-25-1,acessibilidade-25,"o asfalto da pista esta bom, precisamos arrumar a rampa da calcada.",acessibilidade,train,simulado
+acessibilidade-25-2,acessibilidade-25,"Bom dia. o asfalto da pista está bom, precisamos arrumar a rampa da calçada.",acessibilidade,train,simulado
+acessibilidade-25-3,acessibilidade-25,"O asfalto da pista está bom, precisamos arrumar a rampa da calçada. Isso acontece há alguns dias.",acessibilidade,train,simulado
+acessibilidade-25-4,acessibilidade-25,"o asfalto da pista ta bom, precisamo arrumar a rampa da calcada.",acessibilidade,train,simulado
+acessibilidade-26-0,acessibilidade-26,"Já retiraram o lixo, mas o piso tátil da passagem continua danificado.",acessibilidade,test,simulado
+acessibilidade-26-1,acessibilidade-26,"ja retiraram o lixo, mas o piso tatil da passagem continua danificado.",acessibilidade,test,simulado
+acessibilidade-26-2,acessibilidade-26,"Gostaria de registrar o seguinte problema. já retiraram o lixo, mas o piso tátil da passagem continua danificado.",acessibilidade,test,simulado
+acessibilidade-26-3,acessibilidade-26,"Já retiraram o lixo, mas o piso tátil da passagem continua danificado. Fica no caminho de quem vai trabalhar.",acessibilidade,test,simulado
+acessibilidade-27-0,acessibilidade-27,A rota de pedestres acaba num meio-fio alto sem rebaixamento.,acessibilidade,train,simulado
+acessibilidade-27-1,acessibilidade-27,a rota de pedestres acaba num meio-fio alto sem rebaixamento.,acessibilidade,train,simulado
+acessibilidade-27-2,acessibilidade-27,"No bairro, a rota de pedestres acaba num meio-fio alto sem rebaixamento.",acessibilidade,train,simulado
+acessibilidade-27-3,acessibilidade-27,A rota de pedestres acaba num meio-fio alto sem rebaixamento. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-28-0,acessibilidade-28,A travessia tem um degrau entre a faixa de pedestres e o passeio.,acessibilidade,train,simulado
+acessibilidade-28-1,acessibilidade-28,a travessia tem um degrau entre a faixa de pedestres e o passeio.,acessibilidade,train,simulado
+acessibilidade-28-2,acessibilidade-28,Bom dia. a travessia tem um degrau entre a faixa de pedestres e o passeio.,acessibilidade,train,simulado
+acessibilidade-28-3,acessibilidade-28,A travessia tem um degrau entre a faixa de pedestres e o passeio. Isso acontece há alguns dias.,acessibilidade,train,simulado
+acessibilidade-29-0,acessibilidade-29,A tampa nivelada na calçada cedeu e impede a passagem com andador.,acessibilidade,train,simulado
+acessibilidade-29-1,acessibilidade-29,a tampa nivelada na calcada cedeu e impede a passagem com andador.,acessibilidade,train,simulado
+acessibilidade-29-2,acessibilidade-29,Gostaria de registrar o seguinte problema. a tampa nivelada na calçada cedeu e impede a passagem com andador.,acessibilidade,train,simulado
+acessibilidade-29-3,acessibilidade-29,A tampa nivelada na calçada cedeu e impede a passagem com andador. Fica no caminho de quem vai trabalhar.,acessibilidade,train,simulado
+acessibilidade-30-0,acessibilidade-30,O piso escorregadio da rampa está deteriorado e precisa de substituição.,acessibilidade,train,simulado
+acessibilidade-30-1,acessibilidade-30,o piso escorregadio da rampa esta deteriorado e precisa de substituicao.,acessibilidade,train,simulado
+acessibilidade-30-2,acessibilidade-30,"No bairro, o piso escorregadio da rampa está deteriorado e precisa de substituição.",acessibilidade,train,simulado
+acessibilidade-30-3,acessibilidade-30,O piso escorregadio da rampa está deteriorado e precisa de substituição. Outras pessoas também perceberam o problema.,acessibilidade,train,simulado
+acessibilidade-30-4,acessibilidade-30,o piso escorregadio da rampa ta deteriorado e precisa de substituicao.,acessibilidade,train,simulado
+areas_verdes-01-0,areas_verdes-01,Os galhos da árvore estão encostando na janela e precisam de poda.,areas_verdes,train,simulado
+areas_verdes-01-1,areas_verdes-01,os galhos da arvore estao encostando na janela e precisam de poda.,areas_verdes,train,simulado
+areas_verdes-01-2,areas_verdes-01,Bom dia. os galhos da árvore estão encostando na janela e precisam de poda.,areas_verdes,train,simulado
+areas_verdes-01-3,areas_verdes-01,Os galhos da árvore estão encostando na janela e precisam de poda. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-02-0,areas_verdes-02,Uma árvore caiu atravessada na rua e precisa ser removida.,areas_verdes,validation,simulado
+areas_verdes-02-1,areas_verdes-02,uma arvore caiu atravessada na rua e precisa ser removida.,areas_verdes,validation,simulado
+areas_verdes-02-2,areas_verdes-02,Gostaria de registrar o seguinte problema. uma árvore caiu atravessada na rua e precisa ser removida.,areas_verdes,validation,simulado
+areas_verdes-02-3,areas_verdes-02,Uma árvore caiu atravessada na rua e precisa ser removida. Fica no caminho de quem vai trabalhar.,areas_verdes,validation,simulado
+areas_verdes-03-0,areas_verdes-03,O mato da praça está alto e precisa de roçada.,areas_verdes,train,simulado
+areas_verdes-03-1,areas_verdes-03,o mato da praca esta alto e precisa de rocada.,areas_verdes,train,simulado
+areas_verdes-03-2,areas_verdes-03,"No bairro, o mato da praça está alto e precisa de roçada.",areas_verdes,train,simulado
+areas_verdes-03-3,areas_verdes-03,O mato da praça está alto e precisa de roçada. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-03-4,areas_verdes-03,o mato da praca ta alto e precisa de rocada.,areas_verdes,train,simulado
+areas_verdes-04-0,areas_verdes-04,Há um galho grande pendurado sobre o caminho de pedestres.,areas_verdes,train,simulado
+areas_verdes-04-1,areas_verdes-04,ha um galho grande pendurado sobre o caminho de pedestres.,areas_verdes,train,simulado
+areas_verdes-04-2,areas_verdes-04,Bom dia. há um galho grande pendurado sobre o caminho de pedestres.,areas_verdes,train,simulado
+areas_verdes-04-3,areas_verdes-04,Há um galho grande pendurado sobre o caminho de pedestres. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-05-0,areas_verdes-05,A árvore está inclinada e precisamos que uma equipe avalie.,areas_verdes,train,simulado
+areas_verdes-05-1,areas_verdes-05,a arvore esta inclinada e precisamos que uma equipe avalie.,areas_verdes,train,simulado
+areas_verdes-05-2,areas_verdes-05,Gostaria de registrar o seguinte problema. a árvore está inclinada e precisamos que uma equipe avalie.,areas_verdes,train,simulado
+areas_verdes-05-3,areas_verdes-05,A árvore está inclinada e precisamos que uma equipe avalie. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-05-4,areas_verdes-05,a arvore ta inclinada e precisamo q uma equipe avalie.,areas_verdes,train,simulado
+areas_verdes-06-0,areas_verdes-06,O canteiro público está tomado por vegetação alta.,areas_verdes,train,simulado
+areas_verdes-06-1,areas_verdes-06,o canteiro publico esta tomado por vegetacao alta.,areas_verdes,train,simulado
+areas_verdes-06-2,areas_verdes-06,"No bairro, o canteiro público está tomado por vegetação alta.",areas_verdes,train,simulado
+areas_verdes-06-3,areas_verdes-06,O canteiro público está tomado por vegetação alta. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-06-4,areas_verdes-06,o canteiro publico ta tomado por vegetacao alta.,areas_verdes,train,simulado
+areas_verdes-07-0,areas_verdes-07,As raízes da árvore levantaram a calçada e pedimos avaliação da arborização.,areas_verdes,train,simulado
+areas_verdes-07-1,areas_verdes-07,as raizes da arvore levantaram a calcada e pedimos avaliacao da arborizacao.,areas_verdes,train,simulado
+areas_verdes-07-2,areas_verdes-07,Bom dia. as raízes da árvore levantaram a calçada e pedimos avaliação da arborização.,areas_verdes,train,simulado
+areas_verdes-07-3,areas_verdes-07,As raízes da árvore levantaram a calçada e pedimos avaliação da arborização. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-08-0,areas_verdes-08,Precisamos de manutenção da vegetação no parque do bairro.,areas_verdes,validation,simulado
+areas_verdes-08-1,areas_verdes-08,precisamos de manutencao da vegetacao no parque do bairro.,areas_verdes,validation,simulado
+areas_verdes-08-2,areas_verdes-08,Gostaria de registrar o seguinte problema. precisamos de manutenção da vegetação no parque do bairro.,areas_verdes,validation,simulado
+areas_verdes-08-3,areas_verdes-08,Precisamos de manutenção da vegetação no parque do bairro. Fica no caminho de quem vai trabalhar.,areas_verdes,validation,simulado
+areas_verdes-08-4,areas_verdes-08,precisamo de manutencao da vegetacao no parq do bairro.,areas_verdes,validation,simulado
+areas_verdes-09-0,areas_verdes-09,Um tronco quebrado ficou apoiado sobre a cerca da praça.,areas_verdes,test,simulado
+areas_verdes-09-1,areas_verdes-09,um tronco quebrado ficou apoiado sobre a cerca da praca.,areas_verdes,test,simulado
+areas_verdes-09-2,areas_verdes-09,"No bairro, um tronco quebrado ficou apoiado sobre a cerca da praça.",areas_verdes,test,simulado
+areas_verdes-09-3,areas_verdes-09,Um tronco quebrado ficou apoiado sobre a cerca da praça. Outras pessoas também perceberam o problema.,areas_verdes,test,simulado
+areas_verdes-10-0,areas_verdes-10,A copa da árvore está escondendo a placa de trânsito.,areas_verdes,test,simulado
+areas_verdes-10-1,areas_verdes-10,a copa da arvore esta escondendo a placa de transito.,areas_verdes,test,simulado
+areas_verdes-10-2,areas_verdes-10,Bom dia. a copa da árvore está escondendo a placa de trânsito.,areas_verdes,test,simulado
+areas_verdes-10-3,areas_verdes-10,A copa da árvore está escondendo a placa de trânsito. Isso acontece há alguns dias.,areas_verdes,test,simulado
+areas_verdes-10-4,areas_verdes-10,a copa da arvore ta escondendo a placa de transito.,areas_verdes,test,simulado
+areas_verdes-11-0,areas_verdes-11,Os galhos estão cobrindo a luminária e precisamos que façam a poda.,areas_verdes,train,simulado
+areas_verdes-11-1,areas_verdes-11,os galhos estao cobrindo a luminaria e precisamos que facam a poda.,areas_verdes,train,simulado
+areas_verdes-11-2,areas_verdes-11,Gostaria de registrar o seguinte problema. os galhos estão cobrindo a luminária e precisamos que façam a poda.,areas_verdes,train,simulado
+areas_verdes-11-3,areas_verdes-11,Os galhos estão cobrindo a luminária e precisamos que façam a poda. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-11-4,areas_verdes-11,os galhos estao cobrindo a luminaria e precisamo q facam a poda.,areas_verdes,train,simulado
+areas_verdes-12-0,areas_verdes-12,O terreno público está com capim muito alto e precisa de capinação.,areas_verdes,train,simulado
+areas_verdes-12-1,areas_verdes-12,o terreno publico esta com capim muito alto e precisa de capinacao.,areas_verdes,train,simulado
+areas_verdes-12-2,areas_verdes-12,"No bairro, o terreno público está com capim muito alto e precisa de capinação.",areas_verdes,train,simulado
+areas_verdes-12-3,areas_verdes-12,O terreno público está com capim muito alto e precisa de capinação. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-12-4,areas_verdes-12,o terreno publico ta com capim muito alto e precisa de capinacao.,areas_verdes,train,simulado
+areas_verdes-13-0,areas_verdes-13,A árvore perdeu parte do tronco depois da chuva e precisa ser avaliada.,areas_verdes,test,simulado
+areas_verdes-13-1,areas_verdes-13,a arvore perdeu parte do tronco depois da chuva e precisa ser avaliada.,areas_verdes,test,simulado
+areas_verdes-13-2,areas_verdes-13,Bom dia. a árvore perdeu parte do tronco depois da chuva e precisa ser avaliada.,areas_verdes,test,simulado
+areas_verdes-13-3,areas_verdes-13,A árvore perdeu parte do tronco depois da chuva e precisa ser avaliada. Isso acontece há alguns dias.,areas_verdes,test,simulado
+areas_verdes-14-0,areas_verdes-14,O jardim da praça está sem manutenção e a vegetação tomou a passagem.,areas_verdes,validation,simulado
+areas_verdes-14-1,areas_verdes-14,o jardim da praca esta sem manutencao e a vegetacao tomou a passagem.,areas_verdes,validation,simulado
+areas_verdes-14-2,areas_verdes-14,Gostaria de registrar o seguinte problema. o jardim da praça está sem manutenção e a vegetação tomou a passagem.,areas_verdes,validation,simulado
+areas_verdes-14-3,areas_verdes-14,O jardim da praça está sem manutenção e a vegetação tomou a passagem. Fica no caminho de quem vai trabalhar.,areas_verdes,validation,simulado
+areas_verdes-14-4,areas_verdes-14,o jardim da praca ta sem manutencao e a vegetacao tomou a passagem.,areas_verdes,validation,simulado
+areas_verdes-15-0,areas_verdes-15,Um galho caiu sobre o banco do parque e precisa ser retirado.,areas_verdes,train,simulado
+areas_verdes-15-1,areas_verdes-15,um galho caiu sobre o banco do parque e precisa ser retirado.,areas_verdes,train,simulado
+areas_verdes-15-2,areas_verdes-15,"No bairro, um galho caiu sobre o banco do parque e precisa ser retirado.",areas_verdes,train,simulado
+areas_verdes-15-3,areas_verdes-15,Um galho caiu sobre o banco do parque e precisa ser retirado. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-15-4,areas_verdes-15,um galho caiu sobre o banco do parq e precisa ser retirado.,areas_verdes,train,simulado
+areas_verdes-16-0,areas_verdes-16,A árvore está seca e com ramos quebradiços junto à calçada.,areas_verdes,train,simulado
+areas_verdes-16-1,areas_verdes-16,a arvore esta seca e com ramos quebradicos junto a calcada.,areas_verdes,train,simulado
+areas_verdes-16-2,areas_verdes-16,Bom dia. a árvore está seca e com ramos quebradiços junto à calçada.,areas_verdes,train,simulado
+areas_verdes-16-3,areas_verdes-16,A árvore está seca e com ramos quebradiços junto à calçada. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-16-4,areas_verdes-16,a arvore ta seca e com ramos quebradicos junto a calcada.,areas_verdes,train,simulado
+areas_verdes-17-0,areas_verdes-17,Os arbustos cresceram sobre a pista de caminhada e precisam ser aparados.,areas_verdes,train,simulado
+areas_verdes-17-1,areas_verdes-17,os arbustos cresceram sobre a pista de caminhada e precisam ser aparados.,areas_verdes,train,simulado
+areas_verdes-17-2,areas_verdes-17,Gostaria de registrar o seguinte problema. os arbustos cresceram sobre a pista de caminhada e precisam ser aparados.,areas_verdes,train,simulado
+areas_verdes-17-3,areas_verdes-17,Os arbustos cresceram sobre a pista de caminhada e precisam ser aparados. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-18-0,areas_verdes-18,O gramado da área pública precisa de corte.,areas_verdes,validation,simulado
+areas_verdes-18-1,areas_verdes-18,o gramado da area publica precisa de corte.,areas_verdes,validation,simulado
+areas_verdes-18-2,areas_verdes-18,"No bairro, o gramado da área pública precisa de corte.",areas_verdes,validation,simulado
+areas_verdes-18-3,areas_verdes-18,O gramado da área pública precisa de corte. Outras pessoas também perceberam o problema.,areas_verdes,validation,simulado
+areas_verdes-19-0,areas_verdes-19,A vegetação da margem está invadindo a ciclovia.,areas_verdes,train,simulado
+areas_verdes-19-1,areas_verdes-19,a vegetacao da margem esta invadindo a ciclovia.,areas_verdes,train,simulado
+areas_verdes-19-2,areas_verdes-19,Bom dia. a vegetação da margem está invadindo a ciclovia.,areas_verdes,train,simulado
+areas_verdes-19-3,areas_verdes-19,A vegetação da margem está invadindo a ciclovia. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-19-4,areas_verdes-19,a vegetacao da margem ta invadindo a ciclovia.,areas_verdes,train,simulado
+areas_verdes-20-0,areas_verdes-20,Solicitamos avaliação de uma árvore com cavidade no tronco.,areas_verdes,validation,simulado
+areas_verdes-20-1,areas_verdes-20,solicitamos avaliacao de uma arvore com cavidade no tronco.,areas_verdes,validation,simulado
+areas_verdes-20-2,areas_verdes-20,Gostaria de registrar o seguinte problema. solicitamos avaliação de uma árvore com cavidade no tronco.,areas_verdes,validation,simulado
+areas_verdes-20-3,areas_verdes-20,Solicitamos avaliação de uma árvore com cavidade no tronco. Fica no caminho de quem vai trabalhar.,areas_verdes,validation,simulado
+areas_verdes-21-0,areas_verdes-21,As palmeiras da praça estão com folhas secas penduradas sobre a passagem.,areas_verdes,train,simulado
+areas_verdes-21-1,areas_verdes-21,as palmeiras da praca estao com folhas secas penduradas sobre a passagem.,areas_verdes,train,simulado
+areas_verdes-21-2,areas_verdes-21,"No bairro, as palmeiras da praça estão com folhas secas penduradas sobre a passagem.",areas_verdes,train,simulado
+areas_verdes-21-3,areas_verdes-21,As palmeiras da praça estão com folhas secas penduradas sobre a passagem. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-22-0,areas_verdes-22,A árvore da esquina tem galhos partidos depois do vento.,areas_verdes,train,simulado
+areas_verdes-22-1,areas_verdes-22,a arvore da esquina tem galhos partidos depois do vento.,areas_verdes,train,simulado
+areas_verdes-22-2,areas_verdes-22,Bom dia. a árvore da esquina tem galhos partidos depois do vento.,areas_verdes,train,simulado
+areas_verdes-22-3,areas_verdes-22,A árvore da esquina tem galhos partidos depois do vento. Isso acontece há alguns dias.,areas_verdes,train,simulado
+areas_verdes-23-0,areas_verdes-23,Precisamos de roçada na faixa verde ao lado do ponto de ônibus.,areas_verdes,train,simulado
+areas_verdes-23-1,areas_verdes-23,precisamos de rocada na faixa verde ao lado do ponto de onibus.,areas_verdes,train,simulado
+areas_verdes-23-2,areas_verdes-23,Gostaria de registrar o seguinte problema. precisamos de roçada na faixa verde ao lado do ponto de ônibus.,areas_verdes,train,simulado
+areas_verdes-23-3,areas_verdes-23,Precisamos de roçada na faixa verde ao lado do ponto de ônibus. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-23-4,areas_verdes-23,precisamo de rocada na faixa verde ao lado do ponto de onibus.,areas_verdes,train,simulado
+areas_verdes-24-0,areas_verdes-24,As trepadeiras tomaram a cerca do espaço público e avançam sobre o passeio.,areas_verdes,test,simulado
+areas_verdes-24-1,areas_verdes-24,as trepadeiras tomaram a cerca do espaco publico e avancam sobre o passeio.,areas_verdes,test,simulado
+areas_verdes-24-2,areas_verdes-24,"No bairro, as trepadeiras tomaram a cerca do espaço público e avançam sobre o passeio.",areas_verdes,test,simulado
+areas_verdes-24-3,areas_verdes-24,As trepadeiras tomaram a cerca do espaço público e avançam sobre o passeio. Outras pessoas também perceberam o problema.,areas_verdes,test,simulado
+areas_verdes-25-0,areas_verdes-25,"O poste está funcionando, precisamos podar os galhos que cobrem a luz.",areas_verdes,test,simulado
+areas_verdes-25-1,areas_verdes-25,"o poste esta funcionando, precisamos podar os galhos que cobrem a luz.",areas_verdes,test,simulado
+areas_verdes-25-2,areas_verdes-25,"Bom dia. o poste está funcionando, precisamos podar os galhos que cobrem a luz.",areas_verdes,test,simulado
+areas_verdes-25-3,areas_verdes-25,"O poste está funcionando, precisamos podar os galhos que cobrem a luz. Isso acontece há alguns dias.",areas_verdes,test,simulado
+areas_verdes-25-4,areas_verdes-25,"o poste ta funcionando, precisamo podar os galhos q cobrem a luz.",areas_verdes,test,simulado
+areas_verdes-26-0,areas_verdes-26,O lixo já foi retirado e agora falta cortar o mato do canteiro.,areas_verdes,train,simulado
+areas_verdes-26-1,areas_verdes-26,o lixo ja foi retirado e agora falta cortar o mato do canteiro.,areas_verdes,train,simulado
+areas_verdes-26-2,areas_verdes-26,Gostaria de registrar o seguinte problema. o lixo já foi retirado e agora falta cortar o mato do canteiro.,areas_verdes,train,simulado
+areas_verdes-26-3,areas_verdes-26,O lixo já foi retirado e agora falta cortar o mato do canteiro. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-27-0,areas_verdes-27,Um ramo pesado está se soltando da copa sobre a rua.,areas_verdes,train,simulado
+areas_verdes-27-1,areas_verdes-27,um ramo pesado esta se soltando da copa sobre a rua.,areas_verdes,train,simulado
+areas_verdes-27-2,areas_verdes-27,"No bairro, um ramo pesado está se soltando da copa sobre a rua.",areas_verdes,train,simulado
+areas_verdes-27-3,areas_verdes-27,Um ramo pesado está se soltando da copa sobre a rua. Outras pessoas também perceberam o problema.,areas_verdes,train,simulado
+areas_verdes-27-4,areas_verdes-27,um ramo pesado ta se soltando da copa sobre a rua.,areas_verdes,train,simulado
+areas_verdes-28-0,areas_verdes-28,O toco de uma árvore removida continua no canteiro e precisa de retirada.,areas_verdes,validation,simulado
+areas_verdes-28-1,areas_verdes-28,o toco de uma arvore removida continua no canteiro e precisa de retirada.,areas_verdes,validation,simulado
+areas_verdes-28-2,areas_verdes-28,Bom dia. o toco de uma árvore removida continua no canteiro e precisa de retirada.,areas_verdes,validation,simulado
+areas_verdes-28-3,areas_verdes-28,O toco de uma árvore removida continua no canteiro e precisa de retirada. Isso acontece há alguns dias.,areas_verdes,validation,simulado
+areas_verdes-29-0,areas_verdes-29,A vegetação bloqueia a visão de quem atravessa a esquina e precisa de manejo.,areas_verdes,train,simulado
+areas_verdes-29-1,areas_verdes-29,a vegetacao bloqueia a visao de quem atravessa a esquina e precisa de manejo.,areas_verdes,train,simulado
+areas_verdes-29-2,areas_verdes-29,Gostaria de registrar o seguinte problema. a vegetação bloqueia a visão de quem atravessa a esquina e precisa de manejo.,areas_verdes,train,simulado
+areas_verdes-29-3,areas_verdes-29,A vegetação bloqueia a visão de quem atravessa a esquina e precisa de manejo. Fica no caminho de quem vai trabalhar.,areas_verdes,train,simulado
+areas_verdes-30-0,areas_verdes-30,O jardim público perdeu a manutenção e precisa de capinação dos canteiros.,areas_verdes,test,simulado
+areas_verdes-30-1,areas_verdes-30,o jardim publico perdeu a manutencao e precisa de capinacao dos canteiros.,areas_verdes,test,simulado
+areas_verdes-30-2,areas_verdes-30,"No bairro, o jardim público perdeu a manutenção e precisa de capinação dos canteiros.",areas_verdes,test,simulado
+areas_verdes-30-3,areas_verdes-30,O jardim público perdeu a manutenção e precisa de capinação dos canteiros. Outras pessoas também perceberam o problema.,areas_verdes,test,simulado

@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "sklearn_version": "1.9.1",
+  "dataset_sha256": "c70600737ed18ac89325406676ef6121d5f16ff2c9eb2d7a607d8b0b7367da50",
+  "model_sha256": "65665554661d849a4c197bd6ae4e7e7ca1250f14f844a9658370779da5d3992c",
+  "probes_sha256": "8d29314712179fbe58cbd3a83a7d35ca47331088981131ddc0ddf0cf7081c2fd",
+  "model": "tfidf_palavras_caracteres"
+}
