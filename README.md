@@ -6,7 +6,11 @@ O ZELA ajuda moradores e trabalhadores a registrar problemas de uma rua e acompa
 
 **Global Solution 2026 · CitizenTech · Engenharia de Software · FIAP**
 
-Guilherme Vital Rodrigues
+## Integrantes
+
+- Erik Kaiyu Suguiyama · RM 559273
+- Guilherme Vital · RM 560073
+- Kayque Carvalho · RM 561189
 
 ## Executar
 
